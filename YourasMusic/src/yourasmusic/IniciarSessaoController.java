@@ -15,14 +15,21 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import java.io.*;
 import javafx.scene.control.Button;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 
 
 public class IniciarSessaoController implements Initializable {
-        
+       
+    EntityManager em;
+    EntityManagerFactory emf;
+     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        emf = Persistence.createEntityManagerFactory("YourasMusicPU");
+        em = emf.createEntityManager();
     }    
     
     @FXML
