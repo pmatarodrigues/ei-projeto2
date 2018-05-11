@@ -58,9 +58,9 @@ public class CriarContaController implements Initializable {
         
         /* INICIAR ENVIO PARA A BASE DE DADOS*/
         em.getTransaction().begin();
-        Utilizador user = new Utilizador(null, this.txtfldEmail.getText(), this.txtfldPassword.getText());
-        em.persist(user);
-        /* ENVIAR DADOS PARA A BASE DE DADOS*/
+            Utilizador user = new Utilizador(this.txtfldEmail.getText(), this.txtfldPassword.getText());
+            em.persist(user);
+            /* ENVIAR DADOS PARA A BASE DE DADOS*/
         em.getTransaction().commit();
        
     }
