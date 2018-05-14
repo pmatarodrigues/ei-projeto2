@@ -62,6 +62,7 @@ public class CriarContaController implements Initializable {
             em.persist(user);
             /* ENVIAR DADOS PARA A BASE DE DADOS*/
         em.getTransaction().commit();
+        em.clear();
        
     }
     

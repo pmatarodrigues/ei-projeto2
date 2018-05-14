@@ -2,9 +2,9 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -20,38 +20,21 @@
          </font>
       </Label>
       <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#37474f" height="400.0" layoutX="277.0" layoutY="336.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="727.0" />
-      <Label fx:id="label1" layoutX="444.0" layoutY="376.0" minHeight="16" minWidth="69" text="Nome de utilizador" textFill="WHITE">
+      <Label fx:id="label1" layoutX="444.0" layoutY="371.0" minHeight="16" minWidth="69" text="Nome de utilizador" textFill="WHITE">
          <font>
             <Font name="Vision-Light" size="26.0" />
          </font>
       </Label>
-      <TextField fx:id="txtfld_introduzir_username" layoutX="443.0" layoutY="400.0" prefHeight="39.0" prefWidth="395.0">
-         <font>
-            <Font name="Vision-Regular" size="22.0" />
-         </font></TextField>
       <Label fx:id="label11" layoutX="443.0" layoutY="452.0" minHeight="16" minWidth="69" text="Password" textFill="WHITE">
          <font>
             <Font name="Vision-Light" size="26.0" />
          </font>
       </Label>
-      <TextField fx:id="txtfld_introduzir_password" layoutX="443.0" layoutY="476.0" prefHeight="39.0" prefWidth="395.0">
-         <font>
-            <Font name="Vision-Regular" size="22.0" />
-         </font></TextField>
-      <Label fx:id="label111" layoutX="443.0" layoutY="536.0" minHeight="16" minWidth="69" text="Entrar como" textFill="WHITE">
+      <Label fx:id="label111" layoutX="443.0" layoutY="532.0" minHeight="16" minWidth="69" text="Entrar como" textFill="WHITE">
          <font>
             <Font name="Vision-Light" size="26.0" />
          </font>
       </Label>
-      <ComboBox fx:id="opc_entrar_como" layoutX="443.0" layoutY="560.0" prefHeight="39.0" prefWidth="395.0" />
-      <Button layoutX="575.0" layoutY="616.0" mnemonicParsing="false" onAction="#verificarDadosLogin" prefHeight="24.0" prefWidth="133.0" text="Entrar" textAlignment="CENTER">
-         <font>
-            <Font name="Vision-Heavy" size="23.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
       <ImageView fitHeight="170.0" fitWidth="230.0" layoutX="555.0" layoutY="79.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@pics/user.png" />
@@ -60,6 +43,23 @@
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </ImageView>
+      <TextField fx:id="txfUsername" layoutX="443.0" layoutY="400.0" prefHeight="39.0" prefWidth="395.0">
+         <font>
+            <Font name="Vision-Regular" size="22.0" />
+         </font></TextField>
+      <PasswordField fx:id="txfPassword" layoutX="444.0" layoutY="483.0" prefHeight="41.0" prefWidth="395.0">
+         <font>
+            <Font size="22.0" />
+         </font></PasswordField>
+      <ComboBox fx:id="opc_entrar_como" layoutX="443.0" layoutY="560.0" prefHeight="39.0" prefWidth="395.0" />
+      <Button layoutX="575.0" layoutY="616.0" mnemonicParsing="false" onAction="#iniciarSessao" prefHeight="24.0" prefWidth="133.0" text="Entrar" textAlignment="CENTER">
+         <font>
+            <Font name="Vision-Heavy" size="23.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
       <Button layoutX="592.0" layoutY="667.0" mnemonicParsing="false" onAction="#abrirPaginaCriarConta" stylesheets="@styles.css" text="Criar Conta">
          <font>
             <Font name="Vision-Regular" size="15.0" />
@@ -73,6 +73,5 @@
             <Font name="Vision-Regular" size="15.0" />
          </font>
       </Button>
-      <ButtonBar prefHeight="40.0" prefWidth="200.0" />
     </children>
 </AnchorPane>

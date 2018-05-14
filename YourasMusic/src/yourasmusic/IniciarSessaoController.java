@@ -19,7 +19,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -61,33 +64,31 @@ public class IniciarSessaoController implements Initializable {
     }
     
     @FXML
-    public void iniciarSessao(ActionEvent event){
-        
+    public void iniciarSessao(ActionEvent event) throws SQLException{
+        verificarDadosLogin(event);
     }
     
     @FXML
     public void verificarDadosLogin(ActionEvent event) throws SQLException{
-       
-        ResultSet utilizadores = executarQuery("SELECT * FROM UTILIZADOR WHERE email= 'pedro'");
-        if(utilizadores.next() != false){
-            ResultSet password = executarQuery("SELECT * FROM UTILIZADOR WHERE email ='pedro' and password_u= '1234'");
-            if(password != null){
+        
+        ResultSet utilizadores = executarQuery("SELECT * FROM UTILIZADOR WHERE email= '" + txfUsername.getText() + "'");
+        if(utilizadores.next()){
+            ResultSet password = executarQuery("SELECT * FROM UTILIZADOR WHERE email = '" + txfUsername.getText() +"' and password_u= '" + txfPassword.getText() + "'");            
+            if(password.next()){
+                mensagemPopup("SUCESSO", "O login foi efetuado com sucesso!", Alert.AlertType.INFORMATION);
                 System.out.println("SUCESSO! \n");
             }
             else{
-                System.out.println("PASSWORD ERRADA!");
+                mensagemPopup("ERRO", "Password incorreta!", Alert.AlertType.ERROR);
             }
         }
         else{
-            System.out.println("Username invalido!");
+            mensagemPopup("ERRO", "Username invalido!", Alert.AlertType.ERROR);
         }
     }
     
-    
-    
     //-------------- RECEBE STRING COM O QUERY A EXECUTAR
     public ResultSet executarQuery(String queryRecebido) throws SQLException{
-        
         ResultSet result;
         String query = queryRecebido;
         
@@ -98,9 +99,17 @@ public class IniciarSessaoController implements Initializable {
         //---- EXECUTAR QUERY
             result = st.executeQuery();
         em.getTransaction().commit();
-        
-        
+        em.clear();
         return result;
+    }
+    
+    private boolean mensagemPopup(String title, String texto, Alert.AlertType tipo){
+        Alert alert = new Alert(tipo);
+        alert.setTitle(title);
+        alert.setHeaderText(texto);
+        
+        Optional<ButtonType> option = alert.showAndWait();
+        return option.get() == ButtonType.CANCEL;
     }
 
     
