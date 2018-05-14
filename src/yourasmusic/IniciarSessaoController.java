@@ -1,6 +1,7 @@
 
 package yourasmusic;
 
+import java.beans.Statement;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -14,15 +15,38 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import java.io.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import org.eclipse.persistence.sessions.Session;
+import yourasmusic.db.*;
 
 
 
 public class IniciarSessaoController implements Initializable {
-        
+       
+    
+    
+    @FXML
+    private TextField txfUsername;
+    @FXML
+    private TextField txfPassword;
+    
+    EntityManagerFactory emf;
+    EntityManager em;
+     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        emf = Persistence. createEntityManagerFactory("YourasMusicPU");
+        em = emf.createEntityManager();
+        
+        
     }    
     
     @FXML
@@ -35,6 +59,51 @@ public class IniciarSessaoController implements Initializable {
         stage.setScene(iniciarSessaoScene);
         stage.show();
     }
+    
+    @FXML
+    public void iniciarSessao(ActionEvent event){
+        
+    }
+    
+    @FXML
+    public void verificarDadosLogin(ActionEvent event) throws SQLException{
+        
+        ResultSet utilizadores = executarQuery("SELECT * FROM UTILIZADOR WHERE email= '" + txfUsername.getText() + "'");
+        if(utilizadores.next()){
+            ResultSet password = executarQuery("SELECT * FROM UTILIZADOR WHERE email = '" + txfUsername.getText() +"' and password_u= '" + txfPassword.getText() + "'");            
+            if(password.next()){
+                System.out.println("SUCESSO! \n");
+            }
+            else{
+                System.out.println("PASSWORD ERRADA!");
+            }
+        }
+        else{
+            System.out.println("Username invalido!");
+        }
+        
+    }
+    
+    //-------------- RECEBE STRING COM O QUERY A EXECUTAR
+    public ResultSet executarQuery(String queryRecebido) throws SQLException{
+        
+        ResultSet result;
+        String query = queryRecebido;
+        
+        em.getTransaction().begin();
+        //---- ASSOCIAR A BASE DE DADOS À VARIAVEL 'CON'
+            java.sql.Connection con = em.unwrap(java.sql.Connection.class);
+            PreparedStatement st = con.prepareStatement(query);
+        //---- EXECUTAR QUERY
+            result = st.executeQuery();
+        em.getTransaction().commit();
+        em.clear();
+   
+        
+        
+        return result;
+    }
+
     
     
 }
