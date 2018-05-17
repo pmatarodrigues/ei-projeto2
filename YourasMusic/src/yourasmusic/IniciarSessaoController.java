@@ -51,8 +51,7 @@ public class IniciarSessaoController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         emf = Persistence. createEntityManagerFactory("YourasMusicPU");
         em = emf.createEntityManager();
-        
-        
+       
     }    
     
     @FXML
@@ -70,7 +69,6 @@ public class IniciarSessaoController implements Initializable {
     public void iniciarSessao(ActionEvent event) throws SQLException, IOException{
         int verifica;
         verifica = verificarDadosLogin(event);
-        
         if(verifica==0){
             Parent root = FXMLLoader.load(getClass().getResource("FXMLMusicPane.fxml"));
             Pane musicPane = FXMLLoader.load(getClass().getResource("FXMLMusic.fxml"));

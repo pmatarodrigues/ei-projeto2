@@ -12,12 +12,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-
 
 
 
@@ -31,6 +32,8 @@ public class CriarContaController implements Initializable {
     TextField txtfldPassword;
     @FXML
     TextField txtfldConfirmarPassword;
+    @FXML
+    ComboBox cmboxTipoUtilizador; 
     
     EntityManager em;
     EntityManagerFactory emf;
@@ -39,6 +42,7 @@ public class CriarContaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         emf = Persistence.createEntityManagerFactory("YourasMusicPU");
         em = emf.createEntityManager();
+        
     }
    
     @FXML
