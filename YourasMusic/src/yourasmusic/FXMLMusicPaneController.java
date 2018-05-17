@@ -50,4 +50,10 @@ public class FXMLMusicPaneController implements Initializable {
             YourasMusic.getROOT().setRight(newPane);
     }
     
+    @FXML
+    public void abrirArtistas(ActionEvent event) throws IOException{
+            Pane newPane = FXMLLoader.load(getClass().getResource("FXMLArtistas.fxml"));
+            YourasMusic.getROOT().setRight(newPane);
+    }
+    
 }
