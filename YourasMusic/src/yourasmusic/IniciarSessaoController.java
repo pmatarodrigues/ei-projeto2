@@ -55,13 +55,8 @@ public class IniciarSessaoController implements Initializable {
     
     @FXML
     public void abrirPaginaCriarConta(ActionEvent event) throws IOException{
-        Parent iniciarSessaoParent = FXMLLoader.load(getClass().getResource("FXMLCriarConta.fxml"));
-        Scene iniciarSessaoScene = new Scene(iniciarSessaoParent);
-        
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.hide();
-        stage.setScene(iniciarSessaoScene);
-        stage.show();
+        Pane paneCriarConta= FXMLLoader.load(getClass().getResource("FXMLCriarConta.fxml"));
+        YourasMusic.getROOT().setCenter(paneCriarConta);
     }
     
     @FXML

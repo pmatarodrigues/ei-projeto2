@@ -61,13 +61,7 @@
             <PasswordField fx:id="txtfldPassword" layoutX="444.0" layoutY="408.0" prefHeight="45.0" prefWidth="395.0" />
             <PasswordField fx:id="txtfldConfirmarPassword" layoutX="443.0" layoutY="498.0" prefHeight="45.0" prefWidth="395.0" />
             <ComboBox fx:id="cmboxTipoUtilizador" layoutX="443.0" layoutY="586.0" prefHeight="39.0" prefWidth="395.0">
-               <items>
-                  <FXCollections fx:factory="observableArrayList">
-                     <String fx:value="Artista" />
-                     <String fx:value="Editora" />
-                     <String fx:value="Dir. Estúdio" />
-                  </FXCollections>
-               </items>
+              
             </ComboBox>
             <Button layoutX="567.0" layoutY="653.0" mnemonicParsing="false" onAction="#criarConta" prefHeight="24.0" prefWidth="133.0" text="Registar" textAlignment="CENTER">
                <font>

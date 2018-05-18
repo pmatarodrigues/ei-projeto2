@@ -4,6 +4,7 @@ package yourasmusic;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -46,7 +47,7 @@ public class CriarContaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         emf = Persistence.createEntityManagerFactory("YourasMusicPU");
         em = emf.createEntityManager();
-        
+        cmboxTipoUtilizador.setItems(FXCollections.observableArrayList("Artista", "Editora", "Estudio"));
     }
    
     @FXML
@@ -83,19 +84,25 @@ public class CriarContaController implements Initializable {
             em.persist(user);
             /* ENVIAR DADOS PARA A BASE DE DADOS*/
         em.getTransaction().commit();
-        em.clear();
+        
         
         switch (tipo) {
             case "A":
-                Pane paneArtista = FXMLLoader.load(getClass().getResource("FXMLCriarContaArtista.fxml"));
-                YourasMusic.getROOT().setCenter(paneArtista);
+                Pane paneContaArtista = FXMLLoader.load(getClass().getResource("FXMLCriarContaArtista.fxml"));
+                YourasMusic.getROOT().setCenter(paneContaArtista);                
                 break;
             case "E":
+                Pane paneContaEditora = FXMLLoader.load(getClass().getResource("FXMLCriarContaEditora.fxml"));
+                YourasMusic.getROOT().setCenter(paneContaEditora);  
                 break;
             case "S":
+                Pane paneContaEstudio = FXMLLoader.load(getClass().getResource("FXMLCriarContaEstudio.fxml"));
+                YourasMusic.getROOT().setCenter(paneContaEstudio);  
                 break;
             default:
+                System.out.println("Default reached");
                 break;
         }
+        em.clear();
     }
 }
