@@ -5,9 +5,14 @@
  */
 package yourasmusic;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.Pane;
 
 /**
  * FXML Controller class
@@ -23,5 +28,11 @@ public class FXMLCriarContaEstudioController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
+    @FXML
+    public void abrirPaginaIniciarSessao(ActionEvent event) throws IOException{
+        Pane paneCriarConta= FXMLLoader.load(getClass().getResource("FXMLIniciarSessao.fxml"));
+        YourasMusic.getROOT().setCenter(paneCriarConta);
+    }
     
 }
