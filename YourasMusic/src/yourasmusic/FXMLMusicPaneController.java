@@ -33,27 +33,56 @@ public class FXMLMusicPaneController implements Initializable {
     @FXML
     private Pane paneEsquerda;
     
-    @FXML
-    private Label albuns;
+  
     
-    @FXML
-    private Button teste;
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        
-    }    
-    
-    @FXML
-    public void abrirAlbuns(ActionEvent event) throws IOException{
-            Pane newPane = FXMLLoader.load(getClass().getResource("FXMLAlbuns.fxml"));
-            YourasMusic.getROOT().setRight(newPane);
     }
     
     @FXML
-    public void abrirArtistas(ActionEvent event) throws IOException{
-            Pane newPane = FXMLLoader.load(getClass().getResource("FXMLArtistas.fxml"));
+    private void switchCenter(ActionEvent event){
+        // Load the new pane
+        // menuitem people -> document.fxml
+        // menuItem 
+        switch(((Button) event.getSource()).getId()){
+            
+            case "but_inicio":
+                changeCenterPane("FXMLMusic.fxml");
+                break;
+            case "but_albuns":
+                changeCenterPane("FXMLAlbuns.fxml");
+                break;
+            case "but_artistas":
+                changeCenterPane("FXMLArtistas.fxml");
+                break;
+            case "but_editoras":
+                changeCenterPane("FXMLEditora.fxml");
+                break;
+            case "but_estudios":
+                changeCenterPane("FXMLEstudio.fxml");
+                break;
+            case "but_musicas":
+                changeCenterPane("FXMLMusicas.fxml");
+                break;
+            case "but_upload":
+                changeCenterPane("FXMLUpload.fxml");
+                break;
+            default:
+        }
+        
+    }
+
+    private void changeCenterPane(String paneName) {
+         
+        try {
+            Pane newPane = FXMLLoader.load(getClass().getResource(paneName));
             YourasMusic.getROOT().setRight(newPane);
+        } catch (IOException ex) {
+        }
+       // ((BorderPane) root).setCenter(peoplePane);
     }
     
 }

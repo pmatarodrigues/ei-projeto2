@@ -6,18 +6,43 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1240.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="yourasmusic.FXMLMusicPaneController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1240.0" style="-fx-background-color: #4f4f4f;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="yourasmusic.FXMLMusicPaneController">
    <left>
-      <Pane fx:id="paneEsquerda" prefHeight="200.0" prefWidth="250.0" style="-fx-background-color: #e26101;" BorderPane.alignment="CENTER">
+      <Pane fx:id="paneEsquerda" prefHeight="200.0" prefWidth="250.0" style="-fx-background-color: #272727;" BorderPane.alignment="CENTER">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
          <children>
-            <Button layoutX="68.0" layoutY="140.0" mnemonicParsing="false" onAction="#abrirAlbuns" stylesheets="@styles.css" text="Albuns">
+            <Button fx:id="but_inicio" layoutX="17.0" layoutY="163.0" mnemonicParsing="false" onAction="#switchCenter" stylesheets="@styles.css" text="Inicio">
                <font>
                   <Font size="24.0" />
                </font></Button>
-            <Button layoutX="65.0" layoutY="211.0" mnemonicParsing="false" onAction="#abrirArtistas" stylesheets="@styles.css" text="Artistas">
+            <Button fx:id="but_albuns" layoutX="15.0" layoutY="234.0" mnemonicParsing="false" onAction="#switchCenter" stylesheets="@styles.css" text="Albuns">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Button>
+            <Button fx:id="but_artistas" layoutX="16.0" layoutY="307.0" mnemonicParsing="false" onAction="#switchCenter" stylesheets="@styles.css" text="Artistas">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Button>
+            <Button fx:id="but_editoras" layoutX="14.0" layoutY="382.0" mnemonicParsing="false" onAction="#switchCenter" stylesheets="@styles.css" text="Editoras">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Button>
+            <Button fx:id="but_estudios" layoutX="17.0" layoutY="454.0" mnemonicParsing="false" onAction="#switchCenter" stylesheets="@styles.css" text="Estudios">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Button>
+            <Button fx:id="but_musicas" layoutX="20.0" layoutY="529.0" mnemonicParsing="false" onAction="#switchCenter" stylesheets="@styles.css" text="Musicas">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Button>
+            <Button fx:id="but_upload" layoutX="67.0" layoutY="671.0" mnemonicParsing="false" onAction="#switchCenter" style="-fx-background-color: #ff8c00;" stylesheets="@styles.css" text="Upload" textFill="#ff8c00" textOverrun="CLIP" wrapText="true">
                <font>
                   <Font size="24.0" />
                </font>
