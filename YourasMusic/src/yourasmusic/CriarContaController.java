@@ -80,11 +80,10 @@ public class CriarContaController implements Initializable {
             /* ENVIAR DADOS PARA A BASE DE DADOS*/
         em.getTransaction().commit();
         
-        
         switch (tipo) {
             case "A":
                 Pane paneContaArtista = FXMLLoader.load(getClass().getResource("FXMLCriarContaArtista.fxml"));
-                YourasMusic.getROOT().setCenter(paneContaArtista);                
+                YourasMusic.getROOT().setCenter(paneContaArtista);
                 break;
             case "E":
                 Pane paneContaEditora = FXMLLoader.load(getClass().getResource("FXMLCriarContaEditora.fxml"));

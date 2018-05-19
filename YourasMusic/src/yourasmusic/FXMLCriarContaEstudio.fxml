@@ -12,14 +12,14 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1240.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="yourasmusic.FXMLCriarContaEstudioController">
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1240.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="yourasmusic.FXMLCriarContaEstudioController">
    <children>
       <BorderPane layoutX="-1.0" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #607D8B;">
          <center>
             <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #607D8B;" BorderPane.alignment="CENTER">
                <children>
                   <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#37474f" height="716.0" layoutX="277.0" layoutY="42.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="727.0" />
-                  <Label fx:id="label12" layoutX="447.0" layoutY="339.0" minHeight="16" minWidth="69" text="Morada" textFill="WHITE">
+                  <Label fx:id="label12" layoutX="447.0" layoutY="339.0" minHeight="16" minWidth="69" text="Nome" textFill="WHITE">
                      <font>
                         <Font name="Vision-Light" size="26.0" />
                      </font>
@@ -37,7 +37,7 @@
                         <Font name="Vision-BlackItalic" size="34.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtfldEmail" alignment="TOP_LEFT" layoutX="447.0" layoutY="374.0" prefHeight="39.0" prefWidth="395.0">
+                  <TextField fx:id="txtfldEmail" alignment="TOP_LEFT" layoutX="447.0" layoutY="374.0" prefHeight="48.0" prefWidth="395.0">
                      <font>
                         <Font name="Vision-Regular" size="22.0" />
                      </font>
@@ -58,6 +58,16 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
+                  <Label fx:id="label121" layoutX="447.0" layoutY="453.0" minHeight="16" minWidth="69" text="Contacto" textFill="WHITE">
+                     <font>
+                        <Font name="Vision-Light" size="26.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txtfldEmail1" alignment="TOP_LEFT" layoutX="447.0" layoutY="488.0" prefHeight="48.0" prefWidth="395.0">
+                     <font>
+                        <Font name="Vision-Regular" size="22.0" />
+                     </font>
+                  </TextField>
                </children>
             </Pane>
          </center>
