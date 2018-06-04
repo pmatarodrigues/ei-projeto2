@@ -123,6 +123,7 @@ public class CriarContaController implements Initializable {
         em.getTransaction().begin();
         //---- ASSOCIAR A BASE DE DADOS À VARIAVEL 'CON'
             java.sql.Connection con = em.unwrap(java.sql.Connection.class);
+            // ------- Recebe o ultimo utilizador adicionado (que foi o adicionado em cima)
             PreparedStatement st = con.prepareStatement("SELECT * \n" +
                                                         "FROM \n" +
                                                         "    (SELECT *\n" +
@@ -132,9 +133,9 @@ public class CriarContaController implements Initializable {
         //---- EXECUTAR QUERY
             result = st.executeQuery();
             result.next();
-            System.out.println(result.getInt(1));
         em.getTransaction().commit();
         em.clear();
+        // ------ id do ultimo user adicionado
         int userID = result.getInt(1);
         
        em.getTransaction().begin();
@@ -155,7 +156,9 @@ public class CriarContaController implements Initializable {
         }
         em.getTransaction().commit();
         em.clear();
-
+        
+        Pane paneIniciarSessao = FXMLLoader.load(getClass().getResource("FXMLIniciarSessao.fxml"));
+        YourasMusic.getROOT().setCenter(paneIniciarSessao);
 
     }
     
