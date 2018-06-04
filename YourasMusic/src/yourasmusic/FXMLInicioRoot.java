@@ -17,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -25,7 +26,7 @@ import javafx.stage.Stage;
  *
  * @author HP
  */
-public class FXMLMusicPaneController implements Initializable {
+public class FXMLInicioRoot implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -76,7 +77,6 @@ public class FXMLMusicPaneController implements Initializable {
     }
 
     private void changeCenterPane(String paneName) {
-         
         try {
             Pane newPane = FXMLLoader.load(getClass().getResource(paneName));
             YourasMusic.getROOT().setRight(newPane);

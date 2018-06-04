@@ -64,8 +64,8 @@ public class IniciarSessaoController implements Initializable {
         int verifica;
         verifica = verificarDadosLogin(event);
         if(verifica==0){
-            Parent root = FXMLLoader.load(getClass().getResource("FXMLMusicPane.fxml"));
-            Pane musicPane = FXMLLoader.load(getClass().getResource("FXMLMusic.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("FXMLInicioRoot.fxml"));
+            Pane musicPane = FXMLLoader.load(getClass().getResource("FXMLInicioPane.fxml"));
             ((BorderPane) root).setRight(musicPane);
             
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
