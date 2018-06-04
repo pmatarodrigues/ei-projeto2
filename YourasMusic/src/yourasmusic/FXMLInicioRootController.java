@@ -26,7 +26,7 @@ import javafx.stage.Stage;
  *
  * @author HP
  */
-public class FXMLInicioRoot implements Initializable {
+public class FXMLInicioRootController implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -51,7 +51,7 @@ public class FXMLInicioRoot implements Initializable {
         switch(((Button) event.getSource()).getId()){
             
             case "but_inicio":
-                changeCenterPane("FXMLMusic.fxml");
+                changeCenterPane("FXMLInicioPane.fxml");
                 break;
             case "but_albuns":
                 changeCenterPane("FXMLAlbuns.fxml");

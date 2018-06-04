@@ -44,10 +44,11 @@ public class FXMLInicioPaneController implements Initializable {
     private void carregarGenerosDeMusica(){             
         for(String s : generos){
             Button newButton = new Button();
-            newButton.setStyle("-fx-text-fill: #FFF; "
-                               + "-fx-background-color: #272727; "
-                               + "-fx-padding: 10px");
-            newButton.setMaxSize(213, 160);
+            newButton.setStyle("-fx-text-fill: #FFF ;\n" +
+                               "-fx-background-color: #272727;\n"
+                             + "-fx-border-width: 30;\n"
+                             + "-fx-border-color: TRANSPARENT;");          
+            newButton.setMinSize(213, 160);
             newButton.setText(s);
             listaGenerosTile.getChildren().add(newButton);
         }
