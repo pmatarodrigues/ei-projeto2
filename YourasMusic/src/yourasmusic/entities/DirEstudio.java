@@ -56,6 +56,14 @@ public class DirEstudio implements Serializable {
         this.nome = nome;
     }
 
+    public DirEstudio(Integer dirEstudioId, String nome, String contacto) {
+        this.dirEstudioId = dirEstudioId;
+        this.nome = nome;
+        this.contacto = contacto;
+    }
+    
+    
+
     public Integer getDirEstudioId() {
         return dirEstudioId;
     }

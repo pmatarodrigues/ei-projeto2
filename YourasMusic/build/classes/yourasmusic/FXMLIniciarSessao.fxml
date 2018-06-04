@@ -58,7 +58,7 @@
         <FXCollections fx:factory="observableArrayList">
             <String fx:value="Artista" />
             <String fx:value="Editora" />
-            <String fx:value="Estúdio" />
+            <String fx:value="Dir. Estúdio" />
         </FXCollections>
         </items>
       </ComboBox>

@@ -49,12 +49,25 @@ public class YourasMusic extends Application {
         YourasMusic.ROOT = ROOT;
     }
     
-    
-    
+        
     public static void main(String[] args) {
         launch(args);
     }
 
-    
+    //-------------- RECEBE STRING COM O QUERY A EXECUTAR
+    public ResultSet executarQuery(String queryRecebido) throws SQLException{
+        ResultSet result;
+        String query = queryRecebido;
+        
+        em.getTransaction().begin();
+        //---- ASSOCIAR A BASE DE DADOS À VARIAVEL 'CON'
+            java.sql.Connection con = em.unwrap(java.sql.Connection.class);
+            PreparedStatement st = con.prepareStatement(query);
+        //---- EXECUTAR QUERY
+            result = st.executeQuery();
+        em.getTransaction().commit();
+        em.clear();
+        return result;
+    }
 
 }

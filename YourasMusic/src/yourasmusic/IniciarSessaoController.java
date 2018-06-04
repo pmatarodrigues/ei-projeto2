@@ -121,8 +121,5 @@ public class IniciarSessaoController implements Initializable {
         
         Optional<ButtonType> option = alert.showAndWait();
         return option.get() == ButtonType.CANCEL;
-    }
-
-    
-    
+    } 
 }

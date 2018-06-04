@@ -60,6 +60,15 @@ public class Editora implements Serializable {
         this.morada = morada;
     }
 
+    public Editora(Integer editoraId, String nome, String morada, String contacto) {
+        this.editoraId = editoraId;
+        this.nome = nome;
+        this.morada = morada;
+        this.contacto = contacto;
+    }
+    
+    
+
     public Integer getEditoraId() {
         return editoraId;
     }

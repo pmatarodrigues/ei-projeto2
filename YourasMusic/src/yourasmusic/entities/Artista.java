@@ -68,6 +68,16 @@ public class Artista implements Serializable {
         this.dataNascimento = dataNascimento;
     }
 
+    public Artista(Integer artistaId, String nomeCompleto, String nomeArtista, Date dataNascimento, String nacionalidade, String contacto) {
+        this.artistaId = artistaId;
+        this.nomeCompleto = nomeCompleto;
+        this.nomeArtista = nomeArtista;
+        this.dataNascimento = dataNascimento;
+        this.nacionalidade = nacionalidade;
+        this.contacto = contacto;
+    }
+    
+
     public Integer getArtistaId() {
         return artistaId;
     }
