@@ -11,9 +11,47 @@
     -fx-text-fill: #FFCCBC;
 }
 
-.button_tile{
-
+#button_tile{
+    -fx-background-color: #272727;
+    -fx-text-fill: #FFF;
     -fx-padding: 10.0 3.0 5.0 0.0;
     -fx-hgap: 4;
     -fx-vgap: 4;
+}
+
+#button_tile:hover{
+    -fx-background-color: #616161;
+    -fx-text-fill: #FFF;
+    -fx-background-radius: 5;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+}
+
+.button-upload{
+    -fx-background-color: #FF7043;
+}
+
+.button-upload:hover{
+    -fx-background-color: #FF5722;
+    -fx-border-color: #FF6E40;
+    -fx-border-width: 3px;
+}
+
+.text-menu-esquerdo-inicio{
+    -fx-text-fill: #FFF;
+    -fx-text-alignment: center;
+}
+
+.text-menu-esquerdo-inicio:hover{
+    -fx-text-fill: #FFF;
+    -fx-font-weight: bold;
+    -fx-background-color: #424242;
+}
+
+.text-menu-esquerdo{
+    -fx-text-fill: #FFF;
+}
+
+.text-menu-esquerdo:hover{
+    -fx-text-fill: #FF8A65;
 }

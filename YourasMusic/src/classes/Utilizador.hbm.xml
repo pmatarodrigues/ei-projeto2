@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13/jun/2018 18:32:28 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="classes.Utilizador" table="UTILIZADOR" schema="PROJETO" optimistic-lock="version">
+        <id name="utilizadorId" type="int">
+            <column name="UTILIZADOR_ID" precision="6" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="email" type="string">
+            <column name="EMAIL" length="100" not-null="true" />
+        </property>
+        <property name="passwordU" type="string">
+            <column name="PASSWORD_U" length="100" not-null="true" />
+        </property>
+        <property name="tipo" type="string">
+            <column name="TIPO" length="3" not-null="true" />
+        </property>
+        <set name="musicas" table="MUSICA" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ARTISTA_ID" precision="6" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="classes.Musica" />
+        </set>
+        <set name="reservas" table="RESERVA" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="REQUERENTE_ID" precision="6" scale="0" />
+            </key>
+            <one-to-many class="classes.Reserva" />
+        </set>
+    </class>
+</hibernate-mapping>

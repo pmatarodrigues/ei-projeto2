@@ -9,11 +9,11 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="990.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="yourasmusic.FXMLArtistasController">
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="990.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="yourasmusic.FXMLArtistasController">
    <children>
       <BorderPane prefHeight="811.0" prefWidth="1002.0">
          <center>
-            <TilePane fx:id="tileAlbuns" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+            <TilePane fx:id="tileArtistas" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
          </center>
          <top>
             <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">

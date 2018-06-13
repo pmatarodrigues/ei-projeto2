@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13/jun/2018 18:32:28 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="classes.Instrumental" table="INSTRUMENTAL" schema="PROJETO" optimistic-lock="version">
+        <id name="instrumentalId" type="int">
+            <column name="INSTRUMENTAL_ID" precision="6" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="audio" type="blob">
+            <column name="AUDIO" not-null="true" />
+        </property>
+        <property name="compositor" type="string">
+            <column name="COMPOSITOR" length="25" />
+        </property>
+    </class>
+</hibernate-mapping>

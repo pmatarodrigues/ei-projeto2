@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13/jun/2018 18:32:28 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="classes.Reserva" table="RESERVA" schema="PROJETO" optimistic-lock="version">
+        <id name="reservaId" type="int">
+            <column name="RESERVA_ID" precision="6" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="utilizador" class="classes.Utilizador" fetch="select">
+            <column name="REQUERENTE_ID" precision="6" scale="0" />
+        </many-to-one>
+        <many-to-one name="estudio" class="classes.Estudio" fetch="select">
+            <column name="ESTUDIO_ID" precision="6" scale="0" />
+        </many-to-one>
+        <property name="dataReserva" type="date">
+            <column name="DATA_RESERVA" length="7" not-null="true" />
+        </property>
+        <property name="isconfirmed" type="char">
+            <column name="ISCONFIRMED" length="1" not-null="true" />
+        </property>
+        <property name="isactive" type="char">
+            <column name="ISACTIVE" length="1" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

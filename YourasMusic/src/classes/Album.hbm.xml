@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13/jun/2018 18:32:28 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="classes.Album" table="ALBUM" schema="PROJETO" optimistic-lock="version">
+        <id name="albumId" type="int">
+            <column name="ALBUM_ID" precision="6" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="artista" class="classes.Artista" fetch="select">
+            <column name="ARTISTA_ID" precision="6" scale="0" />
+        </many-to-one>
+        <many-to-one name="editora" class="classes.Editora" fetch="select">
+            <column name="EDITORA_ID" precision="6" scale="0" />
+        </many-to-one>
+        <property name="nome" type="string">
+            <column name="NOME" length="40" not-null="true" />
+        </property>
+        <property name="capa" type="blob">
+            <column name="CAPA" />
+        </property>
+        <property name="produtor" type="string">
+            <column name="PRODUTOR" length="30" />
+        </property>
+        <property name="linkAlbum" type="string">
+            <column name="LINK_ALBUM" length="100" />
+        </property>
+        <property name="ano" type="string">
+            <column name="ANO" length="5" />
+        </property>
+        <set name="musicas" table="MUSICA" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ALBUM_ID" precision="6" scale="0" />
+            </key>
+            <one-to-many class="classes.Musica" />
+        </set>
+    </class>
+</hibernate-mapping>

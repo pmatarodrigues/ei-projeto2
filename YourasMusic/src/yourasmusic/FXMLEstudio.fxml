@@ -10,9 +10,9 @@
 
 <AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="990.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="yourasmusic.FXMLEstudioController">
    <children>
-      <BorderPane layoutX="32.0" layoutY="31.0" prefHeight="800.0" prefWidth="990.0">
+      <BorderPane prefHeight="831.0" prefWidth="1022.0">
          <center>
-            <TilePane fx:id="tileAlbuns" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+            <TilePane fx:id="tileEstudios" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
          </center>
          <top>
             <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">

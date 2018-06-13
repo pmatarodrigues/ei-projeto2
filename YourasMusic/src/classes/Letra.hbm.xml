@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13/jun/2018 18:32:28 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="classes.Letra" table="LETRA" schema="PROJETO" optimistic-lock="version">
+        <id name="letraId" type="int">
+            <column name="LETRA_ID" precision="6" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="lyrics" type="string">
+            <column name="LYRICS" length="4000" not-null="true" />
+        </property>
+        <property name="autor" type="string">
+            <column name="AUTOR" length="40" />
+        </property>
+    </class>
+</hibernate-mapping>

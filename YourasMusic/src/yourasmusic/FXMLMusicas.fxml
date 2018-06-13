@@ -12,7 +12,7 @@
    <children>
       <BorderPane prefHeight="841.0" prefWidth="1032.0">
          <center>
-            <TilePane fx:id="tileAlbuns" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+            <TilePane fx:id="tileMusicas" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
          </center>
          <top>
             <Pane prefHeight="200.0" prefWidth="1029.0" BorderPane.alignment="CENTER">

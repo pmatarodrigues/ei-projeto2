@@ -5,9 +5,15 @@
  */
 package yourasmusic;
 
+import classes.Artista;
+import classes.Estudio;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.layout.TilePane;
 
 /**
  * FXML Controller class
@@ -16,12 +22,28 @@ import javafx.fxml.Initializable;
  */
 public class FXMLEstudioController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
+    @FXML TilePane tileEstudios;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+            carregarArtistas();
     }    
+    
+    
+    private void carregarArtistas(){
+        org.hibernate.Session session = hibernate.HibernateUtil.getSessionFactory().openSession();
+        
+        List<Estudio> estudios = session.createCriteria(Estudio.class).list();
+        
+        for(Estudio e : estudios){
+            Button btnEstudios = new Button();
+            btnEstudios.setId("button_tile");
+            btnEstudios.setMinSize(200, 200);
+            btnEstudios.setText(e.getMorada().toString());
+            tileEstudios.getChildren().add(btnEstudios);
+        }   
+        
+        session.close();
+    }
     
 }

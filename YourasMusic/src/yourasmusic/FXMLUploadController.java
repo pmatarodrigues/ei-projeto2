@@ -5,6 +5,8 @@
  */
 package yourasmusic;
 
+import classes.Musica;
+import classes.Utilizador;
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -14,6 +16,7 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.net.URL;
+import java.sql.Blob;
 import static java.sql.JDBCType.BLOB;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -34,8 +37,10 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 //import javazoom.jl.decoder.JavaLayerException;
 import static oracle.jdbc.OracleTypes.BLOB;
 import oracle.sql.BLOB;
-import yourasmusic.entities.Musica;
-import yourasmusic.entities.Utilizador;
+import org.hibernate.Session;
+import org.hibernate.type.Type;
+import sun.misc.IOUtils;
+
 
 /**
  * FXML Controller class
@@ -44,18 +49,10 @@ import yourasmusic.entities.Utilizador;
  */
 public class FXMLUploadController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
-    
-    EntityManager em;
-    EntityManagerFactory emf;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        emf = Persistence.createEntityManagerFactory("YourasMusicPU");
-        em = emf.createEntityManager();
+
     }    
     
     @FXML
@@ -82,17 +79,28 @@ public class FXMLUploadController implements Initializable {
             
         }
         
-        /* INICIAR ENVIO PARA A BASE DE DADOS*/
-        em.getTransaction().begin();
-        java.sql.Connection con = em.unwrap(java.sql.Connection.class);
-        PreparedStatement st = con.prepareStatement("INSERT INTO musica (nome, artista_id, audio) VALUES (?, ?, ?)");
-        st.setString(1, "nome_musica");
-        st.setInt(2, 56);
-        st.setBinaryStream(3, fis, (int) myFile.length());
-        st.executeQuery();
+        String nomeMusica = "Musica";
+        int artista_id = 57;
+    
         
-        em.getTransaction().commit();
-        em.clear();
+        Session session = hibernate.HibernateUtil.getSessionFactory().openSession();
+        Blob musica = session.getLobHelper().createBlob(fis, myFile.length());
+        
+        session.createQuery("INSERT INTO MUSICA (NOME, ARTISTA_ID, AUDIO) VALUES (?, ?, ?)").setParameter(nomeMusica, artista_id, (Type) (Blob) musica);
+        
+        session.close();
+        
+        /* INICIAR ENVIO PARA A BASE DE DADOS*/
+        //em.getTransaction().begin();
+        //java.sql.Connection con = em.unwrap(java.sql.Connection.class);
+        //PreparedStatement st = con.prepareStatement("INSERT INTO musica (nome, artista_id, audio) VALUES (?, ?, ?)");
+        //st.setString(1, "nome_musica");
+        //st.setInt(2, 56);
+        //st.setBinaryStream(3, fis, (int) myFile.length());
+        //st.executeQuery();
+        
+        //em.getTransaction().commit();
+        //em.clear();
         
      
         

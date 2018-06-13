@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13/jun/2018 18:32:28 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="classes.Musica" table="MUSICA" schema="PROJETO" optimistic-lock="version">
+        <id name="musicaId" type="int">
+            <column name="MUSICA_ID" precision="6" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="utilizador" class="classes.Utilizador" fetch="select">
+            <column name="ARTISTA_ID" precision="6" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="album" class="classes.Album" fetch="select">
+            <column name="ALBUM_ID" precision="6" scale="0" />
+        </many-to-one>
+        <property name="nome" type="string">
+            <column name="NOME" length="30" not-null="true" />
+        </property>
+        <property name="genero" type="string">
+            <column name="GENERO" length="20" />
+        </property>
+        <property name="duracao" type="java.lang.Integer">
+            <column name="DURACAO" precision="5" scale="0" />
+        </property>
+        <property name="audio" type="blob">
+            <column name="AUDIO" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

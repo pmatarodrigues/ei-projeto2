@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13/jun/2018 18:32:28 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="classes.Artista" table="ARTISTA" schema="PROJETO" optimistic-lock="version">
+        <id name="artistaId" type="int">
+            <column name="ARTISTA_ID" precision="6" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="nomeCompleto" type="string">
+            <column name="NOME_COMPLETO" length="100" not-null="true" />
+        </property>
+        <property name="nomeArtista" type="string">
+            <column name="NOME_ARTISTA" length="100" />
+        </property>
+        <property name="dataNascimento" type="date">
+            <column name="DATA_NASCIMENTO" length="7" not-null="true" />
+        </property>
+        <property name="nacionalidade" type="string">
+            <column name="NACIONALIDADE" length="20" />
+        </property>
+        <property name="contacto" type="string">
+            <column name="CONTACTO" length="30" />
+        </property>
+        <set name="albums" table="ALBUM" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ARTISTA_ID" precision="6" scale="0" />
+            </key>
+            <one-to-many class="classes.Album" />
+        </set>
+    </class>
+</hibernate-mapping>

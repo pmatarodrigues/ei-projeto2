@@ -1,6 +1,9 @@
 
 package yourasmusic;
 
+import classes.Artista;
+import classes.DirEstudio;
+import classes.Editora;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
@@ -29,11 +32,9 @@ import javafx.stage.Stage;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import yourasmusic.entities.Artista;
-import yourasmusic.entities.DirEstudio;
-import yourasmusic.entities.Editora;
-import yourasmusic.entities.Estudio;
-import yourasmusic.entities.Utilizador;
+import classes.Utilizador;
+import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
 
 
 
@@ -81,8 +82,6 @@ public class CriarContaController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        emf = Persistence.createEntityManagerFactory("YourasMusicPU");
-        em = emf.createEntityManager();
         cmboxTipoUtilizador.setItems(FXCollections.observableArrayList("Artista", "Editora", "Dir. Estudio"));
         
         lblNomeCompleto.setVisible(false);
@@ -111,54 +110,43 @@ public class CriarContaController implements Initializable {
         Editora editora = new Editora();
         DirEstudio dirEstudio = new DirEstudio();
 
+        org.hibernate.Session session = hibernate.HibernateUtil.getSessionFactory().openSession();
+
         /* INICIAR ENVIO PARA A BASE DE DADOS*/
-        em.getTransaction().begin();
-        Utilizador user = new Utilizador(this.txtfldEmail.getText(), this.txtfldPassword.getText(), tipo);
-        em.persist(user);
-        /* ENVIAR DADOS PARA A BASE DE DADOS*/
-        em.getTransaction().commit();
-        em.clear();
-        
-        ResultSet result;        
-        em.getTransaction().begin();
-        //---- ASSOCIAR A BASE DE DADOS À VARIAVEL 'CON'
-            java.sql.Connection con = em.unwrap(java.sql.Connection.class);
-            // ------- Recebe o ultimo utilizador adicionado (que foi o adicionado em cima)
-            PreparedStatement st = con.prepareStatement("SELECT * \n" +
-                                                        "FROM \n" +
-                                                        "    (SELECT *\n" +
-                                                        "     FROM Utilizador\n" +
-                                                        "     ORDER BY Utilizador_ID DESC)\n" +
-                                                        "WHERE  rownum <= 1");
-        //---- EXECUTAR QUERY
-            result = st.executeQuery();
-            result.next();
-        em.getTransaction().commit();
-        em.clear();
-        // ------ id do ultimo user adicionado
-        int userID = result.getInt(1);
-        
-       em.getTransaction().begin();
-        switch(tipo){
-            case "A":
+        Utilizador user = new Utilizador(this.txtfldEmail.getText().toString(), this.txtfldPassword.getText().toString(), tipo);
+        session.beginTransaction();
+        session.save(user);
+        session.getTransaction().commit(); 
+
+       
+        session = hibernate.HibernateUtil.getSessionFactory().openSession();
+        Number id = (Number) session.createCriteria(Utilizador.class).setProjection(Projections.rowCount()).uniqueResult();
+        int userID = id.intValue();
+
+         switch(tipo){
+             case "A":
                 artista = new Artista(userID, txfldNomeCompleto.getText().toString(), txfldNomeArtista.getText().toString(), Date.from(dtpDataNascimento.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()), 
-                    txfldNacionalidade.getText().toString(), txfldContacto.getText().toString());
-                em.persist(artista);
-                break;
-            case "E":
+                     txfldNacionalidade.getText().toString(), txfldContacto.getText().toString());
+                session.beginTransaction();
+                session.save(artista);
+                session.getTransaction().commit();        
+                 break;
+             case "E":
                 editora = new Editora(userID, txfldNomeCompleto.getText().toString(), txfldNomeArtista.getText().toString(), txfldContacto.getText().toString());
-                em.persist(editora);                       
-                break;
-            default:
+                session.beginTransaction();
+                session.save(editora);
+                session.getTransaction().commit();                  break;
+             default:
                 dirEstudio = new DirEstudio(userID, txfldNomeCompleto.getText().toString(), txfldNomeArtista.getText().toString());
-                em.persist(dirEstudio);
-                break;
-        }
-        em.getTransaction().commit();
-        em.clear();
-        
-        Pane paneIniciarSessao = FXMLLoader.load(getClass().getResource("FXMLIniciarSessao.fxml"));
-        YourasMusic.getROOT().setCenter(paneIniciarSessao);
+                session.beginTransaction();
+                session.save(dirEstudio);
+                session.getTransaction().commit();                  break;
+         }
+
+         session.close();
+
+         Pane paneIniciarSessao = FXMLLoader.load(getClass().getResource("FXMLIniciarSessao.fxml"));
+         YourasMusic.getROOT().setCenter(paneIniciarSessao);
 
     }
     

@@ -5,9 +5,15 @@
  */
 package yourasmusic;
 
+import classes.Artista;
+import classes.Musica;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.layout.TilePane;
 
 /**
  * FXML Controller class
@@ -16,12 +22,28 @@ import javafx.fxml.Initializable;
  */
 public class FXMLMusicasController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
+    @FXML TilePane tileMusicas;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        carregarMusicas();
     }    
+    
+    
+    private void carregarMusicas(){
+        org.hibernate.Session session = hibernate.HibernateUtil.getSessionFactory().openSession();
+        
+        List<Musica> musicas = session.createCriteria(Musica.class).list();
+        
+        for(Musica m : musicas){
+            Button btnMusicas = new Button();
+            btnMusicas.setId("button_tile");
+            btnMusicas.setMinSize(200, 200);
+            btnMusicas.setText(m.getNome().toString());
+            tileMusicas.getChildren().add(btnMusicas);
+        }   
+        
+        session.close();
+    }   
     
 }

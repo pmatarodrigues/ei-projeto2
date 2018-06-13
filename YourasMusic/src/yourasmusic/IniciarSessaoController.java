@@ -19,6 +19,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Optional;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -29,13 +30,17 @@ import javafx.scene.layout.Pane;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import org.eclipse.persistence.sessions.Session;
+import classes.*;
+import org.hibernate.Criteria;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.LogicalExpression;
+import org.hibernate.criterion.Restrictions;
 
 
 
 public class IniciarSessaoController implements Initializable {
        
-    
     
     @FXML
     private TextField txfUsername;
@@ -48,9 +53,7 @@ public class IniciarSessaoController implements Initializable {
      
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        emf = Persistence. createEntityManagerFactory("YourasMusicPU");
-        em = emf.createEntityManager();
-       
+     
     }    
     
     @FXML
@@ -79,30 +82,34 @@ public class IniciarSessaoController implements Initializable {
     @FXML
     public int verificarDadosLogin(ActionEvent event) throws SQLException{
         
-        ResultSet utilizadores = executarQuery("SELECT * FROM UTILIZADOR WHERE email= '" + txfUsername.getText() + "'");
-        if(utilizadores.next()){
-            ResultSet password = executarQuery("SELECT * FROM UTILIZADOR WHERE email = '" + txfUsername.getText() +"' and password_u= '" + txfPassword.getText() + "'");            
-            if(password.next()){
-                mensagemPopup("SUCESSO", "O login foi efetuado com sucesso!", Alert.AlertType.INFORMATION);
-                System.out.println("SUCESSO! \n");
-                return 0;
-            }
-            else{
-                mensagemPopup("ERRO", "Password incorreta!", Alert.AlertType.ERROR);
-                return -1;
-            }
-        }
-        else{
-            mensagemPopup("ERRO", "Username invalido!", Alert.AlertType.ERROR);
+        org.hibernate.Session session = hibernate.HibernateUtil.getSessionFactory().openSession();
+        Criteria cr = session.createCriteria(Utilizador.class);
+                
+        String emailRecebido = txfUsername.getText().toString();
+        String passwordRecebida = txfPassword.getText().toString();
+        
+        Criterion email = Restrictions.eq("email", emailRecebido);
+        Criterion password = Restrictions.eq("passwordU", passwordRecebida);
+ 
+        LogicalExpression passEmail = Restrictions.and(email, password);
+        cr.add(passEmail);
+        
+        if(!cr.list().isEmpty()){
+            //mensagemPopup("SUCESSO", "O login foi efetuado com sucesso!", Alert.AlertType.INFORMATION);
+            System.out.println("SUCESSO! \n");
+            return 0;
+        } else{
+            mensagemPopup("ERRO", "Username ou Password invalido!", Alert.AlertType.ERROR);
             return -1;
         }
     }
     
+    /*
     //-------------- RECEBE STRING COM O QUERY A EXECUTAR
     public ResultSet executarQuery(String queryRecebido) throws SQLException{
         ResultSet result;
         String query = queryRecebido;
-        
+
         em.getTransaction().begin();
         //---- ASSOCIAR A BASE DE DADOS À VARIAVEL 'CON'
             java.sql.Connection con = em.unwrap(java.sql.Connection.class);
@@ -111,8 +118,10 @@ public class IniciarSessaoController implements Initializable {
             result = st.executeQuery();
         em.getTransaction().commit();
         em.clear();
+        
         return result;
     }
+    */
     
     private boolean mensagemPopup(String title, String texto, Alert.AlertType tipo){
         Alert alert = new Alert(tipo);
