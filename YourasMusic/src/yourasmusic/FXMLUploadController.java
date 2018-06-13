@@ -31,7 +31,7 @@ import javax.persistence.Persistence;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javazoom.jl.decoder.JavaLayerException;
+//import javazoom.jl.decoder.JavaLayerException;
 import static oracle.jdbc.OracleTypes.BLOB;
 import oracle.sql.BLOB;
 import yourasmusic.entities.Musica;
@@ -85,9 +85,9 @@ public class FXMLUploadController implements Initializable {
         /* INICIAR ENVIO PARA A BASE DE DADOS*/
         em.getTransaction().begin();
         java.sql.Connection con = em.unwrap(java.sql.Connection.class);
-        PreparedStatement st = con.prepareStatement("INSERT INTO musica (musica_id, nome, audio) VALUES (?, ?, ?)");
-        st.setInt(1, 1);
-        st.setString(2, "nome_musica");
+        PreparedStatement st = con.prepareStatement("INSERT INTO musica (nome, artista_id, audio) VALUES (?, ?, ?)");
+        st.setString(1, "nome_musica");
+        st.setInt(2, 56);
         st.setBinaryStream(3, fis, (int) myFile.length());
         st.executeQuery();
         
