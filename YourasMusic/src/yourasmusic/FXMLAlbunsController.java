@@ -15,7 +15,9 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.TilePane;
+import javafx.scene.layout.VBox;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 
@@ -34,29 +36,22 @@ public class FXMLAlbunsController implements Initializable {
         
         org.hibernate.Session session = hibernate.HibernateUtil.getSessionFactory().openSession();
         
-        List<Artista> albums = session.createCriteria(Artista.class).list();
+        List<Album> albums = session.createCriteria(Album.class).list();
         
-        Query query = session.createQuery("SELECT NOME FROM ALBUM");
-        Iterator ite = query.iterate();
-        while(ite.hasNext()){
+        for(Album a : albums){
             Button btnAlbuns = new Button();
+            VBox vbox = new VBox();
+            String nomeAlbum = a.getNome().toString();
+            String ano = a.getAno().toString();
+            
             btnAlbuns.setId("button_tile");
             btnAlbuns.setMinSize(200, 200);
-            btnAlbuns.setText(query.getFirstResult().toString());
+            btnAlbuns.setMaxSize(200, 200);
+            
+            btnAlbuns.setText(nomeAlbum + "\n" + ano);
             tileAlbuns.getChildren().add(btnAlbuns);
         }
-        
-        /*
-        for(Artista a : albums){
-            Button btnAlbuns = new Button();
-            btnAlbuns.setStyle("-fx-background-color: #272727;"
-                             + "-fx-text-fill: #FFF;");
-            btnAlbuns.setMinSize(200, 200);
-            btnAlbuns.setText(a.getNomeArtista().toString());
-            tileAlbuns.getChildren().add(btnAlbuns);
-        }   
-*/
-        
+       
         session.close();
     }
     

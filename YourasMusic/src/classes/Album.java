@@ -24,7 +24,6 @@ public class Album  implements java.io.Serializable {
 
     public Album() {
     }
-
 	
     public Album(int albumId, String nome) {
         this.albumId = albumId;
