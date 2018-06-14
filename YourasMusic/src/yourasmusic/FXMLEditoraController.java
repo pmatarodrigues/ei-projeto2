@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.TilePane;
 
@@ -40,6 +41,9 @@ public class FXMLEditoraController implements Initializable {
             btnEditoras.setId("button_tile");
             btnEditoras.setMinSize(200, 200);
             btnEditoras.setText(e.getNome().toString());
+            tileEditoras.setHgap(20);
+            tileEditoras.setVgap(20);
+            tileEditoras.setAlignment(Pos.CENTER);
             tileEditoras.getChildren().add(btnEditoras);
         }   
         

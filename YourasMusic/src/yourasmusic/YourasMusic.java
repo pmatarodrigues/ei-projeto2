@@ -28,7 +28,7 @@ public class YourasMusic extends Application {
     public void start(Stage stage) throws Exception {        
         Parent root = FXMLLoader.load(getClass().getResource("FXMLInitialPane.fxml"));
         
-         Pane iniciarSessaoPane = FXMLLoader.load(getClass().getResource("FXMLIniciarSessao.fxml"));
+        Pane iniciarSessaoPane = FXMLLoader.load(getClass().getResource("FXMLIniciarSessao.fxml"));
         ((BorderPane) root).setCenter(iniciarSessaoPane);
         
         YourasMusic.ROOT = (BorderPane) root;     

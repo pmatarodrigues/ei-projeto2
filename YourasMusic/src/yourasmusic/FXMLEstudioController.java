@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.TilePane;
 
@@ -40,6 +41,9 @@ public class FXMLEstudioController implements Initializable {
             btnEstudios.setId("button_tile");
             btnEstudios.setMinSize(200, 200);
             btnEstudios.setText(e.getMorada().toString());
+            tileEstudios.setHgap(20);
+            tileEstudios.setVgap(20);
+            tileEstudios.setAlignment(Pos.CENTER);
             tileEstudios.getChildren().add(btnEstudios);
         }   
         

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.TilePane;
 
@@ -31,6 +32,9 @@ public class FXMLArtistasController implements Initializable {
             btnArtistas.setId("button_tile");
             btnArtistas.setMinSize(200, 200);
             btnArtistas.setText(a.getNomeArtista().toString());
+            tileArtistas.setHgap(20);
+            tileArtistas.setVgap(20);
+            tileArtistas.setAlignment(Pos.CENTER);
             tileArtistas.getChildren().add(btnArtistas);
         }   
         
