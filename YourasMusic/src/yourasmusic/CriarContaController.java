@@ -1,5 +1,5 @@
 
-package yourasmusic.controllers;
+package yourasmusic;
 
 import classes.Artista;
 import classes.DirEstudio;
@@ -35,7 +35,6 @@ import javax.persistence.Persistence;
 import classes.Utilizador;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
-import yourasmusic.YourasMusic;
 
 
 

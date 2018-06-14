@@ -1,4 +1,4 @@
-package yourasmusic.controllers;
+package yourasmusic;
 
 import classes.Album;
 import classes.Artista;

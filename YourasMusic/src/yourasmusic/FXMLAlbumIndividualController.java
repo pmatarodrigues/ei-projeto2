@@ -1,5 +1,5 @@
 
-package yourasmusic.controllers;
+package yourasmusic;
 
 import classes.Album;
 import java.io.IOException;
@@ -19,7 +19,7 @@ public class FXMLAlbumIndividualController implements Initializable {
     @FXML Label nomeAlbum;
     @FXML Label anoAlbum;
     
-    Album albumClicado;
+    Album artistaAtual;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -27,7 +27,7 @@ public class FXMLAlbumIndividualController implements Initializable {
     }    
     
     void initData(Album albumClicado) {
-        this.albumClicado = albumClicado;
+        this.artistaAtual = albumClicado;
         nomeAlbum.setText(albumClicado.getNome());
         anoAlbum.setText(albumClicado.getAno());
     }

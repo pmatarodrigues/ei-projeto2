@@ -1,5 +1,5 @@
 
-package yourasmusic.controllers;
+package yourasmusic;
 
 import java.net.URL;
 import java.sql.ResultSet;

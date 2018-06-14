@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package yourasmusic.controllers;
+package yourasmusic;
 
 import java.io.IOException;
 import java.net.URL;
@@ -20,7 +20,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import yourasmusic.YourasMusic;
 
 /**
  * FXML Controller class

@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.shape.Rectangle?>
 
 <AnchorPane id="AnchorPane" fx:id="anchor" prefHeight="800.0" prefWidth="990.0" style="-fx-background-color: #4f4f4f;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="yourasmusic.FXMLInicioPaneController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#272727" height="254.0" layoutX="47.0" layoutY="85.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="429.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#272727" height="254.0" layoutX="513.0" layoutY="85.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="429.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#272727" height="132.0" layoutX="47.0" layoutY="368.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="897.0" />
-      <TilePane fx:id="listaGenerosTile" layoutX="47.0" layoutY="520.0" prefHeight="267.0" prefWidth="897.0" style="-fx-background-color: TRANSPARENT;" />
+      <ScrollPane prefHeight="829.0" prefWidth="990.0" style="-fx-background-color: #4f4f4f;">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1157.0" prefWidth="995.0" style="-fx-background-color: #4f4f4f;">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#272727" height="254.0" layoutX="50.0" layoutY="87.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="429.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#272727" height="254.0" layoutX="518.0" layoutY="87.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="429.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#272727" height="132.0" layoutX="50.0" layoutY="367.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="897.0" />
+                  <TilePane fx:id="listaGenerosTile" layoutX="52.0" layoutY="577.0" prefHeight="460.0" prefWidth="882.0" style="-fx-background-color: TRANSPARENT;" />
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
    </children>
 </AnchorPane>
