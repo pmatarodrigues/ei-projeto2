@@ -1,5 +1,5 @@
 
-package yourasmusic;
+package yourasmusic.controllers;
 
 import java.beans.Statement;
 import java.net.URL;
@@ -36,6 +36,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.LogicalExpression;
 import org.hibernate.criterion.Restrictions;
+import yourasmusic.YourasMusic;
 
 
 

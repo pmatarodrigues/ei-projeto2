@@ -1,4 +1,4 @@
-package yourasmusic;
+package yourasmusic.controllers;
 
 import classes.Album;
 import classes.Artista;
@@ -34,6 +34,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
+import yourasmusic.YourasMusic;
 
 
 public class FXMLAlbunsController implements Initializable {

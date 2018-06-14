@@ -1,5 +1,5 @@
 
-package yourasmusic;
+package yourasmusic.controllers;
 
 import classes.Album;
 import java.io.IOException;
