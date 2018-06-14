@@ -1,4 +1,8 @@
 
+.pane{
+    -fx-background-color: #4f4f4f;;
+}
+
 .button{
     -fx-border-color: transparent;
     -fx-border-width: 0;

@@ -1,5 +1,5 @@
 
-package yourasmusic.controllers;
+package yourasmusic;
 
 import java.beans.Statement;
 import java.net.URL;

@@ -39,7 +39,6 @@ import static oracle.jdbc.OracleTypes.BLOB;
 import oracle.sql.BLOB;
 import org.hibernate.Session;
 import org.hibernate.type.Type;
-import sun.misc.IOUtils;
 
 
 /**
