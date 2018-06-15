@@ -55,6 +55,7 @@ public class FXMLUploadController implements Initializable {
 
     @FXML TextField nome;
     @FXML ComboBox genero;
+    @FXML TextField endereco;
     
     Session session;
     Musica musica;
@@ -66,11 +67,14 @@ public class FXMLUploadController implements Initializable {
     }    
     
     public void enviarUpload(){                
-        session = hibernate.HibernateUtil.getSessionFactory().openSession();        
+        session = hibernate.HibernateUtil.getSessionFactory().openSession();     
+        session.beginTransaction();
         //List<Artista> artistaUpload = session.createQuery("FROM Artista Where Artista_Id = " + IniciarSessaoController.userLogin.getUtilizadorId()).list();       
-        musica = new Musica(IniciarSessaoController.userLogin, genero.getValue().toString(), nome.getText().toString(), upload);
+        musica = new Musica(IniciarSessaoController.userLogin, genero.getValue().toString(), nome.getText(), upload);
         
         session.save(musica);
+        session.getTransaction().commit();
+        
         session.close();
     }
     
@@ -93,9 +97,11 @@ public class FXMLUploadController implements Initializable {
         if(returnVal == JFileChooser.APPROVE_OPTION){
             
             myFile = chooser.getSelectedFile();
+            endereco.setText(myFile.toString());  
             fis = new FileInputStream(myFile);
             
         }
+        
         
         session = hibernate.HibernateUtil.getSessionFactory().openSession();
         Blob musicaAEnviar = session.getLobHelper().createBlob(fis, myFile.length());
