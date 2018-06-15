@@ -28,19 +28,35 @@ import javafx.stage.Stage;
  */
 public class FXMLInicioRootController implements Initializable {
 
+    String tipoEditora = null;
+    
+    
     /**
      * Initializes the controller class.
      */
     @FXML
     private Pane paneEsquerda;
-    
-  
-    
-    
+    @FXML private Button but_albuns;
+    @FXML private Button but_artistas;
+    @FXML private Button but_editoras;
+    @FXML private Button but_estudios;
+    @FXML private Button but_musicas;
+    @FXML private Button but_upload;
+    @FXML private Button but_registar_album;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
+       tipoEditora = IniciarSessaoController.userLogin.getTipo();
+              
+       // --- 2 ESPAÇOS DEPOIS DO NOME DO TIPO DE 'UTILIZADOR'
+       if(IniciarSessaoController.userLogin.getTipo().equals((String)("E  "))){           
+            System.out.println("dsfs");
+            but_registar_album.setVisible(false);
+            but_upload.setVisible(false);
+       } else if ("S  ".equals(IniciarSessaoController.userLogin.getTipo().toString())){          
+            but_registar_album.setVisible(false);
+            but_upload.setVisible(false);
+       }
     }
     
     @FXML
@@ -71,7 +87,7 @@ public class FXMLInicioRootController implements Initializable {
             case "but_upload":
                 changeCenterPane("FXMLUpload.fxml");
                 break;
-            case "registar_album":
+            case "but_registar_album":
                 changeCenterPane("FXMLRegistoAlbum.fxml");
                 break;
             default:

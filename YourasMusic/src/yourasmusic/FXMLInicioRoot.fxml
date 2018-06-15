@@ -47,7 +47,7 @@
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button fx:id="registar_album" layoutX="37.0" layoutY="713.0" mnemonicParsing="false" onAction="#switchCenter" prefHeight="13.0" prefWidth="179.0" styleClass="button-upload" stylesheets="@styles.css" text="Registar Album" textFill="#ff8c00" textOverrun="CLIP" wrapText="true">
+            <Button fx:id="but_registar_album" layoutX="37.0" layoutY="713.0" mnemonicParsing="false" onAction="#switchCenter" prefHeight="13.0" prefWidth="179.0" styleClass="button-upload" stylesheets="@styles.css" text="Registar Album" textFill="#ff8c00" textOverrun="CLIP" wrapText="true">
                <font>
                   <Font size="16.0" />
                </font>
