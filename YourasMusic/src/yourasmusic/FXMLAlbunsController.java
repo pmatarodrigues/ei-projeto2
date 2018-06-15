@@ -99,8 +99,7 @@ public class FXMLAlbunsController implements Initializable {
             if(String.valueOf(a.getAlbumId()).equals(idAlbum)){
                 albumClicado = a;
             }
-        }
-             
+        }         
         // ---- PASSAR AS INFORMAÇÕES DO ALBUM PARA O FXML DE ALBUM INDIVIDUAL
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("FXMLAlbumIndividual.fxml"));

@@ -42,7 +42,7 @@ import yourasmusic.YourasMusic;
 
 public class IniciarSessaoController implements Initializable {
        
-    Utilizador userLogin;
+    public static Utilizador userLogin;
     
     @FXML
     private TextField txfUsername;

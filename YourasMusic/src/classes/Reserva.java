@@ -36,14 +36,10 @@ public class Reserva  implements java.io.Serializable {
        this.isactive = isactive;
     }
 
-    public Reserva(Utilizador utilizador, Estudio estudio, Date dataReserva) {
-        this.utilizador = utilizador;
-        this.estudio = estudio;
-        this.dataReserva = dataReserva;
-    }
 
-    public Reserva(Date dataReserva, Estudio estudio, char isconfirmed, char isactive) {
+    public Reserva(Date dataReserva, Utilizador utilizador, Estudio estudio, char isconfirmed, char isactive) {
         this.dataReserva = dataReserva;
+        this.utilizador = utilizador;
         this.estudio = estudio;
         this.isconfirmed = isconfirmed;
         this.isactive = isactive;

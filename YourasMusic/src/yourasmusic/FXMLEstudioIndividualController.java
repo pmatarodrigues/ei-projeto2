@@ -63,8 +63,10 @@ public class FXMLEstudioIndividualController implements Initializable {
         // --- Recebe a data do DatePicker
         java.util.Date dataReserva = Date.from(dtDataReserva.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
        
+        Utilizador user = IniciarSessaoController.userLogin;
+        
         Reserva reserva;
-        reserva = new Reserva(dataReserva, estudio, 'N', 'N');              
+        reserva = new Reserva(dataReserva, user, estudio, 'N', 'N');              
         session.beginTransaction();
         session.save(reserva);
         session.getTransaction().commit(); 
