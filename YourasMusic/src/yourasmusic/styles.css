@@ -3,6 +3,12 @@
     -fx-background-color: #4f4f4f;;
 }
 
+.button_normal:hover{
+    -fx-background-color: #FFCCBC;
+    -fx-text-fill: #000;
+    -fx-font-size: 25;
+}
+
 .button{
     -fx-border-color: transparent;
     -fx-border-width: 0;

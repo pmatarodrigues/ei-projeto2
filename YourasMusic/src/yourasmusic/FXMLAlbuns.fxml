@@ -14,7 +14,7 @@
    <children>
       <BorderPane fx:id="mainPane" layoutX="2.0" layoutY="1.0" prefHeight="800.0" prefWidth="990.0">
          <top>
-            <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <Pane prefHeight="132.0" prefWidth="990.0" BorderPane.alignment="CENTER">
                <children>
                   <Label layoutX="79.0" layoutY="29.0" prefHeight="76.0" prefWidth="138.0" text="Albuns" textFill="WHITE">
                      <font>
@@ -32,11 +32,11 @@
             </Pane>
          </top>
          <center>
-            <ScrollPane prefHeight="200.0" prefWidth="200.0" styleClass="pane" stylesheets="@styles.css" BorderPane.alignment="CENTER">
+            <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" styleClass="pane" stylesheets="@styles.css" BorderPane.alignment="CENTER">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="894.0" prefWidth="992.0" styleClass="pane" stylesheets="@styles.css">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="674.0" prefWidth="992.0" styleClass="pane" stylesheets="@styles.css">
                      <children>
-                        <TilePane fx:id="tileAlbuns" prefHeight="914.0" prefWidth="1004.0" />
+                        <TilePane fx:id="tileAlbuns" prefHeight="671.0" prefWidth="1004.0" />
                      </children>
                   </AnchorPane>
               </content>

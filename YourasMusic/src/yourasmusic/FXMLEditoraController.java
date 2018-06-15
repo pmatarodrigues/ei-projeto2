@@ -43,7 +43,7 @@ public class FXMLEditoraController implements Initializable {
             btnEditoras.setText(e.getNome().toString());
             tileEditoras.setHgap(20);
             tileEditoras.setVgap(20);
-            tileEditoras.setAlignment(Pos.CENTER);
+            tileEditoras.setAlignment(Pos.TOP_CENTER);
             tileEditoras.getChildren().add(btnEditoras);
         }   
         

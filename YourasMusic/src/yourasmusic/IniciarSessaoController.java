@@ -42,16 +42,14 @@ import yourasmusic.YourasMusic;
 
 public class IniciarSessaoController implements Initializable {
        
+    Utilizador userLogin;
     
     @FXML
     private TextField txfUsername;
     @FXML
     private TextField txfPassword;
+
     
-            
-    EntityManagerFactory emf;
-    EntityManager em;
-     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
      
@@ -86,6 +84,9 @@ public class IniciarSessaoController implements Initializable {
         org.hibernate.Session session = hibernate.HibernateUtil.getSessionFactory().openSession();
         Criteria cr = session.createCriteria(Utilizador.class);
                 
+        List<Utilizador> users = cr.list();
+
+
         String emailRecebido = txfUsername.getText().toString();
         String passwordRecebida = txfPassword.getText().toString();
         
@@ -95,6 +96,12 @@ public class IniciarSessaoController implements Initializable {
         LogicalExpression passEmail = Restrictions.and(email, password);
         cr.add(passEmail);
         
+        for(Utilizador u : users){                        
+            if(u.getEmail().toString().equals(emailRecebido)){
+               userLogin = u;
+            }
+        }
+        
         if(!cr.list().isEmpty()){
             //mensagemPopup("SUCESSO", "O login foi efetuado com sucesso!", Alert.AlertType.INFORMATION);
             System.out.println("SUCESSO! \n");
@@ -102,7 +109,7 @@ public class IniciarSessaoController implements Initializable {
         } else{
             mensagemPopup("ERRO", "Username ou Password invalido!", Alert.AlertType.ERROR);
             return -1;
-        }
+        }                
     }
     
     /*
@@ -132,4 +139,8 @@ public class IniciarSessaoController implements Initializable {
         Optional<ButtonType> option = alert.showAndWait();
         return option.get() == ButtonType.CANCEL;
     } 
+    
+    public Utilizador getUserLogin(){
+        return this.userLogin;
+    }
 }

@@ -23,6 +23,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -42,6 +43,7 @@ public class FXMLAlbunsController implements Initializable {
     
     @FXML TilePane tileAlbuns;
     @FXML BorderPane mainPane;
+    @FXML ScrollPane scrollPane;
     
     List<Album> albums;
     
@@ -55,7 +57,7 @@ public class FXMLAlbunsController implements Initializable {
         org.hibernate.Session session = hibernate.HibernateUtil.getSessionFactory().openSession();        
         //ArrayList<Button> buttons = new ArrayList<>();
         this.albums = session.createCriteria(Album.class).list();
-        
+                
         for(Album a : albums){
             Button btnAlbuns = new Button();
             String nomeAlbum = a.getNome().toString();
@@ -70,7 +72,7 @@ public class FXMLAlbunsController implements Initializable {
             // --- Personalização do TilePane
             tileAlbuns.setHgap(20);
             tileAlbuns.setVgap(20);
-            tileAlbuns.setAlignment(Pos.CENTER);
+            tileAlbuns.setAlignment(Pos.TOP_CENTER);
             tileAlbuns.getChildren().add(btnAlbuns);
             
             // --- Quando o botão é clicado, passa o id do album clicado como parametro
@@ -87,6 +89,7 @@ public class FXMLAlbunsController implements Initializable {
         }
        
         session.close();
+        
     }
     
     public void buttonClicked(String idAlbum) throws IOException{

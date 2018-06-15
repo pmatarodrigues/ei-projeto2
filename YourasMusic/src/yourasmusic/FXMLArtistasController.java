@@ -16,6 +16,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.TilePane;
 import yourasmusic.YourasMusic;
 
@@ -23,6 +24,7 @@ import yourasmusic.YourasMusic;
 public class FXMLArtistasController implements Initializable {
 
     @FXML TilePane tileArtistas;
+    @FXML ScrollPane scrollPane;
     
     List<Artista> artistas;
 
@@ -46,7 +48,7 @@ public class FXMLArtistasController implements Initializable {
             
             tileArtistas.setHgap(20);
             tileArtistas.setVgap(20);
-            tileArtistas.setAlignment(Pos.CENTER);
+            tileArtistas.setAlignment(Pos.TOP_CENTER);
             tileArtistas.getChildren().add(btnArtistas);
             
             btnArtistas.setOnAction(new EventHandler<ActionEvent>() {
@@ -61,6 +63,7 @@ public class FXMLArtistasController implements Initializable {
             });
         }                       
         session.close();
+        
     }
     
     
