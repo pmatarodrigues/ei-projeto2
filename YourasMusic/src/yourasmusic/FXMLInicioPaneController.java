@@ -16,7 +16,9 @@ import javafx.scene.layout.TilePane;
 
 
 public class FXMLInicioPaneController implements Initializable {
-
+    
+    public static ArrayList<String> generosMusica;
+    
     @FXML
     AnchorPane anchor;
     @FXML ListView listaGeneros;
@@ -38,6 +40,8 @@ public class FXMLInicioPaneController implements Initializable {
         generos.add("Reggae");
 
         carregarGenerosDeMusica();
+        
+        generosMusica = generos;
     }    
     
     

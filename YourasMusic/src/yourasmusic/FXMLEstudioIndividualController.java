@@ -62,6 +62,8 @@ public class FXMLEstudioIndividualController implements Initializable {
     
     
     public void efetuarReserva(){
+        Boolean estudioOcupado = false;
+        
         org.hibernate.Session session = hibernate.HibernateUtil.getSessionFactory().openSession();
         // --- Recebe a data do DatePicker
         java.util.Date dataReserva = Date.from(dtDataReserva.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
@@ -72,9 +74,12 @@ public class FXMLEstudioIndividualController implements Initializable {
         List<Reserva> reservas = session.createCriteria(Reserva.class).list();
         
         for(Reserva r : reservas){
-            if(r.getDataReserva().equals(dataReserva)){
-                mensagemPopup("Data já ocupada", "ocupado", Alert.AlertType.ERROR);
+            if(!r.getDataReserva().equals(dataReserva)){
+                estudioOcupado = true;
             }
+        }
+        if(estudioOcupado){
+            mensagemPopup("Data já ocupada", "ocupado", Alert.AlertType.ERROR);
         }
         
         Reserva reserva;

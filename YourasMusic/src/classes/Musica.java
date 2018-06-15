@@ -37,7 +37,16 @@ public class Musica  implements java.io.Serializable {
        this.duracao = duracao;
        this.audio = audio;
     }
+
+    public Musica(Utilizador utilizador, String genero, String nome, Blob audio) {
+        this.utilizador = utilizador;
+        this.genero = genero;
+        this.nome = nome;
+        this.audio = audio;
+    }
    
+    
+    
     public int getMusicaId() {
         return this.musicaId;
     }

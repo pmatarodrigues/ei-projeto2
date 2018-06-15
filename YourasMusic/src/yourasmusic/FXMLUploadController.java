@@ -5,6 +5,8 @@
  */
 package yourasmusic;
 
+import classes.Artista;
+import classes.Estudio;
 import classes.Musica;
 import classes.Utilizador;
 import java.io.BufferedOutputStream;
@@ -22,12 +24,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import static java.sql.Types.BLOB;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -48,19 +53,33 @@ import org.hibernate.type.Type;
  */
 public class FXMLUploadController implements Initializable {
 
+    @FXML TextField nome;
+    @FXML ComboBox genero;
+    
+    Session session;
+    Musica musica;
+    Blob upload;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        genero.getItems().addAll(FXMLInicioPaneController.generosMusica);
     }    
+    
+    public void enviarUpload(){                
+        session = hibernate.HibernateUtil.getSessionFactory().openSession();        
+        //List<Artista> artistaUpload = session.createQuery("FROM Artista Where Artista_Id = " + IniciarSessaoController.userLogin.getUtilizadorId()).list();       
+        musica = new Musica(IniciarSessaoController.userLogin, genero.getValue().toString(), nome.getText().toString(), upload);
+        
+        session.save(musica);
+        session.close();
+    }
+    
     
     @FXML
      public void uploadMusic(ActionEvent event) throws SQLException, FileNotFoundException{
         
         File myFile = null;
-        int fileLenght = 0;
         FileInputStream fis = null;
-        BLOB mus = null;
         
         // filtro de ficheiros
         FileFilter filter = new FileNameExtensionFilter("MP3 Files", "mp3", "mpeg3");
@@ -78,14 +97,11 @@ public class FXMLUploadController implements Initializable {
             
         }
         
-        String nomeMusica = "Musica";
-        int artista_id = 57;
-    
+        session = hibernate.HibernateUtil.getSessionFactory().openSession();
+        Blob musicaAEnviar = session.getLobHelper().createBlob(fis, myFile.length());
+        upload = musicaAEnviar;
         
-        Session session = hibernate.HibernateUtil.getSessionFactory().openSession();
-        Blob musica = session.getLobHelper().createBlob(fis, myFile.length());
-        
-        session.createQuery("INSERT INTO MUSICA (NOME, ARTISTA_ID, AUDIO) VALUES (?, ?, ?)").setParameter(nomeMusica, artista_id, (Type) (Blob) musica);
+        //session.createQuery("INSERT INTO MUSICA (NOME, ARTISTA_ID, AUDIO) VALUES (?, ?, ?)").setParameter(nomeMusica, artista_id, (Type) (Blob) upload);
         
         session.close();
         
@@ -99,10 +115,6 @@ public class FXMLUploadController implements Initializable {
         //st.executeQuery();
         
         //em.getTransaction().commit();
-        //em.clear();
-        
-     
-        
-         
+        //em.clear();                 
      }
 }

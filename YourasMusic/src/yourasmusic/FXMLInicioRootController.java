@@ -71,6 +71,9 @@ public class FXMLInicioRootController implements Initializable {
             case "but_upload":
                 changeCenterPane("FXMLUpload.fxml");
                 break;
+            case "registar_album":
+                changeCenterPane("FXMLRegistoAlbum.fxml");
+                break;
             default:
         }
         
@@ -78,11 +81,12 @@ public class FXMLInicioRootController implements Initializable {
 
     private void changeCenterPane(String paneName) {
         try {
+            System.out.println("Abriu o " + paneName);
             Pane newPane = FXMLLoader.load(getClass().getResource(paneName));
             YourasMusic.getROOT().setRight(newPane);
         } catch (IOException ex) {
+            ex.getMessage();
         }
-       // ((BorderPane) root).setCenter(peoplePane);
     }
     
 }
