@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1240.0" style="-fx-background-color: #4f4f4f;" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="yourasmusic.FXMLInicioRootController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1240.0" style="-fx-background-color: #4f4f4f;" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="yourasmusic.FXMLInicioRootController">
    <left>
       <Pane fx:id="paneEsquerda" prefHeight="200.0" prefWidth="250.0" style="-fx-background-color: #272727;" BorderPane.alignment="CENTER">
          <opaqueInsets>
@@ -43,12 +43,12 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="but_upload" layoutX="37.0" layoutY="653.0" mnemonicParsing="false" onAction="#switchCenter" prefHeight="46.0" prefWidth="177.0" styleClass="button-upload" stylesheets="@styles.css" text="Upload" textFill="#ff8c00" textOverrun="CLIP" wrapText="true">
+            <Button fx:id="but_upload" layoutX="37.0" layoutY="630.0" mnemonicParsing="false" onAction="#switchCenter" prefHeight="46.0" prefWidth="177.0" styleClass="button-upload" stylesheets="@styles.css" text="Upload" textFill="#ff8c00" textOverrun="CLIP" wrapText="true">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button fx:id="but_registar_album" layoutX="37.0" layoutY="713.0" mnemonicParsing="false" onAction="#switchCenter" prefHeight="13.0" prefWidth="179.0" styleClass="button-upload" stylesheets="@styles.css" text="Registar Album" textFill="#ff8c00" textOverrun="CLIP" wrapText="true">
+            <Button fx:id="but_registar_album" layoutX="37.0" layoutY="690.0" mnemonicParsing="false" onAction="#switchCenter" prefHeight="13.0" prefWidth="179.0" styleClass="button-upload" stylesheets="@styles.css" text="Registar Album" textFill="#ff8c00" textOverrun="CLIP" wrapText="true">
                <font>
                   <Font size="16.0" />
                </font>
@@ -59,4 +59,25 @@
          </children>
       </Pane>
    </left>
+   <top>
+      <Pane prefHeight="54.0" prefWidth="1240.0" style="-fx-background-color: #272727;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="but_upload1" layoutX="446.0" layoutY="12.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="49.0" styleClass="button-upload" stylesheets="@styles.css" text="Play" textFill="#ff8c00" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="but_upload11" layoutX="512.0" layoutY="12.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="65.0" styleClass="button-upload" stylesheets="@styles.css" text="Pause" textFill="#ff8c00" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="but_upload111" layoutX="592.0" layoutY="12.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="65.0" styleClass="button-upload" stylesheets="@styles.css" text="Stop" textFill="#ff8c00" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+   </top>
 </BorderPane>
