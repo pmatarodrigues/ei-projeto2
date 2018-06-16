@@ -55,7 +55,6 @@ public class FXMLRegistarAlbumController implements Initializable {
     @FXML
     public void enviarUpload(ActionEvent event){    
         Editora editora = null;
-        Artista artista = null;
         
         for(Editora e : editoras){
             if(e.getNome().equals(cmbNomeEditora.getValue().toString())){
@@ -64,20 +63,12 @@ public class FXMLRegistarAlbumController implements Initializable {
         }
         
         session = hibernate.HibernateUtil.getSessionFactory().openSession();                    
-        
-        List<Artista> artistas = session.createCriteria(Artista.class).list();
-        for(Artista a : artistas){
-            System.out.println("ARTISTA: ");
-            if(String.valueOf(a.getArtistaId()).equals(IniciarSessaoController.userLogin.getUtilizadorId())){
-                artista = a;
-            }
-        }
 
 
         session.beginTransaction();
         album = new Album();
         album.setNome(txfNomeAlbum.getText());
-        album.setArtista(artista);
+        album.setArtista(IniciarSessaoController.artistaLogin);
         album.setCapa(capa);
         album.setEditora(editora);
         album.setLinkAlbum(txfLink.getText());
