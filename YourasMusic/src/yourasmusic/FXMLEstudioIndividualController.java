@@ -14,6 +14,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -60,8 +61,8 @@ public class FXMLEstudioIndividualController implements Initializable {
         session.close();
     }  
     
-    
-    public void efetuarReserva(){
+    @FXML
+    public void efetuarReserva(ActionEvent event){
         Boolean estudioOcupado = false;
         
         org.hibernate.Session session = hibernate.HibernateUtil.getSessionFactory().openSession();

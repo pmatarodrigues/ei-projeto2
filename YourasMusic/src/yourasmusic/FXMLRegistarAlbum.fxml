@@ -8,24 +8,29 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="yourasmusic.FXMLRegistarAlbumController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="yourasmusic.FXMLRegistarAlbumController">
    <children>
       <BorderPane layoutX="30.0" layoutY="30.0" prefHeight="800.0" prefWidth="990.0">
          <left>
             <Pane prefHeight="829.0" prefWidth="1010.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="btnReserva" layoutX="386.0" layoutY="658.0" mnemonicParsing="false" onAction="#efetuarReserva" prefHeight="52.0" prefWidth="239.0" style="-fx-background-color: #FF7043; -fx-border-radius: 20; -fx-font-size: 20;" styleClass="button_normal" stylesheets="@styles.css" text="Registar" />
-                  <TextField layoutX="240.0" layoutY="262.0" prefHeight="40.0" prefWidth="537.0" promptText="Nome do Album" />
-                  <TextField layoutX="241.0" layoutY="321.0" prefHeight="40.0" prefWidth="538.0" promptText="Nome do Artista" />
-                  <TextField layoutX="239.0" layoutY="377.0" prefHeight="40.0" prefWidth="538.0" promptText="Nome da Editora" />
-                  <TextField layoutX="240.0" layoutY="430.0" prefHeight="40.0" prefWidth="537.0" promptText="Link" />
-                  <TextField layoutX="241.0" layoutY="485.0" prefHeight="40.0" prefWidth="538.0" promptText="Ano" />
-                  <Label alignment="CENTER" layoutX="318.0" layoutY="102.0" prefHeight="24.0" prefWidth="375.0" text="Novo Album">
+                  <TextField layoutX="237.0" layoutY="220.0" prefHeight="40.0" prefWidth="537.0" promptText="Nome do Album" />
+                  <TextField layoutX="238.0" layoutY="279.0" prefHeight="40.0" prefWidth="538.0" promptText="Nome do Artista" />
+                  <TextField layoutX="238.0" layoutY="334.0" prefHeight="40.0" prefWidth="538.0" promptText="Nome da Editora" />
+                  <TextField layoutX="239.0" layoutY="388.0" prefHeight="40.0" prefWidth="537.0" promptText="Link" />
+                  <TextField layoutX="239.0" layoutY="443.0" prefHeight="40.0" prefWidth="538.0" promptText="Ano" />
+                  <Label alignment="CENTER" layoutX="318.0" layoutY="102.0" prefHeight="24.0" prefWidth="375.0" text="Novo Album" textFill="WHITE">
                      <font>
                         <Font size="48.0" />
                      </font>
                   </Label>
+                  <TextField fx:id="endereco" layoutX="240.0" layoutY="501.0" prefHeight="48.0" prefWidth="260.0" />
+                  <Button layoutX="508.0" layoutY="501.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="268.0" style="-fx-background-color: #000;" text="Carregar Capa" textFill="WHITE" />
+                  <Button layoutX="240.0" layoutY="646.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="536.0" style="-fx-background-color: #000;" text="Confirmar" textFill="WHITE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
                </children>
             </Pane>
          </left>

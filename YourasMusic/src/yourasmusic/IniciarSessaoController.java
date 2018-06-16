@@ -116,24 +116,6 @@ public class IniciarSessaoController implements Initializable {
         }                
     }
     
-    /*
-    //-------------- RECEBE STRING COM O QUERY A EXECUTAR
-    public ResultSet executarQuery(String queryRecebido) throws SQLException{
-        ResultSet result;
-        String query = queryRecebido;
-
-        em.getTransaction().begin();
-        //---- ASSOCIAR A BASE DE DADOS À VARIAVEL 'CON'
-            java.sql.Connection con = em.unwrap(java.sql.Connection.class);
-            PreparedStatement st = con.prepareStatement(query);
-        //---- EXECUTAR QUERY
-            result = st.executeQuery();
-        em.getTransaction().commit();
-        em.clear();
-        
-        return result;
-    }
-    */
     
     private boolean mensagemPopup(String title, String texto, Alert.AlertType tipo){
         Alert alert = new Alert(tipo);

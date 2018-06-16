@@ -8,6 +8,7 @@ package yourasmusic;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +19,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
@@ -100,7 +102,7 @@ public class FXMLInicioRootController implements Initializable {
                     changeCenterPane("FXMLRegistarEstudio.fxml");
                 }
                 else{
-                    changeCenterPane("FXMLRegistoAlbum.fxml");
+                    changeCenterPane("FXMLRegistarAlbum.fxml");
                 }
                 break;
             default:
@@ -116,6 +118,20 @@ public class FXMLInicioRootController implements Initializable {
         } catch (IOException ex) {
             ex.getMessage();
         }
+    }
+    
+    @FXML
+    public void terminarSessao(ActionEvent event) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLInitialPane.fxml"));
+        
+        Pane musicPane = FXMLLoader.load(getClass().getResource("FXMLIniciarSessao.fxml"));
+        ((BorderPane) root).setRight(musicPane);
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.hide();
+        YourasMusic.setROOT((BorderPane) root);
+        stage.setScene(new Scene(root));
+        stage.show();
     }
     
 }
