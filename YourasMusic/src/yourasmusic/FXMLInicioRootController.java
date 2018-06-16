@@ -46,6 +46,7 @@ public class FXMLInicioRootController implements Initializable {
     @FXML private Button but_musicas;
     @FXML private Button but_upload;
     @FXML private Button but_registar_album;
+    @FXML private Label lblUsername;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -64,6 +65,16 @@ public class FXMLInicioRootController implements Initializable {
             but_registar_album.setTextAlignment(TextAlignment.CENTER);
            // --- Botao de Reservas
             but_upload.setText("Reservas");
+       }              
+       
+       String tipo = IniciarSessaoController.userLogin.getTipo();
+       
+       if(tipo.equals("A  ")){
+        lblUsername.setText(IniciarSessaoController.artistaLogin.getNomeArtista().toString());
+       } else if(tipo.equals("E  ")){
+           lblUsername.setText(IniciarSessaoController.editoraLogin.getNome().toString());
+       } else if(tipo.equals("S  ")){
+           lblUsername.setText(IniciarSessaoController.dirEstudioLogin.getNome().toString());
        }
     }
     

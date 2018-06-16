@@ -66,7 +66,8 @@ public class FXMLUploadController implements Initializable {
         genero.getItems().addAll(FXMLInicioPaneController.generosMusica);
     }    
     
-    public void enviarUpload(){                
+    @FXML
+    public void enviarUpload(ActionEvent event){                
         session = hibernate.HibernateUtil.getSessionFactory().openSession();     
         session.beginTransaction();
         //List<Artista> artistaUpload = session.createQuery("FROM Artista Where Artista_Id = " + IniciarSessaoController.userLogin.getUtilizadorId()).list();       

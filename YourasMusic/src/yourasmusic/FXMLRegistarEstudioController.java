@@ -25,21 +25,14 @@ import javafx.scene.control.TextArea;
 public class FXMLRegistarEstudioController implements Initializable {
     
     @FXML TextArea txaMorada;
-    @FXML ComboBox cmbDiretor;
+    @FXML Label lblDiretor;
     
     String moradaNova;
     List<DirEstudio> diretores;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        org.hibernate.Session session = hibernate.HibernateUtil.getSessionFactory().openSession();
-        diretores = session.createCriteria(DirEstudio.class).list();
-                
-        for(DirEstudio e : diretores){
-            cmbDiretor.getItems().add(e.getNome().toString());
-        }
-        
-        session.close();             
+        lblDiretor.setText(IniciarSessaoController.dirEstudioLogin.getNome().toString());
     }    
     
     public void registarEstudio(){        
@@ -48,15 +41,16 @@ public class FXMLRegistarEstudioController implements Initializable {
         
         System.out.println(IniciarSessaoController.userLogin.getUtilizadorId());
         org.hibernate.Session session = hibernate.HibernateUtil.getSessionFactory().openSession();
-        
+        /*
         for(DirEstudio dir : diretores){
             if(dir.getNome().equals(cmbDiretor.getValue().toString())){
                 dirEstudio = dir;
             }
         }
+*/
 
         session.beginTransaction();
-        Estudio estudio = new Estudio(dirEstudio, moradaNova);
+        Estudio estudio = new Estudio(IniciarSessaoController.dirEstudioLogin, moradaNova);
         session.save(estudio);
         session.getTransaction().commit();
         session.close();

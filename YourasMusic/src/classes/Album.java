@@ -40,6 +40,17 @@ public class Album  implements java.io.Serializable {
        this.ano = ano;
        this.musicas = musicas;
     }
+
+    public Album(Artista artista, Editora editora, String nome, Blob capa, String linkAlbum, String ano) {
+        this.artista = artista;
+        this.editora = editora;
+        this.nome = nome;
+        this.capa = capa;
+        this.linkAlbum = linkAlbum;
+        this.ano = ano;
+    }
+    
+    
    
     public int getAlbumId() {
         return this.albumId;

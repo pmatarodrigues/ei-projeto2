@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -30,6 +29,10 @@
             <Font size="30.0" />
          </font>
       </Button>
-      <ComboBox fx:id="cmbDiretor" layoutX="205.0" layoutY="253.0" prefHeight="47.0" prefWidth="580.0" promptText="Selecione o Diretor do Estudio" />
+      <Label fx:id="lblDiretor" layoutX="205.0" layoutY="253.0" style="-fx-font-weight: bold; -fx-font-size: 30;" text="DiretorNome" textFill="WHITE">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

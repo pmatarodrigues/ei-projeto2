@@ -40,6 +40,9 @@ import yourasmusic.YourasMusic;
 public class IniciarSessaoController implements Initializable {
        
     public static Utilizador userLogin;
+    public static Artista artistaLogin;
+    public static Editora editoraLogin;
+    public static DirEstudio dirEstudioLogin;
 
     @FXML
     private TextField txfUsername;
@@ -103,8 +106,24 @@ public class IniciarSessaoController implements Initializable {
         
         for(Utilizador u : users){                        
             if(u.getEmail().toString().equals(emailRecebido)){
-               userLogin = u;             
-            }
+               userLogin = u;
+               for(Artista a : artistas){
+                if(u.getUtilizadorId() == a.getArtistaId()){
+                    artistaLogin = a;
+                }
+               }
+               for(Editora e : editoras){
+                if(u.getUtilizadorId() == e.getEditoraId()){
+                    editoraLogin = e;
+                }
+               }
+               for(DirEstudio d : diretores){
+                if(u.getUtilizadorId() == d.getDirEstudioId()){
+                    dirEstudioLogin = d;
+                }
+               }
+            }        
+            
         }
         if(!cr.list().isEmpty()){
             //mensagemPopup("SUCESSO", "O login foi efetuado com sucesso!", Alert.AlertType.INFORMATION);

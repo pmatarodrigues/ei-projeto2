@@ -49,7 +49,6 @@
 }
 
 .button-terminarsessao:hover{
-    -fx-font-style: 25;
     -fx-border-color: #FF5722;
     -fx-border-width: 2px;
 }

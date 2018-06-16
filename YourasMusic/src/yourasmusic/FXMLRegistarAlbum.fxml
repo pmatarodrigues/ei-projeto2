@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -14,19 +15,18 @@
          <left>
             <Pane prefHeight="829.0" prefWidth="1010.0" BorderPane.alignment="CENTER">
                <children>
-                  <TextField layoutX="237.0" layoutY="220.0" prefHeight="40.0" prefWidth="537.0" promptText="Nome do Album" />
-                  <TextField layoutX="238.0" layoutY="279.0" prefHeight="40.0" prefWidth="538.0" promptText="Nome do Artista" />
-                  <TextField layoutX="238.0" layoutY="334.0" prefHeight="40.0" prefWidth="538.0" promptText="Nome da Editora" />
-                  <TextField layoutX="239.0" layoutY="388.0" prefHeight="40.0" prefWidth="537.0" promptText="Link" />
-                  <TextField layoutX="239.0" layoutY="443.0" prefHeight="40.0" prefWidth="538.0" promptText="Ano" />
+                  <TextField fx:id="txfNomeAlbum" layoutX="236.0" layoutY="194.0" prefHeight="40.0" prefWidth="537.0" promptText="Nome do Album" />
+                  <ComboBox fx:id="cmbNomeEditora" layoutX="236.0" layoutY="254.0" prefHeight="40.0" prefWidth="538.0" promptText="Nome da Editora" />
+                  <TextField fx:id="txfLink" layoutX="238.0" layoutY="308.0" prefHeight="40.0" prefWidth="537.0" promptText="Link" />
+                  <TextField fx:id="txfAno" layoutX="238.0" layoutY="363.0" prefHeight="40.0" prefWidth="538.0" promptText="Ano" />
                   <Label alignment="CENTER" layoutX="318.0" layoutY="102.0" prefHeight="24.0" prefWidth="375.0" text="Novo Album" textFill="WHITE">
                      <font>
                         <Font size="48.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="endereco" layoutX="240.0" layoutY="501.0" prefHeight="48.0" prefWidth="260.0" />
-                  <Button layoutX="508.0" layoutY="501.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="268.0" style="-fx-background-color: #000;" text="Carregar Capa" textFill="WHITE" />
-                  <Button layoutX="240.0" layoutY="646.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="536.0" style="-fx-background-color: #000;" text="Confirmar" textFill="WHITE">
+                  <TextField fx:id="txfEndereco" layoutX="239.0" layoutY="421.0" prefHeight="48.0" prefWidth="260.0" />
+                  <Button layoutX="507.0" layoutY="421.0" mnemonicParsing="false" onAction="#uploadCapa" prefHeight="48.0" prefWidth="268.0" style="-fx-background-color: #000;" stylesheets="@styles.css" text="Carregar Capa" textFill="WHITE" />
+                  <Button layoutX="240.0" layoutY="646.0" mnemonicParsing="false" onAction="#enviarUpload" prefHeight="65.0" prefWidth="536.0" style="-fx-background-color: #000;" stylesheets="@styles.css" text="Confirmar" textFill="WHITE">
                      <font>
                         <Font size="24.0" />
                      </font>
