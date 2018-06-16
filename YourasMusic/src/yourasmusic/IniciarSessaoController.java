@@ -27,12 +27,9 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+
 import classes.*;
 import org.hibernate.Criteria;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.LogicalExpression;
 import org.hibernate.criterion.Restrictions;
@@ -43,7 +40,7 @@ import yourasmusic.YourasMusic;
 public class IniciarSessaoController implements Initializable {
        
     public static Utilizador userLogin;
-    
+
     @FXML
     private TextField txfUsername;
     @FXML
@@ -82,11 +79,19 @@ public class IniciarSessaoController implements Initializable {
     public int verificarDadosLogin(ActionEvent event) throws SQLException{
         
         org.hibernate.Session session = hibernate.HibernateUtil.getSessionFactory().openSession();
-        Criteria cr = session.createCriteria(Utilizador.class);
-                
+        Criteria cr = session.createCriteria(Utilizador.class);                
         List<Utilizador> users = cr.list();
+        
+        Criteria crEstudio = session.createCriteria(DirEstudio.class);                
+        List<DirEstudio> diretores = crEstudio.list();
+        
+        Criteria crArtista = session.createCriteria(Artista.class);                
+        List<Artista> artistas = crArtista.list();
+        
+        Criteria crEditora = session.createCriteria(Editora.class);                
+        List<Editora> editoras = crEditora.list();
 
-
+        // --- Aplicar restrições ao query na base de dados
         String emailRecebido = txfUsername.getText().toString();
         String passwordRecebida = txfPassword.getText().toString();
         
@@ -98,10 +103,9 @@ public class IniciarSessaoController implements Initializable {
         
         for(Utilizador u : users){                        
             if(u.getEmail().toString().equals(emailRecebido)){
-               userLogin = u;
+               userLogin = u;             
             }
         }
-        
         if(!cr.list().isEmpty()){
             //mensagemPopup("SUCESSO", "O login foi efetuado com sucesso!", Alert.AlertType.INFORMATION);
             System.out.println("SUCESSO! \n");

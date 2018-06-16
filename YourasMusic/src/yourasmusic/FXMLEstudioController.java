@@ -48,6 +48,7 @@ public class FXMLEstudioController implements Initializable {
             Button btnEstudios = new Button();
             btnEstudios.setId("button_tile");
             btnEstudios.setMinSize(200, 200);
+            btnEstudios.setMaxSize(200, 200);
             btnEstudios.setText(e.getMorada().toString());
             tileEstudios.setHgap(20);
             tileEstudios.setVgap(20);

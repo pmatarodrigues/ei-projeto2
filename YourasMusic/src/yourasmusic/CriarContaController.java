@@ -76,9 +76,7 @@ public class CriarContaController implements Initializable {
     
     @FXML
     BorderPane bdpCriarConta;
-    
-    EntityManager em;
-    EntityManagerFactory emf;
+
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {

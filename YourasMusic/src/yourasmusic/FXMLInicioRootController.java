@@ -19,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 /**
@@ -48,22 +49,24 @@ public class FXMLInicioRootController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
        tipoEditora = IniciarSessaoController.userLogin.getTipo();
               
-       // --- 2 ESPAÇOS DEPOIS DO NOME DO TIPO DE 'UTILIZADOR'
-       if(IniciarSessaoController.userLogin.getTipo().equals((String)("E  "))){           
-            System.out.println("dsfs");
+       // --- --> 2 ESPAÇOS <-- DEPOIS DO NOME DO TIPO DE 'UTILIZADOR'
+       if(IniciarSessaoController.userLogin.getTipo().equals((String)("E  "))){   
+            // --- Botao de Registar Estudio
+            // --- Botao desativado
             but_registar_album.setVisible(false);
             but_upload.setVisible(false);
-       } else if ("S  ".equals(IniciarSessaoController.userLogin.getTipo().toString())){          
-            but_registar_album.setVisible(false);
-            but_upload.setVisible(false);
+       } else if ("S  ".equals(IniciarSessaoController.userLogin.getTipo().toString())){  
+           // --- Botao de Registar Estudio
+            but_registar_album.setMinHeight(60);
+            but_registar_album.setText("Registar Estúdio");
+            but_registar_album.setTextAlignment(TextAlignment.CENTER);
+           // --- Botao de Reservas
+            but_upload.setText("Reservas");
        }
     }
     
     @FXML
     private void switchCenter(ActionEvent event){
-        // Load the new pane
-        // menuitem people -> document.fxml
-        // menuItem 
         switch(((Button) event.getSource()).getId()){
             
             case "but_inicio":
@@ -85,10 +88,20 @@ public class FXMLInicioRootController implements Initializable {
                 changeCenterPane("FXMLMusicas.fxml");
                 break;
             case "but_upload":
-                changeCenterPane("FXMLUpload.fxml");
+                if(IniciarSessaoController.userLogin.getTipo().toString().equals("S  ")){
+                    changeCenterPane("FXMLConsultarReservas.fxml");                    
+                }
+                else{
+                    changeCenterPane("FXMLUpload.fxml");
+                }
                 break;
             case "but_registar_album":
-                changeCenterPane("FXMLRegistoAlbum.fxml");
+                if(IniciarSessaoController.userLogin.getTipo().toString().equals("S  ")){
+                    changeCenterPane("FXMLRegistarEstudio.fxml");
+                }
+                else{
+                    changeCenterPane("FXMLRegistoAlbum.fxml");
+                }
                 break;
             default:
         }

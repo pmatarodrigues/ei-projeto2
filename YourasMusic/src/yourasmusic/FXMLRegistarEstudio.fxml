@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="990.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="yourasmusic.FXMLRegistarEstudioController">
+   <children>
+      <Label layoutX="335.0" layoutY="72.0" text="Registar Estudio" textFill="WHITE">
+         <font>
+            <Font size="39.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="txaMorada" layoutX="205.0" layoutY="350.0" prefHeight="225.0" prefWidth="580.0" />
+      <Label layoutX="205.0" layoutY="320.0" text="Morada *" textFill="WHITE">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <Label layoutX="205.0" layoutY="223.0" text="Diretor" textFill="WHITE">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <Button layoutX="366.0" layoutY="663.0" mnemonicParsing="false" onAction="#registarEstudio" prefHeight="77.0" prefWidth="258.0" styleClass="button-upload" text="Confirmar">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+      <ComboBox fx:id="cmbDiretor" layoutX="205.0" layoutY="253.0" prefHeight="47.0" prefWidth="580.0" promptText="Selecione o Diretor do Estudio" />
+   </children>
+</AnchorPane>

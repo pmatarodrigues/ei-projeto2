@@ -30,6 +30,13 @@ public class Estudio  implements java.io.Serializable {
        this.morada = morada;
        this.reservas = reservas;
     }
+
+    public Estudio(DirEstudio dirEstudio, String morada) {
+        this.dirEstudio = dirEstudio;
+        this.morada = morada;
+    }
+    
+    
    
     public int getEstudioId() {
         return this.estudioId;

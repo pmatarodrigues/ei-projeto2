@@ -12,8 +12,10 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.TilePane;
+import javafx.scene.text.TextAlignment;
 
 /**
  * FXML Controller class
@@ -38,8 +40,12 @@ public class FXMLMusicasController implements Initializable {
         for(Musica m : musicas){
             Button btnMusicas = new Button();
             btnMusicas.setId("button_tile");
-            btnMusicas.setMinSize(200, 200);
-            btnMusicas.setText(m.getNome().toString());
+            btnMusicas.setMinSize(800, 50);
+            btnMusicas.setMaxSize(800, 50);
+            btnMusicas.setTextAlignment(TextAlignment.LEFT);
+            btnMusicas.setText(m.getNome().toString() + "     " + m.getMusicaId());
+            tileMusicas.setAlignment(Pos.TOP_CENTER);
+            tileMusicas.setVgap(10);
             tileMusicas.getChildren().add(btnMusicas);
         }   
         
