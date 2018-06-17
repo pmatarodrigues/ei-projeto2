@@ -1,6 +1,7 @@
 
 package yourasmusic;
 
+import MusicPlayer.MusicPlayer;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,7 +23,8 @@ public class YourasMusic extends Application {
     
     EntityManagerFactory emf;
     EntityManager em;
-    private static BorderPane ROOT;
+    private static BorderPane ROOT;    
+    private static MusicPlayer mp = new MusicPlayer();
     
     @Override
     public void start(Stage stage) throws Exception {        
@@ -72,5 +74,11 @@ public class YourasMusic extends Application {
         em.clear();
         return result;
     }
+
+    public static MusicPlayer getMp() {
+        return mp;
+    }
+    
+    
 
 }

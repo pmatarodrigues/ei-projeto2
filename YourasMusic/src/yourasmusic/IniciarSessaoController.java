@@ -50,6 +50,7 @@ public class IniciarSessaoController implements Initializable {
     private TextField txfPassword;
 
     
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
      

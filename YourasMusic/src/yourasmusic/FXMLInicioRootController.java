@@ -5,8 +5,17 @@
  */
 package yourasmusic;
 
+import MusicPlayer.MusicPlayer;
+import classes.Musica;
+import classes.Utilizador;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
+import java.sql.Blob;
+import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -23,6 +32,13 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+import javazoom.jl.decoder.*;
+import javazoom.jl.player.*;
+import oracle.sql.BLOB;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.LogicalExpression;
+import org.hibernate.criterion.Restrictions;
 
 /**
  * FXML Controller class
@@ -32,7 +48,6 @@ import javafx.stage.Stage;
 public class FXMLInicioRootController implements Initializable {
 
     String tipoEditora = null;
-    
     
     /**
      * Initializes the controller class.
@@ -47,6 +62,11 @@ public class FXMLInicioRootController implements Initializable {
     @FXML private Button but_upload;
     @FXML private Button but_registar_album;
     @FXML private Label lblUsername;
+    
+    // -- Player -- -- -- -- -- -- --
+    @FXML private Label musicPlaying;
+    
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -143,6 +163,31 @@ public class FXMLInicioRootController implements Initializable {
         YourasMusic.setROOT((BorderPane) root);
         stage.setScene(new Scene(root));
         stage.show();
+    }
+    
+    @FXML
+    private void play(ActionEvent event) throws JavaLayerException, SQLException, IOException{
+        org.hibernate.Session session = hibernate.HibernateUtil.getSessionFactory().openSession();
+        Criteria cr = session.createCriteria(Musica.class);                
+        List<Musica> musica = cr.list();
+        
+        // -- exemplo, p verificar que funciona, posteriormente esta funcao só irá chamar YourasMusic.getMp().Play();
+        Criterion mus = Restrictions.eq("musicaId", 1);
+ 
+        LogicalExpression musi = Restrictions.and(mus, mus);
+        cr.add(musi);
+        YourasMusic.getMp().blb =  musica.get(0).getAudio();
+        YourasMusic.getMp().Play();
+           
+    }
+    
+    @FXML
+    private void pauseResume(ActionEvent event) throws JavaLayerException{
+        if(YourasMusic.getMp().playing == true){
+            YourasMusic.getMp().Pause();
+        }else{
+            YourasMusic.getMp().Resume();
+        }
     }
     
 }
