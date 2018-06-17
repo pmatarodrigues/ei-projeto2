@@ -6,6 +6,7 @@ import classes.Musica;
 import classes.Reserva;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -18,6 +19,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
@@ -88,11 +90,19 @@ public class FXMLConsultarReservasController implements Initializable {
     }
 
     @FXML
-    private void deleteReserva(ActionEvent event){
-        String data = reservaAEliminar.getDataReserva().getDay() + "-" + reservaAEliminar.getDataReserva().getMonth() + "-" + reservaAEliminar.getDataReserva().getYear();
+    private void deleteReserva(ActionEvent event) throws IOException{                
+        // -- converter DATE para Calendar
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(reservaAEliminar.getDataReserva());
+        int ano = cal.get(Calendar.YEAR);
+        int mes = cal.get(Calendar.MONTH) + 1;
+        int dia = cal.get(Calendar.DAY_OF_MONTH);
+        
+        // -- Popup de confirmação
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Eliminar Reserva");
-        alert.setHeaderText("Tem a certeza que pretende eliminar a reserva da data " + data + "?");
+        alert.setHeaderText("Tem a certeza que pretende eliminar a reserva da data " + dia + "-" + mes + "-" + ano + "?");
+        
         
         Optional<ButtonType> option = alert.showAndWait();
         
@@ -105,7 +115,14 @@ public class FXMLConsultarReservasController implements Initializable {
             session.getTransaction().commit();
 
             session.close();
+            
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("FXMLConsultarReservas.fxml"));
+
+            // ---- ABRIR ALBUM INDIVIDUAL
+            YourasMusic.getROOT().setRight(loader.load());
         }
+        
     }
     
 }
