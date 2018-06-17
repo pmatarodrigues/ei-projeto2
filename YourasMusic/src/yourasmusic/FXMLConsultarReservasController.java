@@ -25,6 +25,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.TilePane;
 import javafx.scene.text.TextAlignment;
@@ -53,13 +55,14 @@ public class FXMLConsultarReservasController implements Initializable {
     }    
     
     private void carregarReservas(){
+        ToggleGroup grupoBtn = new ToggleGroup();
         
         session = hibernate.HibernateUtil.getSessionFactory().openSession();
         
         List<Reserva> reservas = session.createCriteria(Reserva.class).list();
         
         for(Reserva r : reservas){
-            Button btnReservas = new Button();
+            ToggleButton btnReservas = new ToggleButton();
             btnReservas.setId("button_tile");
             btnReservas.setMinSize(800, 50);
             btnReservas.setMaxSize(800, 50);
@@ -68,8 +71,9 @@ public class FXMLConsultarReservasController implements Initializable {
             tileReservas.setAlignment(Pos.TOP_CENTER);
             tileReservas.setVgap(10);
             tileReservas.getChildren().add(btnReservas);
+            btnReservas.setToggleGroup(grupoBtn);
             
-            // --- Quando o botão é clicado, passa o id do album clicado como parametro
+            // --- Quando o botão é clicado, atribui o valor da reserva clicada à variavel reservaClicada
             btnReservas.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
@@ -85,10 +89,10 @@ public class FXMLConsultarReservasController implements Initializable {
 
     @FXML
     private void deleteReserva(ActionEvent event){
-        
+        String data = reservaAEliminar.getDataReserva().getDay() + "-" + reservaAEliminar.getDataReserva().getMonth() + "-" + reservaAEliminar.getDataReserva().getYear();
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Eliminar Reserva");
-        alert.setHeaderText("Tem a certeza que pretende eliminar?");
+        alert.setHeaderText("Tem a certeza que pretende eliminar a reserva da data " + data + "?");
         
         Optional<ButtonType> option = alert.showAndWait();
         

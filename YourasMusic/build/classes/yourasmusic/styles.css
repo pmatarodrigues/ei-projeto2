@@ -38,6 +38,10 @@
     -fx-font-size: 15px;
 }
 
+#button_tile:selected{
+    -fx-background-color: #FF8A65;
+}
+
 .button-upload{
     -fx-background-color: #FF7043;
 }
