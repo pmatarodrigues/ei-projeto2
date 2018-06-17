@@ -25,8 +25,8 @@
                      </font>
                   </Label>
                   <TextField fx:id="txfEndereco" layoutX="239.0" layoutY="421.0" prefHeight="48.0" prefWidth="260.0" />
-                  <Button layoutX="507.0" layoutY="421.0" mnemonicParsing="false" onAction="#uploadCapa" prefHeight="48.0" prefWidth="268.0" style="-fx-background-color: #000;" stylesheets="@styles.css" text="Carregar Capa" textFill="WHITE" />
-                  <Button layoutX="240.0" layoutY="646.0" mnemonicParsing="false" onAction="#enviarUpload" prefHeight="65.0" prefWidth="536.0" style="-fx-background-color: #000;" stylesheets="@styles.css" text="Confirmar" textFill="WHITE">
+                  <Button layoutX="507.0" layoutY="421.0" mnemonicParsing="false" onAction="#uploadCapa" prefHeight="48.0" prefWidth="268.0" style="-fx-background-color: #000;" styleClass="button-upload" stylesheets="@styles.css" text="Carregar Capa" textFill="WHITE" />
+                  <Button layoutX="240.0" layoutY="646.0" mnemonicParsing="false" onAction="#enviarUpload" prefHeight="65.0" prefWidth="536.0" style="-fx-background-color: #000;" styleClass="button-upload" stylesheets="@styles.css" text="Confirmar" textFill="WHITE">
                      <font>
                         <Font size="24.0" />
                      </font>

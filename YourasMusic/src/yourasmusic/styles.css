@@ -48,7 +48,7 @@
 
 .button-upload:hover{
     -fx-background-color: #FF5722;
-    -fx-border-color: #FF6E40;
+    -fx-border-color: #FFF;
     -fx-border-width: 3px;
 }
 
@@ -74,4 +74,44 @@
 
 .text-menu-esquerdo:hover{
     -fx-text-fill: #FF8A65;
+}
+
+
+.pane > .scroll-bar {
+    -fx-background-color: transparent;
+}
+.pane > .scroll-bar .increment-arrow,
+.pane > .scroll-bar .decrement-arrow{
+	-fx-shape: " ";	
+	-fx-padding:0;
+}
+/**/
+.pane > .scroll-bar:horizontal .track,
+.pane > .scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+.pane > .scroll-bar:vertical .increment-button ,
+.pane > .scroll-bar:vertical .decrement-button {
+    -fx-background-color:transparent;
+    -fx-background-radius: 0em;
+    -fx-padding:0 5 0 0;
+ }
+.pane > .scroll-bar:horizontal .increment-button ,
+.pane > .scroll-bar:horizontal .decrement-button {
+    -fx-background-color:transparent;
+    -fx-background-radius: 0em;
+    -fx-padding:0 0 5 0;
+ }
+/**/
+.pane > .scroll-bar:horizontal .thumb,
+.pane > .scroll-bar:vertical .thumb {
+    -fx-background-color: #919191;
+}
+
+.pane > .scroll-bar .decrement-arrow {
+    -fx-padding:1.25;
+ }
+.pane > .scroll-bar .increment-arrow {
+    -fx-padding:1.25;
 }

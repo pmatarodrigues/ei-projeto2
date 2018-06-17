@@ -10,16 +10,21 @@
    <children>
       <BorderPane prefHeight="800.0" prefWidth="990.0">
          <center>
-            <Pane prefHeight="462.0" prefWidth="565.0" BorderPane.alignment="CENTER">
+            <Pane prefHeight="462.0" prefWidth="565.0" styleClass="pane" stylesheets="@styles.css" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="nomeAlbum" alignment="CENTER" layoutX="17.0" layoutY="151.0" prefHeight="147.0" prefWidth="957.0" text="nome" textFill="WHITE">
+                  <Label fx:id="nomeAlbum" alignment="CENTER" layoutX="75.0" layoutY="632.0" prefHeight="71.0" prefWidth="840.0" text="nome" textFill="WHITE">
                      <font>
-                        <Font size="58.0" />
+                        <Font size="40.0" />
                      </font></Label>
-                  <Label fx:id="anoAlbum" alignment="CENTER" layoutX="371.0" layoutY="309.0" prefHeight="47.0" prefWidth="248.0" text="ano" textFill="WHITE">
+                  <Label fx:id="anoAlbum" alignment="CENTER" layoutX="371.0" layoutY="703.0" prefHeight="47.0" prefWidth="248.0" text="ano" textFill="WHITE">
                      <font>
                         <Font size="39.0" />
                      </font></Label>
+                  <Label fx:id="lblCapa" alignment="CENTER" layoutX="197.0" layoutY="36.0" prefHeight="583.0" prefWidth="597.0" text="CAPA" textFill="WHITE">
+                     <font>
+                        <Font size="39.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
          </center>

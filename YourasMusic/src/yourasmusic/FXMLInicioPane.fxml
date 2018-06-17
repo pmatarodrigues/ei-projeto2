@@ -14,7 +14,7 @@
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#272727" height="254.0" layoutX="50.0" layoutY="87.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="429.0" />
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#272727" height="254.0" layoutX="518.0" layoutY="87.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="429.0" />
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#272727" height="132.0" layoutX="50.0" layoutY="367.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="897.0" />
-                  <TilePane fx:id="listaGenerosTile" layoutX="52.0" layoutY="577.0" prefHeight="460.0" prefWidth="882.0" style="-fx-background-color: TRANSPARENT;" />
+                  <TilePane fx:id="listaGenerosTile" layoutX="52.0" layoutY="577.0" prefHeight="460.0" prefWidth="882.0" style="-fx-background-color: TRANSPARENT;" styleClass="pane" stylesheets="@styles.css" />
                </children>
             </AnchorPane>
         </content>

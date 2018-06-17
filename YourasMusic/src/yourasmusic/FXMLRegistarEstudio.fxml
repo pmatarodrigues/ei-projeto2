@@ -24,7 +24,7 @@
             <Font size="25.0" />
          </font>
       </Label>
-      <Button layoutX="366.0" layoutY="663.0" mnemonicParsing="false" onAction="#registarEstudio" prefHeight="77.0" prefWidth="258.0" styleClass="button-upload" text="Confirmar">
+      <Button layoutX="366.0" layoutY="663.0" mnemonicParsing="false" onAction="#registarEstudio" prefHeight="36.0" prefWidth="258.0" style="-fx-background-color: #000;" styleClass="button-upload" text="Confirmar">
          <font>
             <Font size="30.0" />
          </font>

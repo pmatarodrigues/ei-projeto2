@@ -13,7 +13,7 @@
             <Font size="46.0" />
          </font>
       </Label>
-      <Button layoutX="390.0" layoutY="689.0" mnemonicParsing="false" onAction="#deleteReserva" prefHeight="48.0" prefWidth="211.0" styleClass="button-upload" text="Eliminar">
+      <Button layoutX="390.0" layoutY="689.0" mnemonicParsing="false" onAction="#deleteReserva" prefHeight="48.0" prefWidth="211.0" style="-fx-background-color: #000;" styleClass="button-upload" text="Eliminar">
          <font>
             <Font size="21.0" />
          </font>

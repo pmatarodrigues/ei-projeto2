@@ -24,7 +24,10 @@
                         <Font size="25.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btnReserva" layoutX="389.0" layoutY="570.0" mnemonicParsing="false" onAction="#efetuarReserva" prefHeight="52.0" prefWidth="239.0" style="-fx-background-color: #FF7043; -fx-border-radius: 20; -fx-font-size: 20;" styleClass="button_normal" stylesheets="@styles.css" text="Efetuar Reserva" />
+                  <Button fx:id="btnReserva" layoutX="389.0" layoutY="570.0" mnemonicParsing="false" onAction="#efetuarReserva" prefHeight="52.0" prefWidth="239.0" style="-fx-background-color: #000;" styleClass="button-upload" stylesheets="@styles.css" text="Efetuar Reserva">
+                     <font>
+                        <Font size="21.0" />
+                     </font></Button>
                   <DatePicker fx:id="dtDataReserva" layoutX="251.0" layoutY="478.0" prefHeight="41.0" prefWidth="514.0" promptText="Selecione a data a Reservar" />
                </children>
             </Pane>
