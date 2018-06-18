@@ -173,21 +173,18 @@ public class FXMLInicioRootController implements Initializable {
         List<Musica> musica = cr.list();
         
         // -- exemplo, p verificar que funciona, posteriormente esta funcao só irá chamar YourasMusic.getMp().Play();
-        Criterion mus = Restrictions.eq("musicaId", 5);
+        Criterion mus = Restrictions.eq("musicaId", 1);
  
         LogicalExpression musi = Restrictions.and(mus, mus);
         cr.add(musi);
         
         for(Musica m : musica){                        
-            if(m.getMusicaId() == 5){
+            if(m.getMusicaId() == 1){
                 YourasMusic.getMp().blb = m.getAudio();
                 YourasMusic.getMp().Play();
             }
-        }
+        }                       
         
-       
-        
-           
     }
     
     @FXML

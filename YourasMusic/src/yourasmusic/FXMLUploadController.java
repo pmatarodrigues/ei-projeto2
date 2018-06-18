@@ -71,7 +71,12 @@ public class FXMLUploadController implements Initializable {
         session = hibernate.HibernateUtil.getSessionFactory().openSession();     
         session.beginTransaction();
         //List<Artista> artistaUpload = session.createQuery("FROM Artista Where Artista_Id = " + IniciarSessaoController.userLogin.getUtilizadorId()).list();       
-        musica = new Musica(IniciarSessaoController.userLogin, genero.getValue().toString(), nome.getText(), upload);
+        musica = new Musica();
+        
+        musica.setUtilizador(IniciarSessaoController.userLogin);
+        musica.setNome(nome.getText());
+        musica.setGenero(genero.getValue().toString());
+        musica.setAudio(upload);
         
         session.save(musica);
         session.getTransaction().commit();
@@ -107,21 +112,8 @@ public class FXMLUploadController implements Initializable {
         session = hibernate.HibernateUtil.getSessionFactory().openSession();
         Blob musicaAEnviar = session.getLobHelper().createBlob(fis, myFile.length());
         upload = musicaAEnviar;
-        
-        //session.createQuery("INSERT INTO MUSICA (NOME, ARTISTA_ID, AUDIO) VALUES (?, ?, ?)").setParameter(nomeMusica, artista_id, (Type) (Blob) upload);
-        
+                
         session.close();
-        
-        /* INICIAR ENVIO PARA A BASE DE DADOS*/
-        //em.getTransaction().begin();
-        //java.sql.Connection con = em.unwrap(java.sql.Connection.class);
-        //PreparedStatement st = con.prepareStatement("INSERT INTO musica (nome, artista_id, audio) VALUES (?, ?, ?)");
-        //st.setString(1, "nome_musica");
-        //st.setInt(2, 56);
-        //st.setBinaryStream(3, fis, (int) myFile.length());
-        //st.executeQuery();
-        
-        //em.getTransaction().commit();
-        //em.clear();                 
+                 
      }
 }
