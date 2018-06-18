@@ -2,6 +2,7 @@
 package yourasmusic;
 
 import classes.Album;
+import classes.Estudio;
 import classes.Musica;
 import classes.Reserva;
 import java.io.IOException;
@@ -60,29 +61,34 @@ public class FXMLConsultarReservasController implements Initializable {
         ToggleGroup grupoBtn = new ToggleGroup();
         
         session = hibernate.HibernateUtil.getSessionFactory().openSession();
+
+        //Query queryReserva = session.createSQLQuery("SELECT r.* FROM Reserva r, Estudio s WHERE r.estudio_id = s.estudio_id AND s.diretor_id = :estudio");
+        //queryReserva.setParameter("estudio", IniciarSessaoController.dirEstudioLogin.getDirEstudioId());
+        //reservas = queryReserva.list();
         
-        List<Reserva> reservas = session.createCriteria(Reserva.class).list();
+        reservas = session.createCriteria(Reserva.class).list();
         
-        for(Reserva r : reservas){
-            ToggleButton btnReservas = new ToggleButton();
-            btnReservas.setId("button_tile");
-            btnReservas.setMinSize(800, 50);
-            btnReservas.setMaxSize(800, 50);
-            btnReservas.setTextAlignment(TextAlignment.LEFT);
-            btnReservas.setText(r.getUtilizador().getEmail().toString() + "     " + r.getDataReserva().toString());
-            tileReservas.setAlignment(Pos.TOP_CENTER);
-            tileReservas.setVgap(10);
-            tileReservas.getChildren().add(btnReservas);
-            btnReservas.setToggleGroup(grupoBtn);
-            
-            // --- Quando o botão é clicado, atribui o valor da reserva clicada à variavel reservaClicada
-            btnReservas.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    //TODO: BOTAO FICA SELECIONADO COM CLICK
-                    reservaAEliminar = r;
-                }
-            });
+        for(Reserva r : reservas){                       
+            if(r.getEstudio().getDirEstudio().getDirEstudioId() == IniciarSessaoController.dirEstudioLogin.getDirEstudioId()){
+                ToggleButton btnReservas = new ToggleButton();
+                btnReservas.setId("button_tile");
+                btnReservas.setMinSize(800, 50);
+                btnReservas.setMaxSize(800, 50);
+                btnReservas.setTextAlignment(TextAlignment.LEFT);
+                btnReservas.setText(r.getUtilizador().getEmail().toString() + "     " + r.getDataReserva().toString());
+                tileReservas.setAlignment(Pos.TOP_CENTER);
+                tileReservas.setVgap(10);
+                tileReservas.getChildren().add(btnReservas);
+                btnReservas.setToggleGroup(grupoBtn);
+
+                // --- Quando o botão é clicado, atribui o valor da reserva clicada à variavel reservaClicada
+                btnReservas.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {                      
+                        reservaAEliminar = r;
+                    }
+                });
+            }          
         }   
         
         session.close();

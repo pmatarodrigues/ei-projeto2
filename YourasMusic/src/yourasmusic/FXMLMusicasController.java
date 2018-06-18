@@ -43,7 +43,7 @@ public class FXMLMusicasController implements Initializable {
             btnMusicas.setMinSize(800, 50);
             btnMusicas.setMaxSize(800, 50);
             btnMusicas.setTextAlignment(TextAlignment.LEFT);
-            btnMusicas.setText(m.getNome().toString() + "     " + m.getMusicaId());
+            btnMusicas.setText(m.getNome().toString());
             tileMusicas.setAlignment(Pos.TOP_CENTER);
             tileMusicas.setVgap(10);
             tileMusicas.getChildren().add(btnMusicas);

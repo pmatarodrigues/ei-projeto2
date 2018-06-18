@@ -30,46 +30,52 @@ public class FXMLArtistaIndividualController implements Initializable {
     @FXML Label nomeAlbum;
     @FXML Label anoAlbum;
     @FXML TilePane tileMusicaArtista;
+    @FXML Label lblSemMusicas;
     
     Artista artistaAtual;  
-
     Session session;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-            carregarMusicasArtista();
+            //carregarMusicasArtista();
     }    
     
     void initData(Artista artistaClicado) {
         this.artistaAtual = artistaClicado;
         nomeAlbum.setText(artistaClicado.getNomeArtista());
         anoAlbum.setText(artistaClicado.getNacionalidade());
+        carregarMusicasArtista();
     }   
-    
-    
+        
     private void carregarMusicasArtista(){
+        Boolean temMusicas = false;
         session = hibernate.HibernateUtil.getSessionFactory().openSession();
 
         Criteria cr = session.createCriteria(Musica.class);
-        List<Musica> musicas = cr.list();
+        List<Musica> musicas = cr.list();                        
         
-        Criterion mus = Restrictions.eq("utilizador", artistaAtual);
- 
-        LogicalExpression musi = Restrictions.and(mus, mus);
-        cr.add(musi);
+        lblSemMusicas.setVisible(false);
+        
+        for(Musica m : musicas){               
+            if(artistaAtual.getArtistaId() == m.getUtilizador().getUtilizadorId()){
+                System.out.println("Musica " + m.getNome().toString());
+                Button btnMusicas = new Button();
+                btnMusicas.setId("button_tile");
+                btnMusicas.setMinSize(800, 50);
+                btnMusicas.setMaxSize(800, 50);
+                btnMusicas.setTextAlignment(TextAlignment.LEFT);
+                btnMusicas.setText(m.getNome().toString());
+                tileMusicaArtista.setAlignment(Pos.TOP_CENTER);
+                tileMusicaArtista.setVgap(10);
+                tileMusicaArtista.getChildren().add(btnMusicas);
                 
-        for(Musica m : musicas){
-            Button btnMusicas = new Button();
-            btnMusicas.setId("button_tile");
-            btnMusicas.setMinSize(800, 50);
-            btnMusicas.setMaxSize(800, 50);
-            btnMusicas.setTextAlignment(TextAlignment.LEFT);
-            btnMusicas.setText(m.getNome().toString());
-            tileMusicaArtista.setAlignment(Pos.TOP_CENTER);
-            tileMusicaArtista.setVgap(10);
-            tileMusicaArtista.getChildren().add(btnMusicas);
+                temMusicas = true;
+            }
             
         }   
+        if(!temMusicas){
+            lblSemMusicas.setVisible(true);
+        }
         
         session.close();
     }

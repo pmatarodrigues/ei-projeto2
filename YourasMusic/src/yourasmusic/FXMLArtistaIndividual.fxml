@@ -23,12 +23,19 @@
                         <Font size="39.0" />
                      </font>
                   </Label>
-                  <TilePane fx:id="tileMusicaArtista" layoutX="14.0" layoutY="292.0" prefHeight="627.0" prefWidth="964.0" />
-                  <Label fx:id="tileMusicasArtista" alignment="CENTER" layoutX="343.0" layoutY="230.0" prefHeight="47.0" prefWidth="306.0" text="Musicas" textFill="WHITE">
+                  <Label fx:id="tileMusicasArtista1" alignment="CENTER" layoutX="353.0" layoutY="240.0" prefHeight="47.0" prefWidth="306.0" text="Musicas" textFill="WHITE">
                      <font>
                         <Font size="27.0" />
                      </font>
                   </Label>
+                  <TilePane fx:id="tileMusicaArtista" layoutX="14.0" layoutY="292.0" prefHeight="627.0" prefWidth="964.0">
+                     <children>
+                        <Label fx:id="lblSemMusicas" alignment="CENTER" prefHeight="69.0" prefWidth="962.0" text="O artista nao tem musicas disponiveis" textFill="WHITE">
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                        </Label>
+                     </children></TilePane>
                </children>
             </Pane>
          </center>
