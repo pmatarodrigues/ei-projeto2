@@ -5,9 +5,13 @@ import classes.Album;
 import classes.Artista;
 import classes.Musica;
 import classes.Reserva;
+import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -16,8 +20,10 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.TilePane;
 import javafx.scene.text.TextAlignment;
+import javazoom.jl.decoder.JavaLayerException;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Criterion;
@@ -49,6 +55,8 @@ public class FXMLArtistaIndividualController implements Initializable {
         
     private void carregarMusicasArtista(){
         Boolean temMusicas = false;
+        ToggleGroup group = new ToggleGroup();
+        
         session = hibernate.HibernateUtil.getSessionFactory().openSession();
 
         Criteria cr = session.createCriteria(Musica.class);
@@ -59,7 +67,7 @@ public class FXMLArtistaIndividualController implements Initializable {
         for(Musica m : musicas){               
             if(artistaAtual.getArtistaId() == m.getUtilizador().getUtilizadorId()){
                 System.out.println("Musica " + m.getNome().toString());
-                Button btnMusicas = new Button();
+                ToggleButton btnMusicas = new ToggleButton();
                 btnMusicas.setId("button_tile");
                 btnMusicas.setMinSize(800, 50);
                 btnMusicas.setMaxSize(800, 50);
@@ -68,15 +76,31 @@ public class FXMLArtistaIndividualController implements Initializable {
                 tileMusicaArtista.setAlignment(Pos.TOP_CENTER);
                 tileMusicaArtista.setVgap(10);
                 tileMusicaArtista.getChildren().add(btnMusicas);
+                btnMusicas.setToggleGroup(group);
                 
-                temMusicas = true;
-            }
-            
+                btnMusicas.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {                                                                                   
+                    YourasMusic.getMp().blb = m.getAudio();
+                    try {
+                        YourasMusic.getMp().Pause();
+                        YourasMusic.getMp().Play();
+                    } catch (JavaLayerException ex) {
+                        Logger.getLogger(FXMLMusicasController.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
+                        Logger.getLogger(FXMLMusicasController.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(FXMLMusicasController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+
+                });                               
+            temMusicas = true;
+            }            
         }   
         if(!temMusicas){
             lblSemMusicas.setVisible(true);
-        }
-        
+        }        
         session.close();
     }
     

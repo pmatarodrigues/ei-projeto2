@@ -65,6 +65,7 @@ public class FXMLMusicasController implements Initializable {
                 public void handle(ActionEvent event) {                                                                                   
                     YourasMusic.getMp().blb = m.getAudio();
                     try {
+                        YourasMusic.getMp().Pause();
                         YourasMusic.getMp().Play();
                     } catch (JavaLayerException ex) {
                         Logger.getLogger(FXMLMusicasController.class.getName()).log(Level.SEVERE, null, ex);
