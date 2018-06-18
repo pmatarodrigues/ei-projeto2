@@ -70,7 +70,7 @@ public class FXMLInicioRootController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       tipoEditora = IniciarSessaoController.userLogin.getTipo();
+       tipoEditora = IniciarSessaoController.userLogin.getTipo();             
               
        // --- --> 2 ESPAÇOS <-- DEPOIS DO NOME DO TIPO DE 'UTILIZADOR'
        if(IniciarSessaoController.userLogin.getTipo().equals((String)("E  "))){   
@@ -87,15 +87,16 @@ public class FXMLInicioRootController implements Initializable {
             but_upload.setText("Reservas");
        }              
        
-       String tipo = IniciarSessaoController.userLogin.getTipo();
+       String tipo = IniciarSessaoController.userLogin.getTipo().trim();
        
-       if(tipo.equals("A  ")){
+       if(tipo.equals("A")){
         lblUsername.setText(IniciarSessaoController.artistaLogin.getNomeArtista().toString());
-       } else if(tipo.equals("E  ")){
+       } else if(tipo.equals("E")){
            lblUsername.setText(IniciarSessaoController.editoraLogin.getNome().toString());
-       } else if(tipo.equals("S  ")){
+       } else if(tipo.equals("S")){
            lblUsername.setText(IniciarSessaoController.dirEstudioLogin.getNome().toString());
        }
+
     }
     
     @FXML
@@ -172,13 +173,13 @@ public class FXMLInicioRootController implements Initializable {
         List<Musica> musica = cr.list();
         
         // -- exemplo, p verificar que funciona, posteriormente esta funcao só irá chamar YourasMusic.getMp().Play();
-        Criterion mus = Restrictions.eq("musicaId", 21);
+        Criterion mus = Restrictions.eq("musicaId", 5);
  
         LogicalExpression musi = Restrictions.and(mus, mus);
         cr.add(musi);
         
         for(Musica m : musica){                        
-            if(m.getMusicaId() == 21){
+            if(m.getMusicaId() == 5){
                 YourasMusic.getMp().blb = m.getAudio();
                 YourasMusic.getMp().Play();
             }

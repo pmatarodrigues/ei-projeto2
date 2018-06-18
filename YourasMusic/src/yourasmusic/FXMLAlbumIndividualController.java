@@ -64,7 +64,7 @@ public class FXMLAlbumIndividualController implements Initializable {
         capa.setFitWidth(550);
         lblCapa.setText("");
         // -- "Escrever" a imagem na label
-        lblCapa.setGraphic(capa);;         
+        lblCapa.setGraphic(capa);      
 
     }
     

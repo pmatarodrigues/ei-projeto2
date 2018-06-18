@@ -79,9 +79,12 @@ public class FXMLAlbunsController implements Initializable {
             btnAlbuns.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
+                    
                     try {
                         buttonClicked(String.valueOf(a.getAlbumId()));
                     } catch (IOException ex) {
+                        Logger.getLogger(FXMLAlbunsController.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SQLException ex) {
                         Logger.getLogger(FXMLAlbunsController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
@@ -92,7 +95,7 @@ public class FXMLAlbunsController implements Initializable {
         
     }
     
-    public void buttonClicked(String idAlbum) throws IOException{
+    public void buttonClicked(String idAlbum) throws IOException, SQLException{
         Album albumClicado = new Album();
         // --- Iguala o album clicado a um novo album dentro da função
         for(Album a : albums){

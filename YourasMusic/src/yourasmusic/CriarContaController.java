@@ -33,6 +33,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import classes.Utilizador;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
 
@@ -110,6 +111,13 @@ public class CriarContaController implements Initializable {
 
         org.hibernate.Session session = hibernate.HibernateUtil.getSessionFactory().openSession();
 
+        // --- receber o ultimo user 
+        Query query = session.createQuery("FROM Utilizador ORDER BY utilizadorId DESC");
+        query.setMaxResults(1);
+        Utilizador last = (Utilizador) query.uniqueResult();
+        // -- atribuir o id do ultimo user a esta variavel
+        int id = last.getUtilizadorId();
+        
         /* INICIAR ENVIO PARA A BASE DE DADOS*/
         Utilizador user = new Utilizador(this.txtfldEmail.getText().toString(), this.txtfldPassword.getText().toString(), tipo);
         session.beginTransaction();
@@ -118,8 +126,9 @@ public class CriarContaController implements Initializable {
 
        
         session = hibernate.HibernateUtil.getSessionFactory().openSession();
-        Number id = (Number) session.createCriteria(Utilizador.class).setProjection(Projections.rowCount()).uniqueResult();
-        int userID = id.intValue();
+        //Number id = (Number) session.createCriteria(Utilizador.class).setProjection(Projections.rowCount()).uniqueResult();
+        // --- atribuir o id do ultimo user + 1 como id do novo user
+        int userID = id + 1;
 
          switch(tipo){
              case "A":
@@ -133,12 +142,14 @@ public class CriarContaController implements Initializable {
                 editora = new Editora(userID, txfldNomeCompleto.getText().toString(), txfldNomeArtista.getText().toString(), txfldContacto.getText().toString());
                 session.beginTransaction();
                 session.save(editora);
-                session.getTransaction().commit();                  break;
+                session.getTransaction().commit();                  
+                break;
              default:
                 dirEstudio = new DirEstudio(userID, txfldNomeCompleto.getText().toString(), txfldNomeArtista.getText().toString());
                 session.beginTransaction();
                 session.save(dirEstudio);
-                session.getTransaction().commit();                  break;
+                session.getTransaction().commit();                  
+                break;
          }
 
          session.close();
