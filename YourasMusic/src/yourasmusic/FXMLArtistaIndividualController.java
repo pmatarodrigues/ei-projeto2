@@ -85,11 +85,8 @@ public class FXMLArtistaIndividualController implements Initializable {
                     try {
                         YourasMusic.getMp().Pause();
                         YourasMusic.getMp().Play();
-                    } catch (JavaLayerException ex) {
-                        Logger.getLogger(FXMLMusicasController.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (IOException ex) {
-                        Logger.getLogger(FXMLMusicasController.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (SQLException ex) {
+                        //FXMLInicioRootController.musicPlaying.setText(m.getNome().toString());
+                    } catch (JavaLayerException | IOException | SQLException ex) {
                         Logger.getLogger(FXMLMusicasController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }

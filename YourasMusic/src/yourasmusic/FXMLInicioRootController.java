@@ -39,6 +39,7 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.LogicalExpression;
 import org.hibernate.criterion.Restrictions;
+import static yourasmusic.IniciarSessaoController.artistaLogin;
 
 /**
  * FXML Controller class
@@ -64,7 +65,8 @@ public class FXMLInicioRootController implements Initializable {
     @FXML private Label lblUsername;
     
     // -- Player -- -- -- -- -- -- --
-    @FXML private Label musicPlaying;
+    
+    @FXML public static Label musicPlaying;
     
     
     
@@ -100,11 +102,18 @@ public class FXMLInicioRootController implements Initializable {
     }
     
     @FXML
-    private void switchCenter(ActionEvent event){
+    private void switchCenter(ActionEvent event) throws IOException{
         switch(((Button) event.getSource()).getId()){
             
             case "but_inicio":
-                changeCenterPane("FXMLInicioPane.fxml");
+                //changeCenterPane("FXMLInicioPane.fxml");
+                
+                FXMLLoader musicPane = new FXMLLoader();
+                musicPane.setLocation(getClass().getResource("FXMLArtistaIndividual.fxml"));                
+                YourasMusic.getROOT().setRight(musicPane.load());
+
+                FXMLArtistaIndividualController artista = musicPane.getController();
+                artista.initData(artistaLogin);   
                 break;
             case "but_albuns":
                 changeCenterPane("FXMLAlbuns.fxml");

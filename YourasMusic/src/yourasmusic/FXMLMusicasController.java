@@ -21,6 +21,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.TilePane;
 import javafx.scene.text.TextAlignment;
 import javazoom.jl.decoder.JavaLayerException;
@@ -45,6 +46,8 @@ public class FXMLMusicasController implements Initializable {
     
     
     private void carregarMusicas(){
+        ToggleGroup grupo = new ToggleGroup();
+        
         org.hibernate.Session session = hibernate.HibernateUtil.getSessionFactory().openSession();
         
         List<Musica> musicas = session.createCriteria(Musica.class).list();
@@ -59,6 +62,8 @@ public class FXMLMusicasController implements Initializable {
             tileMusicas.setAlignment(Pos.TOP_CENTER);
             tileMusicas.setVgap(10);
             tileMusicas.getChildren().add(btnMusicas);
+            btnMusicas.setToggleGroup(grupo);
+            
             
             btnMusicas.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
@@ -67,6 +72,7 @@ public class FXMLMusicasController implements Initializable {
                     try {
                         YourasMusic.getMp().Pause();
                         YourasMusic.getMp().Play();
+                        FXMLInicioRootController.musicPlaying.setText(m.getNome().toString());
                     } catch (JavaLayerException ex) {
                         Logger.getLogger(FXMLMusicasController.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (IOException ex) {

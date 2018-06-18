@@ -33,6 +33,7 @@ public class YourasMusic extends Application {
         Pane iniciarSessaoPane = FXMLLoader.load(getClass().getResource("FXMLIniciarSessao.fxml"));
         ((BorderPane) root).setCenter(iniciarSessaoPane);
         
+        
         YourasMusic.ROOT = (BorderPane) root;     
         
         stage.setTitle("Youras Music");
