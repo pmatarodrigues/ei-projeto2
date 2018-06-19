@@ -5,23 +5,25 @@
  */
 package yourasmusic;
 
+import classes.Artista;
+import classes.Musica;
+import classes.Utilizador;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import org.hibernate.Query;
+import org.hibernate.Session;
 
-/**
- * FXML Controller class
- *
- * @author HP
- */
+
 public class FXMLInitialPaneController implements Initializable {
-
-    /**
-     * Initializes the controller class.
-     */
+        
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
+        
     }    
-    
+
 }

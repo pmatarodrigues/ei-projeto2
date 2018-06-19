@@ -37,6 +37,7 @@ public class MusicPlayer {
     public long pauseLocation;    
     public long songTotalLength;
     public InputStream fileDB;
+    public Thread thread;
     
     
     public void Play() throws JavaLayerException, IOException, SQLException
@@ -49,8 +50,7 @@ public class MusicPlayer {
         player = new Player(BIS);
         songTotalLength = IS.available();
         
-        new Thread()
-        {
+        thread = new Thread(){
             @Override
             public void run()
             {
@@ -63,8 +63,13 @@ public class MusicPlayer {
                     System.out.println("Erro na reproduçao, thread: " +ex.getMessage());
                 }
             }
-        }.start();
+                       
+        };
+                
+        thread.start();
     }
+    
+    
     
     public void Pause()
     {

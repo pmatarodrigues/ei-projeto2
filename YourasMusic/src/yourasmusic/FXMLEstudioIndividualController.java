@@ -55,7 +55,7 @@ public class FXMLEstudioIndividualController implements Initializable {
         }
         
         this.estudio = estudioClicado;
-        nomeDir.setText("Diretor do estudio: " + dirEstudio.getNome().toString());
+        nomeDir.setText(dirEstudio.getNome().toString());
         moradaEstudio.setText(estudioClicado.getMorada());
         
         if(IniciarSessaoController.userLogin.getTipo().equals("S  ")){

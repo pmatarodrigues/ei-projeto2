@@ -3,6 +3,13 @@
     -fx-background-color: #4f4f4f;
 }
 
+.button_inicio:hover{
+    -fx-background-color: #919191;
+    -fx-border-color: #919191;
+    -fx-border-width: 3;
+    -fx-font-weight: bold;
+}
+
 .button_normal:hover{
     -fx-background-color: #FFCCBC;    
     -fx-text-fill: #000;

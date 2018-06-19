@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.TilePane?>
-<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" fx:id="anchor" prefHeight="800.0" prefWidth="990.0" style="-fx-background-color: #4f4f4f;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="yourasmusic.FXMLInicioPaneController">
    <children>
@@ -11,10 +13,69 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1157.0" prefWidth="995.0" style="-fx-background-color: #4f4f4f;">
                <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#272727" height="254.0" layoutX="50.0" layoutY="87.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="429.0" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#272727" height="254.0" layoutX="518.0" layoutY="87.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="429.0" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#272727" height="132.0" layoutX="50.0" layoutY="367.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="897.0" />
+                  <Button layoutX="42.0" layoutY="89.0" mnemonicParsing="false" prefHeight="258.0" prefWidth="892.0" style="-fx-background-color: #272727; -fx-background-radius: 7;" styleClass="button_inicio" stylesheets="@styles.css" />
+                  <Button layoutX="42.0" layoutY="363.0" mnemonicParsing="false" prefHeight="133.0" prefWidth="892.0" style="-fx-background-color: #272727; -fx-background-radius: 7;" styleClass="button_inicio" stylesheets="@styles.css" />
                   <TilePane fx:id="listaGenerosTile" layoutX="52.0" layoutY="577.0" prefHeight="460.0" prefWidth="882.0" style="-fx-background-color: TRANSPARENT;" styleClass="pane" stylesheets="@styles.css" />
+                  <Label layoutX="86.0" layoutY="391.0" text="Ultimo Upload" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblUltimoUploadMusica" layoutX="86.0" layoutY="433.0" text="nomeMusica" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblUltimoUploadMusicaArtista" layoutX="321.0" layoutY="391.0" text="nomeArtista" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="65.0" layoutY="102.0" text="Ultimo Album Registado" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblUltimoAlbum" layoutX="65.0" layoutY="184.0" text="nomeAlbum" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblUltimoAlbumAno" layoutX="64.0" layoutY="270.0" text="anoAlbum" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblUltimoAlbumArtista" layoutX="609.0" layoutY="230.0" text="artistaAlbum" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblUltimoAlbumCapa" alignment="CENTER" layoutX="360.0" layoutY="144.0" prefHeight="192.0" prefWidth="197.0" text="capa" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="64.0" layoutY="249.0" text="Ano" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="65.0" layoutY="163.0" text="Nome" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="609.0" layoutY="204.0" text="Artista" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="400.0" layoutY="536.0" text="Generos" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
         </content>

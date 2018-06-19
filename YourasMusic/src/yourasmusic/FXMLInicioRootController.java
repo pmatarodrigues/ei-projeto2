@@ -109,11 +109,17 @@ public class FXMLInicioRootController implements Initializable {
                 //changeCenterPane("FXMLInicioPane.fxml");
                 
                 FXMLLoader musicPane = new FXMLLoader();
-                musicPane.setLocation(getClass().getResource("FXMLArtistaIndividual.fxml"));                
-                YourasMusic.getROOT().setRight(musicPane.load());
+                if(artistaLogin != null){
+                    musicPane.setLocation(getClass().getResource("FXMLArtistaIndividual.fxml"));
+                    YourasMusic.getROOT().setRight(musicPane.load());
 
-                FXMLArtistaIndividualController artista = musicPane.getController();
-                artista.initData(artistaLogin);   
+                    FXMLArtistaIndividualController artista = musicPane.getController();
+                    // --- passar o artista com sessao iniciada
+                    artista.initData(artistaLogin);       
+                } else{
+                    musicPane.setLocation(getClass().getResource("FXMLInicioPane.fxml"));
+                    YourasMusic.getROOT().setRight(musicPane.load());                
+                }
                 break;
             case "but_albuns":
                 changeCenterPane("FXMLAlbuns.fxml");
@@ -168,11 +174,18 @@ public class FXMLInicioRootController implements Initializable {
         Pane musicPane = FXMLLoader.load(getClass().getResource("FXMLIniciarSessao.fxml"));
         ((BorderPane) root).setRight(musicPane);
 
+        
+        // -- termina a sessão de todos 
+        IniciarSessaoController.userLogin = null;
+        IniciarSessaoController.artistaLogin = null;
+        IniciarSessaoController.dirEstudioLogin = null;
+        IniciarSessaoController.editoraLogin = null;
+        
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.hide();
         YourasMusic.setROOT((BorderPane) root);
         stage.setScene(new Scene(root));
-        stage.show();
+        stage.show();                
     }
     
     @FXML
@@ -197,11 +210,17 @@ public class FXMLInicioRootController implements Initializable {
     }
     
     @FXML
-    private void pauseResume(ActionEvent event) throws JavaLayerException{
+    private void pauseResume(ActionEvent event) throws JavaLayerException, InterruptedException{
         if(YourasMusic.getMp().playing == true){
-            YourasMusic.getMp().Pause();
+            MusicPlayer player = YourasMusic.getMp();
+           YourasMusic.getMp().Pause();
+           //synchronized(player){
+           // player.thread.wait();
+          // }
         }else{
             YourasMusic.getMp().Resume();
+            //YourasMusic.getMp().thread.notifyAll();
+          
         }
     }
     
