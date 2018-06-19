@@ -181,6 +181,8 @@ public class FXMLInicioRootController implements Initializable {
         IniciarSessaoController.dirEstudioLogin = null;
         IniciarSessaoController.editoraLogin = null;
         
+        YourasMusic.getMp().Pause();
+        
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.hide();
         YourasMusic.setROOT((BorderPane) root);

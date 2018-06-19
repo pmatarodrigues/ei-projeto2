@@ -23,6 +23,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -35,6 +36,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import yourasmusic.YourasMusic;
 
 
@@ -44,53 +46,36 @@ public class FXMLAlbunsController implements Initializable {
     @FXML TilePane tileAlbuns;
     @FXML BorderPane mainPane;
     @FXML ScrollPane scrollPane;
+    @FXML ComboBox cmbTipoOrdenacao;
     
     List<Album> albums;
     
+    // --- verificar se o user já selecionou no combo box
+    Boolean ordenacaoSelecionada;
+    
+    Session session;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {        
+        cmbTipoOrdenacao.getItems().addAll("Ordenar por Ano", "Ordenar por Nome");
+        cmbTipoOrdenacao.getSelectionModel().selectFirst();
+        
         carregarAlbums();
     }   
     
     private void carregarAlbums(){
         
-        org.hibernate.Session session = hibernate.HibernateUtil.getSessionFactory().openSession();        
+        session = hibernate.HibernateUtil.getSessionFactory().openSession();        
         //ArrayList<Button> buttons = new ArrayList<>();
-        this.albums = session.createCriteria(Album.class).list();
-                
-        for(Album a : albums){
-            Button btnAlbuns = new Button();
-            String nomeAlbum = a.getNome().toString();
-            String ano = a.getAno().toString();
-            
-            btnAlbuns.setId("button_tile");
-            btnAlbuns.setMinSize(200, 200);
-            btnAlbuns.setMaxSize(200, 200);            
-            
-            btnAlbuns.setText(nomeAlbum + "\n" + ano);
-            
-            // --- Personalização do TilePane
-            tileAlbuns.setHgap(20);
-            tileAlbuns.setVgap(20);
-            tileAlbuns.setAlignment(Pos.TOP_CENTER);
-            tileAlbuns.getChildren().add(btnAlbuns);
-            
-            // --- Quando o botão é clicado, passa o id do album clicado como parametro
-            btnAlbuns.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    
-                    try {
-                        buttonClicked(String.valueOf(a.getAlbumId()));
-                    } catch (IOException ex) {
-                        Logger.getLogger(FXMLAlbunsController.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (SQLException ex) {
-                        Logger.getLogger(FXMLAlbunsController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            });
-        }
-       
+        //this.albums = session.createCriteria(Album.class).list();
+
+ 
+        Query obterAlbuns = session.createQuery("From Album ORDER BY ano DESC");
+        obterAlbuns.setFirstResult(0);
+        obterAlbuns.setMaxResults(12);
+        albums = obterAlbuns.list();
+
+        displayAlbuns();
         session.close();
         
     }
@@ -114,4 +99,64 @@ public class FXMLAlbunsController implements Initializable {
         album.initData(albumClicado);       
     }
         
+    @FXML
+    public void ordenarAlbuns(ActionEvent event){
+        
+        session = hibernate.HibernateUtil.getSessionFactory().openSession();
+        
+        if(cmbTipoOrdenacao.getValue().toString().equals("Ordenar por Ano")){            
+            Query obterAlbuns = session.createQuery("From Album ORDER BY ano DESC");
+            obterAlbuns.setFirstResult(0);
+            obterAlbuns.setMaxResults(12);
+            albums = obterAlbuns.list();
+        } else if(cmbTipoOrdenacao.getValue().toString().equals("Ordenar por Nome")){
+            Query obterAlbuns = session.createQuery("From Album ORDER BY nome ASC");
+            obterAlbuns.setFirstResult(0);
+            obterAlbuns.setMaxResults(12);
+            albums = obterAlbuns.list();
+        }
+        
+        tileAlbuns.getChildren().clear();
+        
+        displayAlbuns();
+        
+        session.close();
+    }
+    
+    
+    private void displayAlbuns(){
+        for(Album a : albums){
+            Button btnAlbuns = new Button();
+            String nomeAlbum = a.getNome().toString();
+            String ano = a.getAno().toString();
+
+            btnAlbuns.setId("button_tile");
+            btnAlbuns.setMinSize(200, 200);
+            btnAlbuns.setMaxSize(200, 200);            
+
+            btnAlbuns.setText(nomeAlbum + "\n" + ano);
+
+            // --- Personalização do TilePane
+            tileAlbuns.setHgap(20);
+            tileAlbuns.setVgap(20);
+            tileAlbuns.setAlignment(Pos.TOP_CENTER);
+            tileAlbuns.getChildren().add(btnAlbuns);
+
+            // --- Quando o botão é clicado, passa o id do album clicado como parametro
+            btnAlbuns.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+
+                    try {
+                        buttonClicked(String.valueOf(a.getAlbumId()));
+                    } catch (IOException ex) {
+                        Logger.getLogger(FXMLAlbunsController.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(FXMLAlbunsController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            });
+
+        }
+    }
 }

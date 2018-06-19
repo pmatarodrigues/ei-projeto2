@@ -33,6 +33,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import classes.Utilizador;
+import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
@@ -43,8 +44,6 @@ public class CriarContaController implements Initializable {
     
     String tipo;
     
-    @FXML
-    TextField txtfldUsername;
     @FXML
     TextField txtfldEmail;
     @FXML
@@ -77,6 +76,8 @@ public class CriarContaController implements Initializable {
     
     @FXML
     BorderPane bdpCriarConta;
+    
+    @FXML Label lblAvisos;
 
     
     @Override
@@ -103,59 +104,111 @@ public class CriarContaController implements Initializable {
     
     
     @FXML
-    public void criarConta(ActionEvent event) throws IOException, SQLException{        
+    public void criarConta(ActionEvent event) throws IOException, SQLException{   
+        Boolean semErros = true;
+        
         // --------- verificar qual o tipo de utilizador a adicionar
-        Artista artista = new Artista();
-        Editora editora = new Editora();
-        DirEstudio dirEstudio = new DirEstudio();
-
+        Artista artista;
+        Editora editora;
+        DirEstudio dirEstudio;
+        
         org.hibernate.Session session = hibernate.HibernateUtil.getSessionFactory().openSession();
 
-        // --- receber o ultimo user 
-        Query query = session.createQuery("FROM Utilizador ORDER BY utilizadorId DESC");
-        query.setMaxResults(1);
-        Utilizador last = (Utilizador) query.uniqueResult();
-        // -- atribuir o id do ultimo user a esta variavel
-        int id = last.getUtilizadorId();
+        List<Utilizador> users = session.createCriteria(Utilizador.class).list();
         
-        /* INICIAR ENVIO PARA A BASE DE DADOS*/
-        Utilizador user = new Utilizador(this.txtfldEmail.getText().toString(), this.txtfldPassword.getText().toString(), tipo);
-        session.beginTransaction();
-        session.save(user);
-        session.getTransaction().commit(); 
+        
+        if(txtfldEmail.getText().length() < 3 || txtfldEmail.getText().length() > 90){
+            lblAvisos.setText("Nome de utilizador invalido");
+            semErros = false;
+        } else if(!txtfldPassword.getText().equals(txtfldConfirmarPassword.getText())){
+            lblAvisos.setText("As passwords nao correspondem");
+            semErros = false;
+        }
+        if(semErros){
+            for(Utilizador u : users){
+                if(u.getEmail().equals(txtfldEmail.getText().toString())){
+                    lblAvisos.setText("Ja existe um utilizador com o mesmo username");
+                    semErros = false;
+                }
+            }
+        }
+        if(semErros){
+            if(cmboxTipoUtilizador.getValue() == null){
+                lblAvisos.setText("Selecione um tipo de utilizador");
+                semErros = false;
+            } else if(cmboxTipoUtilizador.getValue().toString().equals("Artista")){             
+                if(txfldNomeArtista.getText().length() == 3 || txfldNomeCompleto.getText().length() < 5){
+                    lblAvisos.setText("Introduza um nome de Artista valido");
+                    semErros = false;
+                } else if(dtpDataNascimento.getValue() == null){
+                    lblAvisos.setText("Selecione uma data de nascimento");
+                    semErros = false;
+                }
+            } else if(cmboxTipoUtilizador.getValue().toString().equals("Dir. Estudio")){
+                if(txfldNomeCompleto.getText().length() < 3 || txfldNomeCompleto.getText().length() > 90){
+                    lblAvisos.setText("Introduza um nome valido");
+                    semErros = false;
+                }
+            } else if(cmboxTipoUtilizador.getValue().toString().equals("Editora")){
+                if(txfldNomeCompleto.getText().length() < 3 || txfldNomeCompleto.getText().length() > 80){
+                    lblAvisos.setText("Introduza um nome valido");
+                    semErros = false;
+                } else if(txfldNomeArtista.getText().length() > 200 || txfldNomeArtista.getText().length() < 10){
+                    lblAvisos.setText("Introduza uma morada valida");
+                    semErros = false;
+                }
+                
+            }
+        }
+        
+        if(semErros){
+            lblAvisos.setText("");
+            // --- receber o ultimo user 
+            Query query = session.createQuery("FROM Utilizador ORDER BY utilizadorId DESC");
+            query.setMaxResults(1);
+            Utilizador last = (Utilizador) query.uniqueResult();
+            // -- atribuir o id do ultimo user a esta variavel
+            int id = last.getUtilizadorId();
 
-       
-        session = hibernate.HibernateUtil.getSessionFactory().openSession();
-        //Number id = (Number) session.createCriteria(Utilizador.class).setProjection(Projections.rowCount()).uniqueResult();
-        // --- atribuir o id do ultimo user + 1 como id do novo user
-        int userID = id + 1;
+            /* INICIAR ENVIO PARA A BASE DE DADOS*/
+            Utilizador user = new Utilizador(this.txtfldEmail.getText().toString(), this.txtfldPassword.getText().toString(), tipo);
+            session.beginTransaction();
+            session.save(user);
+            session.getTransaction().commit(); 
 
-         switch(tipo){
-             case "A":
-                artista = new Artista(userID, txfldNomeCompleto.getText().toString(), txfldNomeArtista.getText().toString(), Date.from(dtpDataNascimento.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()), 
-                     txfldNacionalidade.getText().toString(), txfldContacto.getText().toString());
-                session.beginTransaction();
-                session.save(artista);
-                session.getTransaction().commit();        
-                 break;
-             case "E":
-                editora = new Editora(userID, txfldNomeCompleto.getText().toString(), txfldNomeArtista.getText().toString(), txfldContacto.getText().toString());
-                session.beginTransaction();
-                session.save(editora);
-                session.getTransaction().commit();                  
-                break;
-             default:
-                dirEstudio = new DirEstudio(userID, txfldNomeCompleto.getText().toString(), txfldNomeArtista.getText().toString());
-                session.beginTransaction();
-                session.save(dirEstudio);
-                session.getTransaction().commit();                  
-                break;
-         }
 
-         session.close();
+            session = hibernate.HibernateUtil.getSessionFactory().openSession();
+            //Number id = (Number) session.createCriteria(Utilizador.class).setProjection(Projections.rowCount()).uniqueResult();
+            // --- atribuir o id do ultimo user + 1 como id do novo user
+            int userID = id + 1;
+            
+            switch(tipo){
+                case "A":
+                   artista = new Artista(userID, txfldNomeCompleto.getText().toString(), txfldNomeArtista.getText().toString(), Date.from(dtpDataNascimento.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()), 
+                        txfldNacionalidade.getText().toString(), txfldContacto.getText().toString());
+                   session.beginTransaction();
+                   session.save(artista);
+                   session.getTransaction().commit();        
+                    break;
+                case "E":
+                   editora = new Editora(userID, txfldNomeCompleto.getText().toString(), txfldNomeArtista.getText().toString(), txfldContacto.getText().toString());
+                   session.beginTransaction();
+                   session.save(editora);
+                   session.getTransaction().commit();                  
+                   break;
+                default:
+                   dirEstudio = new DirEstudio(userID, txfldNomeCompleto.getText().toString(), txfldNomeArtista.getText().toString());
+                   session.beginTransaction();
+                   session.save(dirEstudio);
+                   session.getTransaction().commit();                  
+                   break;
+            }
 
-         Pane paneIniciarSessao = FXMLLoader.load(getClass().getResource("FXMLIniciarSessao.fxml"));
-         YourasMusic.getROOT().setCenter(paneIniciarSessao);
+            session.close();
+
+            Pane paneIniciarSessao = FXMLLoader.load(getClass().getResource("FXMLIniciarSessao.fxml"));
+            YourasMusic.getROOT().setCenter(paneIniciarSessao);
+        }
 
     }
     
