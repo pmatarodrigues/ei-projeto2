@@ -16,8 +16,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.TilePane;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import yourasmusic.YourasMusic;
 
 
@@ -25,43 +28,31 @@ public class FXMLArtistasController implements Initializable {
 
     @FXML TilePane tileArtistas;
     @FXML ScrollPane scrollPane;
+    @FXML ComboBox cmbTipoOrdenacao;
     
     List<Artista> artistas;
+    
+    Session session;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        cmbTipoOrdenacao.getItems().addAll("Ordenar por Nome", "Ordenar por Idade");
+        cmbTipoOrdenacao.getSelectionModel().selectFirst();
+        
         carregarArtistas();
     }    
     
     
     private void carregarArtistas(){        
-        org.hibernate.Session session = hibernate.HibernateUtil.getSessionFactory().openSession();
+        session = hibernate.HibernateUtil.getSessionFactory().openSession();
         
-        this.artistas = session.createCriteria(Artista.class).list();
+        Query obterArtista = session.createQuery("From Artista ORDER BY nomeArtista DESC");
+        obterArtista.setFirstResult(0);
+        obterArtista.setMaxResults(12);
+        artistas = obterArtista.list();
         
-        for(Artista a : artistas){
-            Button btnArtistas = new Button();
-            
-            btnArtistas.setId("button_tile");
-            btnArtistas.setMinSize(200, 200);
-            btnArtistas.setText(a.getNomeArtista().toString());
-            
-            tileArtistas.setHgap(20);
-            tileArtistas.setVgap(20);
-            tileArtistas.setAlignment(Pos.TOP_CENTER);
-            tileArtistas.getChildren().add(btnArtistas);
-            
-            btnArtistas.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    try {
-                        buttonClicked(String.valueOf(a.getArtistaId()));
-                    } catch (IOException ex) {
-                        Logger.getLogger(FXMLArtistasController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            });
-        }                       
+        displayArtistas();
+        
         session.close();
         
     }
@@ -86,6 +77,57 @@ public class FXMLArtistasController implements Initializable {
         
         FXMLArtistaIndividualController album = loader.getController();
         album.initData(artistaClicado);       
+    }
+    
+    
+    @FXML
+    public void ordenarArtistas(ActionEvent event){
+        
+        session = hibernate.HibernateUtil.getSessionFactory().openSession();
+        
+        if(cmbTipoOrdenacao.getValue().toString().equals("Ordenar por Nome")){            
+            Query obterArtistas = session.createQuery("From Artista ORDER BY nomeArtista DESC");
+            obterArtistas.setFirstResult(0);
+            obterArtistas.setMaxResults(12);
+            artistas = obterArtistas.list();
+        } else if(cmbTipoOrdenacao.getValue().toString().equals("Ordenar por Idade")){
+            Query obterAlbuns = session.createQuery("From Artista ORDER BY dataNascimento ASC");
+            obterAlbuns.setFirstResult(0);
+            obterAlbuns.setMaxResults(12);
+            artistas = obterAlbuns.list();
+        }
+        
+        tileArtistas.getChildren().clear();
+        
+        displayArtistas();
+        
+        session.close();
+    }
+    
+    private void displayArtistas(){
+        for(Artista a : artistas){
+            Button btnArtistas = new Button();
+
+            btnArtistas.setId("button_tile");
+            btnArtistas.setMinSize(200, 200);
+            btnArtistas.setText(a.getNomeArtista().toString());
+
+            tileArtistas.setHgap(20);
+            tileArtistas.setVgap(20);
+            tileArtistas.setAlignment(Pos.TOP_CENTER);
+            tileArtistas.getChildren().add(btnArtistas);
+
+            btnArtistas.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    try {
+                        buttonClicked(String.valueOf(a.getArtistaId()));
+                    } catch (IOException ex) {
+                        Logger.getLogger(FXMLArtistasController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            });
+        }    
     }
     
 }

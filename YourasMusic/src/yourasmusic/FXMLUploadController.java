@@ -24,6 +24,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import static java.sql.Types.BLOB;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -63,7 +64,15 @@ public class FXMLUploadController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        genero.getItems().addAll(FXMLInicioPaneController.generosMusica);
+        ArrayList<String> generos = new ArrayList<>();
+        generos.add("Pop");
+        generos.add("Rock");
+        generos.add("Metal");
+        generos.add("HipHop");
+        generos.add("Indie");
+        generos.add("Reggae");
+        
+        genero.getItems().addAll(generos);
     }    
     
     @FXML

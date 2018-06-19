@@ -20,12 +20,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.TilePane;
 import javafx.scene.text.TextAlignment;
 import javazoom.jl.decoder.JavaLayerException;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.LogicalExpression;
 import org.hibernate.criterion.Restrictions;
@@ -38,19 +41,77 @@ import org.hibernate.criterion.Restrictions;
 public class FXMLMusicasController implements Initializable {
 
     @FXML TilePane tileMusicas;
+    @FXML ComboBox cmbGeneroMusica;
+    
+    List<Musica> musicas;
+    
+    Session session;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        cmbGeneroMusica.getItems().addAll("Pop", "Rock", "Metal", "HipHop", "Indie", "Reggae", "Outros");
+        
         carregarMusicas();
     }    
     
     
-    private void carregarMusicas(){
+    private void carregarMusicas(){        
+        session = hibernate.HibernateUtil.getSessionFactory().openSession();
+        
+        Query obterMusica = session.createQuery("From Musica");
+        obterMusica.setFirstResult(0);
+        obterMusica.setMaxResults(15);
+        musicas = obterMusica.list();
+        
+        displayMusicas();
+        
+        session.close();
+    }   
+    
+    
+    @FXML
+    private void ordenarMusicas(){
+        session = hibernate.HibernateUtil.getSessionFactory().openSession();
+
+        Query obterMusicas = session.createQuery("From Musica WHERE genero = :genero ORDER BY nome DESC");
+        
+        switch(cmbGeneroMusica.getValue().toString()){
+            case "Pop":
+                obterMusicas.setParameter("genero", "Pop");
+                break;
+            case "Rock":
+                obterMusicas.setParameter("genero", "Rock");
+                break;
+            case "Metal":
+                obterMusicas.setParameter("genero", "Metal");
+                break;
+            case "HipHop":
+                obterMusicas.setParameter("genero", "HipHop");
+                break;
+            case "Indie":
+                obterMusicas.setParameter("genero", "Indie");
+                break;
+            case "Reggae":
+                obterMusicas.setParameter("genero", "Reggae");
+                break;
+            default:
+                obterMusicas = session.createQuery("From Musica Where genero != 'Pop' AND genero != 'Rock' AND genero != 'Metal' AND genero != 'HipHop' AND genero != 'Indie' AND genero != 'Reggae' ORDER BY nome DESC");                
+                break;
+        }
+        obterMusicas.setMaxResults(15);
+        musicas = obterMusicas.list();
+                
+        tileMusicas.getChildren().clear();
+        
+        displayMusicas();
+        
+        session.close();
+    }
+    
+    
+    private void displayMusicas(){
         ToggleGroup grupo = new ToggleGroup();
-        
-        org.hibernate.Session session = hibernate.HibernateUtil.getSessionFactory().openSession();
-        
-        List<Musica> musicas = session.createCriteria(Musica.class).list();
+
         
         for(Musica m : musicas){
             ToggleButton btnMusicas = new ToggleButton();
@@ -84,8 +145,6 @@ public class FXMLMusicasController implements Initializable {
 
             });
         }   
-        
-        session.close();
-    }   
+    }
         
 }

@@ -3,6 +3,33 @@
     -fx-background-color: #4f4f4f;
 }
 
+#login_button{
+    transition-duration: 0.4s;
+    -fx-background-color: #272727;    
+}
+
+#login_button:hover{    
+    -fx-border-color: #FF5722;
+    -fx-border-width: 3;
+    -fx-border-radius: 5;
+}
+
+#textfields_login_register{
+    -fx-background-color: #424242;
+    -fx-text-fill: #FFF;
+}
+
+#textfields_login_register:focused{
+    -fx-border-color: #FFF;
+    -fx-border-width: 3;
+}
+
+
+.combo-box{
+    -fx-background-color: #424242;
+    -fx-prompt-text-fill: #FFF;
+}
+
 .button_inicio:hover{
     -fx-background-color: #919191;
     -fx-border-color: #919191;
@@ -84,6 +111,8 @@
 }
 
 
+
+/* --- SCROLL BAR  -------*/
 .pane > .scroll-bar {
     -fx-background-color: transparent;
 }

@@ -20,12 +20,7 @@
                         <Font size="31.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="cmbTipoOrdenacao" layoutX="277.0" layoutY="62.0" onAction="#ordenarAlbuns" prefHeight="40.0" prefWidth="642.0" style="-fx-background-color: #272727;" />
-                  <Label layoutX="79.0" layoutY="87.0" prefHeight="20.0" prefWidth="138.0" text="Mais ouvidos" textFill="WHITE">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
+                  <ComboBox fx:id="cmbTipoOrdenacao" layoutX="277.0" layoutY="62.0" onAction="#ordenarAlbuns" prefHeight="40.0" prefWidth="642.0" style="-fx-background-color: #272727; -fx-text-color: #FFF;" />
                </children>
             </Pane>
          </top>

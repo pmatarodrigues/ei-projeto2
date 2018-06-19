@@ -52,18 +52,18 @@
                   <Font name="Vision-BlackItalic" size="34.0" />
                </font>
             </Label>
-            <TextField fx:id="txtfldEmail" alignment="TOP_LEFT" layoutX="444.0" layoutY="183.0" prefHeight="39.0" prefWidth="395.0">
+            <TextField id="textfields_login_register" fx:id="txtfldEmail" alignment="TOP_LEFT" layoutX="444.0" layoutY="183.0" prefHeight="39.0" prefWidth="395.0" stylesheets="@styles.css">
                <font>
                   <Font name="Vision-Regular" size="22.0" />
                </font>
             </TextField>
-            <PasswordField fx:id="txtfldPassword" layoutX="444.0" layoutY="267.0" prefHeight="45.0" prefWidth="395.0" />
-            <PasswordField fx:id="txtfldConfirmarPassword" layoutX="443.0" layoutY="357.0" prefHeight="45.0" prefWidth="395.0" />
-            <ComboBox fx:id="cmboxTipoUtilizador" layoutX="443.0" layoutY="445.0" onAction="#verificarTipoUser" prefHeight="39.0" prefWidth="395.0">
+            <PasswordField id="textfields_login_register" fx:id="txtfldPassword" layoutX="444.0" layoutY="267.0" prefHeight="45.0" prefWidth="395.0" stylesheets="@styles.css" />
+            <PasswordField id="textfields_login_register" fx:id="txtfldConfirmarPassword" layoutX="443.0" layoutY="357.0" prefHeight="45.0" prefWidth="395.0" stylesheets="@styles.css" />
+            <ComboBox fx:id="cmboxTipoUtilizador" layoutX="443.0" layoutY="445.0" onAction="#verificarTipoUser" prefHeight="39.0" prefWidth="395.0" promptText="Selecione o tipo de conta" stylesheets="@styles.css">
                 
               
             </ComboBox>
-            <Button layoutX="509.0" layoutY="737.0" mnemonicParsing="false" onAction="#criarConta" prefHeight="24.0" prefWidth="133.0" text="Registar" textAlignment="CENTER">
+            <Button id="login_button" layoutX="305.0" layoutY="737.0" mnemonicParsing="false" onAction="#criarConta" prefHeight="45.0" prefWidth="337.0" stylesheets="@styles.css" text="Registar" textAlignment="CENTER">
                <font>
                   <Font name="Vision-Heavy" size="23.0" />
                </font>
@@ -71,7 +71,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutX="667.0" layoutY="745.0" mnemonicParsing="false" onAction="#abrirPaginaIniciarSessao" stylesheets="@styles.css" text="Iniciar Sessão" textAlignment="CENTER">
+            <Button layoutX="667.0" layoutY="746.0" mnemonicParsing="false" onAction="#abrirPaginaIniciarSessao" stylesheets="@styles.css" text="Iniciar Sessão" textAlignment="CENTER">
                <font>
                   <Font name="Vision-Regular" size="14.0" />
                </font>
@@ -79,7 +79,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <TextField fx:id="txfldNomeCompleto" alignment="TOP_LEFT" layoutX="307.0" layoutY="536.0" prefHeight="42.0" prefWidth="327.0">
+            <TextField id="textfields_login_register" fx:id="txfldNomeCompleto" alignment="TOP_LEFT" layoutX="307.0" layoutY="536.0" prefHeight="42.0" prefWidth="327.0" stylesheets="@styles.css">
                <font>
                   <Font name="Vision-Regular" size="22.0" />
                </font>
@@ -89,7 +89,7 @@
                   <Font name="Vision-Light" size="26.0" />
                </font>
             </Label>
-            <TextField fx:id="txfldNomeArtista" alignment="TOP_LEFT" layoutX="667.0" layoutY="536.0" prefHeight="42.0" prefWidth="310.0">
+            <TextField id="textfields_login_register" fx:id="txfldNomeArtista" alignment="TOP_LEFT" layoutX="667.0" layoutY="536.0" prefHeight="42.0" prefWidth="310.0" stylesheets="@styles.css">
                <font>
                   <Font name="Vision-Regular" size="22.0" />
                </font>
@@ -99,7 +99,7 @@
                   <Font name="Vision-Light" size="26.0" />
                </font>
             </Label>
-            <TextField fx:id="txfldNacionalidade" alignment="TOP_LEFT" layoutX="307.0" layoutY="620.0" prefHeight="42.0" prefWidth="327.0">
+            <TextField id="textfields_login_register" fx:id="txfldNacionalidade" alignment="TOP_LEFT" layoutX="307.0" layoutY="620.0" prefHeight="42.0" prefWidth="327.0" stylesheets="@styles.css">
                <font>
                   <Font name="Vision-Regular" size="22.0" />
                </font>
@@ -109,7 +109,7 @@
                   <Font name="Vision-Light" size="26.0" />
                </font>
             </Label>
-            <TextField fx:id="txfldContacto" alignment="TOP_LEFT" layoutX="667.0" layoutY="620.0" prefHeight="42.0" prefWidth="310.0">
+            <TextField id="textfields_login_register" fx:id="txfldContacto" alignment="TOP_LEFT" layoutX="667.0" layoutY="620.0" prefHeight="42.0" prefWidth="310.0" stylesheets="@styles.css">
                <font>
                   <Font name="Vision-Regular" size="22.0" />
                </font>
@@ -119,13 +119,13 @@
                   <Font name="Vision-Light" size="26.0" />
                </font>
             </Label>
-            <DatePicker fx:id="dtpDataNascimento" layoutX="667.0" layoutY="682.0" prefHeight="41.0" prefWidth="311.0" />
+            <DatePicker id="textfields_login_register" fx:id="dtpDataNascimento" layoutX="667.0" layoutY="682.0" prefHeight="41.0" prefWidth="311.0" stylesheets="@styles.css" />
             <Label fx:id="lblDataNascimento" layoutX="355.0" layoutY="687.0" minHeight="16" minWidth="69" text="Data de Nascimento" textFill="WHITE">
                <font>
                   <Font name="Vision-Light" size="26.0" />
                </font>
             </Label>
-            <Label fx:id="lblAvisos" alignment="CENTER" layoutX="277.0" layoutY="837.0" prefHeight="16.0" prefWidth="723.0" text="Label" textFill="#ff9b9b">
+            <Label fx:id="lblAvisos" alignment="CENTER" layoutX="277.0" layoutY="837.0" prefHeight="16.0" prefWidth="723.0" textFill="#ff9b9b">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
