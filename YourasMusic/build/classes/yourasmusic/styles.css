@@ -25,9 +25,15 @@
 }
 
 
-.combo-box{
+.combo-box, .combo-box .cell{
+    -fx-text-fill: #FFF;
     -fx-background-color: #424242;
     -fx-prompt-text-fill: #FFF;
+}
+
+.combo-box .cell:hover{
+    -fx-background-color: #FF8A65;
+    
 }
 
 .button_inicio:hover{

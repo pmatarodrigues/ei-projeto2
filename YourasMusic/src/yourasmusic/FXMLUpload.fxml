@@ -27,7 +27,7 @@
       </Label>
       <ComboBox fx:id="genero" editable="true" layoutX="150.0" layoutY="383.0" prefHeight="48.0" prefWidth="695.0" promptText="Selecione o genero da musica" />
       <TextField id="textfields_login_register" fx:id="endereco" layoutX="151.0" layoutY="484.0" prefHeight="48.0" prefWidth="332.0" stylesheets="@styles.css" />
-      <Button layoutX="218.0" layoutY="653.0" mnemonicParsing="false" onAction="#enviarUpload" prefHeight="65.0" prefWidth="507.0" style="-fx-background-color: #000;" styleClass="button-upload" stylesheets="@styles.css" text="Confirmar">
+      <Button layoutX="242.0" layoutY="642.0" mnemonicParsing="false" onAction="#enviarUpload" prefHeight="65.0" prefWidth="507.0" style="-fx-background-color: #000;" styleClass="button-upload" stylesheets="@styles.css" text="Confirmar">
          <font>
             <Font size="25.0" />
          </font>
@@ -35,6 +35,11 @@
       <Label alignment="CENTER" layoutX="328.0" layoutY="112.0" prefHeight="24.0" prefWidth="375.0" text="Nova Musica" textFill="WHITE">
          <font>
             <Font size="48.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblAvisos" alignment="CENTER" layoutX="136.0" layoutY="747.0" prefHeight="16.0" prefWidth="723.0" textFill="#ff9b9b">
+         <font>
+            <Font name="System Bold" size="13.0" />
          </font>
       </Label>
    </children>

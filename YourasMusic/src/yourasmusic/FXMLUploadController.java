@@ -33,6 +33,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -58,9 +59,13 @@ public class FXMLUploadController implements Initializable {
     @FXML ComboBox genero;
     @FXML TextField endereco;
     
+    @FXML Label lblAvisos;
+    
     Session session;
     Musica musica;
     Blob upload;
+    
+    Boolean semErros;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -76,21 +81,39 @@ public class FXMLUploadController implements Initializable {
     }    
     
     @FXML
-    public void enviarUpload(ActionEvent event){                
-        session = hibernate.HibernateUtil.getSessionFactory().openSession();     
-        session.beginTransaction();
-        //List<Artista> artistaUpload = session.createQuery("FROM Artista Where Artista_Id = " + IniciarSessaoController.userLogin.getUtilizadorId()).list();       
-        musica = new Musica();
+    public void enviarUpload(ActionEvent event){       
         
-        musica.setUtilizador(IniciarSessaoController.userLogin);
-        musica.setNome(nome.getText());
-        musica.setGenero(genero.getValue().toString());
-        musica.setAudio(upload);
+        semErros = true;
         
-        session.save(musica);
-        session.getTransaction().commit();
+        if(nome.getText().length() < 5 || nome.getText().length() > 80){
+            lblAvisos.setText("Introduza um nome valido");
+            semErros = false;
+        } else if(genero.getValue() == null){
+            lblAvisos.setText("Introduza um genero para a musica");
+            semErros = false;
+        } else if(endereco.getText().length() == 0 || !endereco.getText().contains(".mp3")){
+            lblAvisos.setText("Introduza um audio valido");
+            semErros = false;
+        }
         
-        session.close();
+        if(semErros){        
+            session = hibernate.HibernateUtil.getSessionFactory().openSession();     
+            session.beginTransaction();
+            //List<Artista> artistaUpload = session.createQuery("FROM Artista Where Artista_Id = " + IniciarSessaoController.userLogin.getUtilizadorId()).list();       
+            musica = new Musica();
+
+            musica.setUtilizador(IniciarSessaoController.userLogin);
+            musica.setNome(nome.getText());
+            musica.setGenero(genero.getValue().toString());
+            musica.setAudio(upload);
+
+            session.save(musica);
+            session.getTransaction().commit();
+
+            session.close();
+            
+            
+        }
     }
     
     

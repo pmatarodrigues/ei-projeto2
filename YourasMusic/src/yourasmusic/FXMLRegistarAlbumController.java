@@ -18,6 +18,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
@@ -31,12 +32,15 @@ public class FXMLRegistarAlbumController implements Initializable {
     @FXML TextField txfLink;
     @FXML TextField txfAno;
     @FXML TextField txfEndereco;
+    @FXML Label lblAvisos;
     
     Session session;
     Album album;
     Blob capa;
     
     List<Editora> editoras;
+    
+    Boolean semErros;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -55,29 +59,42 @@ public class FXMLRegistarAlbumController implements Initializable {
     @FXML
     public void enviarUpload(ActionEvent event){    
         Editora editora = null;
+        semErros = true;
         
-        for(Editora e : editoras){
-            if(e.getNome().equals(cmbNomeEditora.getValue().toString())){
-                editora = e;
-            }
+        if(txfNomeAlbum.getText().length() < 3 || txfNomeAlbum.getText().length() > 90){
+            lblAvisos.setText("Nome do album demasiado curto");
+            semErros = false;
+        } else if(cmbNomeEditora.getValue() == null){
+            lblAvisos.setText("Selecione uma editora valida");
+        } else if(txfAno.getText().length() < 5){
+            lblAvisos.setText("Introduza um ano valido");
+            semErros = false;
         }
         
-        session = hibernate.HibernateUtil.getSessionFactory().openSession();                    
+        if(semErros){        
+            for(Editora e : editoras){
+                if(e.getNome().equals(cmbNomeEditora.getValue().toString())){
+                    editora = e;
+                }
+            }
+
+            session = hibernate.HibernateUtil.getSessionFactory().openSession();                    
 
 
-        session.beginTransaction();
-        album = new Album();
-        album.setNome(txfNomeAlbum.getText());
-        album.setArtista(IniciarSessaoController.artistaLogin);
-        album.setCapa(capa);
-        album.setEditora(editora);
-        album.setLinkAlbum(txfLink.getText());
-        album.setAno(txfAno.getText());
+            session.beginTransaction();
+            album = new Album();
+            album.setNome(txfNomeAlbum.getText());
+            album.setArtista(IniciarSessaoController.artistaLogin);
+            album.setCapa(capa);
+            album.setEditora(editora);
+            album.setLinkAlbum(txfLink.getText());
+            album.setAno(txfAno.getText());
 
-        session.save(album);
-        session.getTransaction().commit();
-        
-        session.close();
+            session.save(album);
+            session.getTransaction().commit();
+
+            session.close();
+        }
     }
             
     @FXML

@@ -133,7 +133,6 @@ public class FXMLMusicasController implements Initializable {
                     try {
                         YourasMusic.getMp().Pause();
                         YourasMusic.getMp().Play();
-                        FXMLInicioRootController.musicPlaying.setText(m.getNome().toString());
                     } catch (JavaLayerException ex) {
                         Logger.getLogger(FXMLMusicasController.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (IOException ex) {

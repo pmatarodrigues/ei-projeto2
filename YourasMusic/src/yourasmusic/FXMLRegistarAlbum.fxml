@@ -31,6 +31,11 @@
                         <Font size="24.0" />
                      </font>
                   </Button>
+                  <Label fx:id="lblAvisos" alignment="CENTER" layoutX="138.0" layoutY="743.0" prefHeight="16.0" prefWidth="723.0" textFill="#ff9b9b">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
          </left>

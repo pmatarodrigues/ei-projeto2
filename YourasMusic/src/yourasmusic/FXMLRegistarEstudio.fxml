@@ -34,5 +34,10 @@
             <Font size="25.0" />
          </font>
       </Label>
+      <Label fx:id="lblAvisos" alignment="CENTER" layoutX="134.0" layoutY="747.0" prefHeight="16.0" prefWidth="723.0" textFill="#ff9b9b">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

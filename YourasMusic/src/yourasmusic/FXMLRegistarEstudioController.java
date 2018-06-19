@@ -26,6 +26,7 @@ public class FXMLRegistarEstudioController implements Initializable {
     
     @FXML TextArea txaMorada;
     @FXML Label lblDiretor;
+    @FXML Label lblAvisos;
     
     String moradaNova;
     List<DirEstudio> diretores;
@@ -35,24 +36,23 @@ public class FXMLRegistarEstudioController implements Initializable {
         lblDiretor.setText(IniciarSessaoController.dirEstudioLogin.getNome().toString());
     }    
     
-    public void registarEstudio(){        
-        DirEstudio dirEstudio = null;
-        moradaNova = txaMorada.getText().toString();       
+    public void registarEstudio(){    
         
-        System.out.println(IniciarSessaoController.userLogin.getUtilizadorId());
-        org.hibernate.Session session = hibernate.HibernateUtil.getSessionFactory().openSession();
-        /*
-        for(DirEstudio dir : diretores){
-            if(dir.getNome().equals(cmbDiretor.getValue().toString())){
-                dirEstudio = dir;
-            }
+        if(txaMorada.getText().length() < 5){
+            lblAvisos.setText("Introduza uma morada valida");            
         }
-*/
+        else{
+            DirEstudio dirEstudio = null;
+            moradaNova = txaMorada.getText().toString();       
 
-        session.beginTransaction();
-        Estudio estudio = new Estudio(IniciarSessaoController.dirEstudioLogin, moradaNova);
-        session.save(estudio);
-        session.getTransaction().commit();
-        session.close();
+            System.out.println(IniciarSessaoController.userLogin.getUtilizadorId());
+            org.hibernate.Session session = hibernate.HibernateUtil.getSessionFactory().openSession();
+
+            session.beginTransaction();
+            Estudio estudio = new Estudio(IniciarSessaoController.dirEstudioLogin, moradaNova);
+            session.save(estudio);
+            session.getTransaction().commit();
+            session.close();
+        }
     }        
 }
