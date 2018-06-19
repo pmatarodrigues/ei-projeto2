@@ -9,6 +9,7 @@ import classes.Musica;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Blob;
 import java.sql.SQLException;
@@ -16,7 +17,9 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -57,7 +60,7 @@ public class FXMLRegistarAlbumController implements Initializable {
     }   
     
     @FXML
-    public void enviarUpload(ActionEvent event){    
+    public void enviarUpload(ActionEvent event) throws IOException{    
         Editora editora = null;
         semErros = true;
         
@@ -71,7 +74,19 @@ public class FXMLRegistarAlbumController implements Initializable {
             semErros = false;
         }
         
-        if(semErros){        
+        if(semErros){     
+            // --- POPUP DE INFORMAÇAO
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Registo Efetuado");
+            alert.setHeaderText("Foi registado o album com o nome " + txfNomeAlbum.getText());  
+            alert.showAndWait();
+
+            
+            // -- VOLTAR PARA A PAGINA INICIAL
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("FXMLRegistarAlbum.fxml"));
+            YourasMusic.getROOT().setRight(loader.load());
+            
             for(Editora e : editoras){
                 if(e.getNome().equals(cmbNomeEditora.getValue().toString())){
                     editora = e;

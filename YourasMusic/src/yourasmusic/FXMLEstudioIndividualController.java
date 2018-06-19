@@ -34,6 +34,7 @@ public class FXMLEstudioIndividualController implements Initializable {
     @FXML Label moradaEstudio;
     @FXML Button btnReserva;
     @FXML DatePicker dtDataReserva;
+    @FXML Label lblAvisos;
     
     Estudio estudio;
     DirEstudio dirEstudio;
@@ -70,31 +71,36 @@ public class FXMLEstudioIndividualController implements Initializable {
     public void efetuarReserva(ActionEvent event){
         Boolean estudioOcupado = false;
         
-        org.hibernate.Session session = hibernate.HibernateUtil.getSessionFactory().openSession();
-        // --- Recebe a data do DatePicker
-        java.util.Date dataReserva = Date.from(dtDataReserva.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
-       
-        // --- Receber o utilizador com login iniciado
-        Utilizador user = IniciarSessaoController.userLogin;
-        
-        List<Reserva> reservas = session.createCriteria(Reserva.class).list();
-        
-        for(Reserva r : reservas){
-            if(!r.getDataReserva().equals(dataReserva)){
-                estudioOcupado = true;
+        if(dtDataReserva.getValue() == null){
+            lblAvisos.setText("Selecione uma data");
+        } else{
+            org.hibernate.Session session = hibernate.HibernateUtil.getSessionFactory().openSession();
+            // --- Recebe a data do DatePicker
+            java.util.Date dataReserva = Date.from(dtDataReserva.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
+
+            // --- Receber o utilizador com login iniciado
+            Utilizador user = IniciarSessaoController.userLogin;
+
+            List<Reserva> reservas = session.createCriteria(Reserva.class).list();
+
+            for(Reserva r : reservas){                
+                if(r.getDataReserva().equals(dataReserva)){
+                    estudioOcupado = true;
+                }
             }
+            if(estudioOcupado){
+                mensagemPopup("Selecione outra data", "Estudio ocupado", Alert.AlertType.ERROR);
+            } else{
+                mensagemPopup("Reserva registada", "Obrigado!", Alert.AlertType.INFORMATION);
+                Reserva reserva;
+                // ---- Registar a reserva
+                reserva = new Reserva(dataReserva, user, estudio, 'N', 'N');              
+                session.beginTransaction();
+                session.save(reserva);
+                session.getTransaction().commit(); 
+                session.close();
+            }           
         }
-        if(estudioOcupado){
-            mensagemPopup("Data já ocupada", "ocupado", Alert.AlertType.ERROR);
-        }
-        
-        Reserva reserva;
-        // ---- Registar a reserva
-        reserva = new Reserva(dataReserva, user, estudio, 'N', 'N');              
-        session.beginTransaction();
-        session.save(reserva);
-        session.getTransaction().commit(); 
-        session.close();
     }
     
     

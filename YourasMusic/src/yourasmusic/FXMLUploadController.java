@@ -15,6 +15,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.net.URL;
@@ -26,12 +27,16 @@ import java.sql.SQLException;
 import static java.sql.Types.BLOB;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -81,7 +86,7 @@ public class FXMLUploadController implements Initializable {
     }    
     
     @FXML
-    public void enviarUpload(ActionEvent event){       
+    public void enviarUpload(ActionEvent event) throws IOException{       
         
         semErros = true;
         
@@ -96,7 +101,20 @@ public class FXMLUploadController implements Initializable {
             semErros = false;
         }
         
-        if(semErros){        
+        if(semErros){      
+            
+            // --- POPUP DE INFORMAÇAO
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Upload Efetuado");
+            alert.setHeaderText("Foi registada a musica com o nome " + nome.getText()); 
+            
+            alert.showAndWait();
+            
+            // -- VOLTAR PARA A PAGINA INICIAL
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("FXMLUpload.fxml"));
+            YourasMusic.getROOT().setRight(loader.load());
+            
             session = hibernate.HibernateUtil.getSessionFactory().openSession();     
             session.beginTransaction();
             //List<Artista> artistaUpload = session.createQuery("FROM Artista Where Artista_Id = " + IniciarSessaoController.userLogin.getUtilizadorId()).list();       
