@@ -83,9 +83,11 @@ public class FXMLEstudioIndividualController implements Initializable {
 
             List<Reserva> reservas = session.createCriteria(Reserva.class).list();
 
-            for(Reserva r : reservas){                
-                if(r.getDataReserva().equals(dataReserva)){
-                    estudioOcupado = true;
+            for(Reserva r : reservas){
+                if(r.getEstudio().getEstudioId() == estudio.getEstudioId()){
+                    if(r.getDataReserva().equals(dataReserva)){
+                        estudioOcupado = true;
+                    }
                 }
             }
             if(estudioOcupado){

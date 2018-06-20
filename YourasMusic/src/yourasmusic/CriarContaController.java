@@ -137,7 +137,7 @@ public class CriarContaController implements Initializable {
                 lblAvisos.setText("Selecione um tipo de utilizador");
                 semErros = false;
             } else if(cmboxTipoUtilizador.getValue().toString().equals("Artista")){             
-                if(txfldNomeArtista.getText().length() == 3 || txfldNomeCompleto.getText().length() < 5){
+                if(txfldNomeArtista.getText().length() < 1 || txfldNomeArtista.getText().length() > 90){
                     lblAvisos.setText("Introduza um nome de Artista valido");
                     semErros = false;
                 } else if(dtpDataNascimento.getValue() == null){
@@ -169,8 +169,8 @@ public class CriarContaController implements Initializable {
             Utilizador last = (Utilizador) query.uniqueResult();
             // -- atribuir o id do ultimo user a esta variavel
             int id;
-            if (last==null) {
-                id=0;
+            if (last == null) {
+                id = 0;
             }else{
                 id = last.getUtilizadorId();
             }

@@ -94,17 +94,8 @@ public class IniciarSessaoController implements Initializable {
         
         org.hibernate.Session session = hibernate.HibernateUtil.getSessionFactory().openSession();
         Criteria cr = session.createCriteria(Utilizador.class);                
-        List<Utilizador> users = cr.list();
-        
-        Criteria crEstudio = session.createCriteria(DirEstudio.class);                
-        List<DirEstudio> diretores = crEstudio.list();
-        
-        Criteria crArtista = session.createCriteria(Artista.class);                
-        List<Artista> artistas = crArtista.list();
-        
-        Criteria crEditora = session.createCriteria(Editora.class);                
-        List<Editora> editoras = crEditora.list();
-
+        List<Utilizador> users = cr.list();                
+                       
         // --- Aplicar restrições ao query na base de dados
         String emailRecebido = txfUsername.getText().toString();
         String passwordRecebida = txfPassword.getText().toString();
@@ -118,21 +109,32 @@ public class IniciarSessaoController implements Initializable {
         for(Utilizador u : users){                        
             if(u.getEmail().toString().equals(emailRecebido)){
                userLogin = u;
-               for(Artista a : artistas){
-                if(u.getUtilizadorId() == a.getArtistaId()){
-                    artistaLogin = a;
-                }
-               }
-               for(Editora e : editoras){
-                if(u.getUtilizadorId() == e.getEditoraId()){
-                    editoraLogin = e;
-                }
-               }
-               for(DirEstudio d : diretores){
-                if(u.getUtilizadorId() == d.getDirEstudioId()){
-                    dirEstudioLogin = d;
-                }
-               }
+               switch(userLogin.getTipo().trim()){
+                    case "A":
+                        Criteria crArtista = session.createCriteria(Artista.class);                
+                        List<Artista> artistas = crArtista.list();                                                
+                        for(Artista a : artistas){
+                            if(u.getUtilizadorId() == a.getArtistaId()){
+                                artistaLogin = a;
+                            }
+                        }
+                    case "E":
+                        Criteria crEditora = session.createCriteria(Editora.class);                
+                        List<Editora> editoras = crEditora.list();
+                        for(Editora e : editoras){
+                            if(u.getUtilizadorId() == e.getEditoraId()){
+                                editoraLogin = e;
+                            }
+                        }
+                    case "S":
+                        Criteria crEstudio = session.createCriteria(DirEstudio.class);                
+                        List<DirEstudio> diretores = crEstudio.list();                                                
+                        for(DirEstudio d : diretores){
+                            if(u.getUtilizadorId() == d.getDirEstudioId()){
+                                dirEstudioLogin = d;
+                            }
+                        }
+                }               
             }        
             
         }
