@@ -144,7 +144,7 @@ public class FXMLUploadController implements Initializable {
         // filtro de ficheiros
         FileFilter filter = new FileNameExtensionFilter("MP3 Files", "mp3", "mpeg3");
         // file chooser + diretorio onde irá abrir
-        JFileChooser chooser = new JFileChooser("%UserProfile%\\Desktop ");
+        JFileChooser chooser = new JFileChooser();
         
         chooser.addChoosableFileFilter(filter);
         
@@ -160,8 +160,8 @@ public class FXMLUploadController implements Initializable {
         
         
         session = hibernate.HibernateUtil.getSessionFactory().openSession();
-        Blob musicaAEnviar = session.getLobHelper().createBlob(fis, myFile.length());
-        upload = musicaAEnviar;
+        upload = session.getLobHelper().createBlob(fis, myFile.length());
+       
                 
         session.close();
                  

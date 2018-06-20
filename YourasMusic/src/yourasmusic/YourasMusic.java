@@ -26,6 +26,7 @@ public class YourasMusic extends Application {
     private static BorderPane ROOT;    
     private static MusicPlayer mp = new MusicPlayer();
     
+    
     @Override
     public void start(Stage stage) throws Exception {        
         Parent root = FXMLLoader.load(getClass().getResource("FXMLInitialPane.fxml"));
@@ -38,6 +39,7 @@ public class YourasMusic extends Application {
         
         stage.setTitle("Youras Music");
         stage.setScene(new Scene(root));
+        stage.setResizable(false);
         stage.show();
         
         stage.setOnCloseRequest(e -> {

@@ -33,8 +33,9 @@ import org.hibernate.criterion.Restrictions;
 
 public class FXMLArtistaIndividualController implements Initializable {
 
-    @FXML Label nomeAlbum;
-    @FXML Label anoAlbum;
+    @FXML Label nomeArtista;
+    @FXML Label naturalidadeArtista;    
+    @FXML Label contactoArtista;
     @FXML TilePane tileMusicaArtista;
     @FXML Label lblSemMusicas;
     
@@ -48,8 +49,9 @@ public class FXMLArtistaIndividualController implements Initializable {
     
     void initData(Artista artistaClicado) {
         this.artistaAtual = artistaClicado;
-        nomeAlbum.setText(artistaClicado.getNomeArtista());
-        anoAlbum.setText(artistaClicado.getNacionalidade());
+        nomeArtista.setText(artistaClicado.getNomeArtista());
+        naturalidadeArtista.setText(artistaClicado.getNacionalidade());        
+        contactoArtista.setText(artistaClicado.getContacto());
         carregarMusicasArtista();
     }   
         

@@ -168,8 +168,12 @@ public class CriarContaController implements Initializable {
             query.setMaxResults(1);
             Utilizador last = (Utilizador) query.uniqueResult();
             // -- atribuir o id do ultimo user a esta variavel
-            int id = last.getUtilizadorId();
-
+            int id;
+            if (last==null) {
+                id=0;
+            }else{
+                id = last.getUtilizadorId();
+            }
             /* INICIAR ENVIO PARA A BASE DE DADOS*/
             Utilizador user = new Utilizador(this.txtfldEmail.getText().toString(), this.txtfldPassword.getText().toString(), tipo);
             session.beginTransaction();

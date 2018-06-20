@@ -66,7 +66,8 @@ public class FXMLInicioRootController implements Initializable {
     
     // -- Player -- -- -- -- -- -- --
     
-    @FXML public static Label musicPlaying;
+    @FXML public static Label musicPlaying;    
+    @FXML public static Button but_stopResume;
     
     
     
@@ -172,7 +173,7 @@ public class FXMLInicioRootController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLInitialPane.fxml"));
         
         Pane musicPane = FXMLLoader.load(getClass().getResource("FXMLIniciarSessao.fxml"));
-        ((BorderPane) root).setRight(musicPane);
+        ((BorderPane) root).setCenter(musicPane);
 
         
         // -- termina a sessão de todos 
@@ -213,16 +214,15 @@ public class FXMLInicioRootController implements Initializable {
     
     @FXML
     private void pauseResume(ActionEvent event) throws JavaLayerException, InterruptedException{
+        if (YourasMusic.getMp().player == null) {
+           return;
+        }
         if(YourasMusic.getMp().playing == true){
             MusicPlayer player = YourasMusic.getMp();
            YourasMusic.getMp().Pause();
-           //synchronized(player){
-           // player.thread.wait();
-          // }
+           
         }else{
             YourasMusic.getMp().Resume();
-            //YourasMusic.getMp().thread.notifyAll();
-          
         }
     }
 

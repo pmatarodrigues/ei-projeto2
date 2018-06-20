@@ -30,7 +30,7 @@ public class MusicPlayer {
     private InputStream IS;
     private BufferedInputStream BIS;
     
-    public Player player;
+    public Player player = null;
     
     public boolean playing;
     
@@ -38,10 +38,9 @@ public class MusicPlayer {
     public long songTotalLength;
     public InputStream fileDB;
     public Thread thread;
-    
-    
+     
     public void Play() throws JavaLayerException, IOException, SQLException
-    {
+    {   
         
         IS = blb.getBinaryStream();
         playing = true;
@@ -80,7 +79,6 @@ public class MusicPlayer {
                playing = false;
                pauseLocation = IS.available();
                player.close();
-               player = null;
            }
            catch(IOException ex)
            {
@@ -103,20 +101,16 @@ public class MusicPlayer {
             BIS = new BufferedInputStream(IS);
             
             player = new Player(BIS);
-            long a = IS.skip(pauseLocation - songTotalLength);
+          /*  long a = IS.skip(pauseLocation - songTotalLength);
             System.out.println(songTotalLength);
             System.out.println(pauseLocation);
             System.out.println(a);
             System.out.println("---------");
-          
+          */
         } 
-        catch (FileNotFoundException | JavaLayerException ex) 
+        catch (JavaLayerException ex) 
         {
             System.out.println("Erro na re-reprodução da musica: " + ex.getMessage());            
-        } 
-        catch (IOException ex) 
-        {
-            System.out.println("Erro na re-reprodução da musica (IO): " + ex.getMessage());   
         }
         playing = true;
         new Thread()

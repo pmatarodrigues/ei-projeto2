@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
@@ -8,44 +9,65 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="yourasmusic.FXMLArtistaIndividualController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="yourasmusic.FXMLArtistaIndividualController">
    <children>
       <BorderPane layoutX="10.0" layoutY="10.0" prefHeight="800.0" prefWidth="990.0">
          <center>
             <Pane prefHeight="462.0" prefWidth="565.0" styleClass="pane" stylesheets="@styles.css" BorderPane.alignment="CENTER">
                <children>
                   <Line endX="700.0" layoutX="145.0" layoutY="159.0" stroke="WHITE" />
-                  <Label fx:id="nomeAlbum" alignment="CENTER" layoutX="17.0" layoutY="36.0" prefHeight="147.0" prefWidth="957.0" text="nome" textFill="WHITE">
+                  <Label fx:id="nomeArtista" alignment="CENTER" layoutX="17.0" layoutY="36.0" prefHeight="147.0" prefWidth="957.0" text="nome" textFill="WHITE">
                      <font>
                         <Font size="58.0" />
                      </font>
                   </Label>
-                  <Label fx:id="anoAlbum" layoutX="447.0" layoutY="184.0" prefHeight="47.0" prefWidth="306.0" text="Naturalidade" textFill="WHITE">
+                  <Label fx:id="naturalidadeArtista" layoutX="447.0" layoutY="184.0" prefHeight="47.0" prefWidth="306.0" text="Naturalidade" textFill="WHITE">
                      <font>
                         <Font size="39.0" />
                      </font>
                   </Label>
-                  <Label fx:id="tileMusicasArtista1" alignment="CENTER" layoutX="353.0" layoutY="259.0" prefHeight="47.0" prefWidth="306.0" text="Musicas" textFill="WHITE">
+                  <Label fx:id="tileMusicasArtista1" alignment="CENTER" layoutX="342.0" layoutY="340.0" prefHeight="47.0" prefWidth="306.0" text="Musicas" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="27.0" />
                      </font>
                   </Label>
-                  <TilePane fx:id="tileMusicaArtista" layoutX="14.0" layoutY="292.0" prefHeight="627.0" prefWidth="964.0">
-                     <children>
-                        <Label fx:id="lblSemMusicas" alignment="CENTER" prefHeight="69.0" prefWidth="962.0" text="O artista nao tem musicas disponiveis" textFill="WHITE">
-                           <font>
-                              <Font size="27.0" />
-                           </font>
-                        </Label>
-                     </children></TilePane>
                   <Label fx:id="anoAlbum1" alignment="CENTER" layoutX="74.0" layoutY="183.0" prefHeight="49.0" prefWidth="359.0" text="Naturalidade:" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="40.0" />
                      </font>
                   </Label>
+                  <Label fx:id="contactoArtista" layoutX="447.0" layoutY="249.0" prefHeight="47.0" prefWidth="421.0" text="Contacto" textFill="WHITE">
+                     <font>
+                        <Font size="29.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="anoAlbum11" alignment="CENTER" layoutX="74.0" layoutY="248.0" prefHeight="49.0" prefWidth="359.0" text="Contacto:" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="30.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
          </center>
+         <bottom>
+            <ScrollPane prefHeight="471.0" prefWidth="990.0" styleClass="pane" stylesheets="@styles.css" BorderPane.alignment="CENTER">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="760.0" prefWidth="990.0" styleClass="pane" stylesheets="@styles.css">
+                     <children>
+                        <TilePane fx:id="tileMusicaArtista" layoutY="-4.0" prefHeight="810.0" prefWidth="990.0">
+                           <children>
+                              <Label fx:id="lblSemMusicas" alignment="CENTER" prefHeight="69.0" prefWidth="962.0" text="O artista nao tem musicas disponiveis" textFill="WHITE">
+                                 <font>
+                                    <Font size="27.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </TilePane>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
+         </bottom>
       </BorderPane>
    </children>
 </AnchorPane>
