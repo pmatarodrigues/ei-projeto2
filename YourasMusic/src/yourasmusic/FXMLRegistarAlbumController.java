@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Blob;
 import java.sql.SQLException;
+import java.text.NumberFormat;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -60,7 +61,7 @@ public class FXMLRegistarAlbumController implements Initializable {
     }   
     
     @FXML
-    public void enviarUpload(ActionEvent event) throws IOException{    
+    public void enviarUpload(ActionEvent event) throws IOException{                   
         Editora editora = null;
         semErros = true;
         
@@ -69,7 +70,8 @@ public class FXMLRegistarAlbumController implements Initializable {
             semErros = false;
         } else if(cmbNomeEditora.getValue() == null){
             lblAvisos.setText("Selecione uma editora valida");
-        } else if(txfAno.getText().length() < 5){
+            semErros = false;
+        } else if(txfAno.getText().length() != 4){
             lblAvisos.setText("Introduza um ano valido");
             semErros = false;
         }

@@ -91,13 +91,17 @@ public class FXMLInicioPaneController implements Initializable {
         Query query = session.createQuery("FROM Musica ORDER BY musicaId DESC");
         query.setMaxResults(1);
         Musica lastUpload = (Musica) query.uniqueResult();
-        System.out.println(lastUpload.getNome().toString());
         
-        lblUltimoUploadMusica.setText(lastUpload.getNome().toString());
-        for(Artista a : artistas){
-            if(a.getArtistaId() == lastUpload.getUtilizador().getUtilizadorId()){
-                lblUltimoUploadMusicaArtista.setText(a.getNomeArtista().toString());
+        if(lastUpload != null){
+            lblUltimoUploadMusica.setText(lastUpload.getNome().toString());
+            for(Artista a : artistas){
+                if(a.getArtistaId() == lastUpload.getUtilizador().getUtilizadorId()){
+                    lblUltimoUploadMusicaArtista.setText(a.getNomeArtista().toString());
+                }
             }
+        } else{
+            lblUltimoUploadMusica.setText("Nao existem musicas");
+            lblUltimoUploadMusicaArtista.setVisible(false);
         }
         
         session.close();
@@ -111,31 +115,38 @@ public class FXMLInicioPaneController implements Initializable {
         Query query = session.createQuery("FROM Album ORDER BY albumId DESC");
         query.setMaxResults(1);
         Album lastUpload = (Album) query.uniqueResult();
-        System.out.println(lastUpload.getNome().toString());
         
-        lblUltimoAlbum.setText(lastUpload.getNome().toString());
-        lblUltimoAlbumAno.setText(lastUpload.getAno().toString());
-        lblUltimoAlbumArtista.setText(lastUpload.getArtista().getNomeArtista());
+        if(lastUpload != null){
+            lblUltimoAlbum.setText(lastUpload.getNome().toString());
+            lblUltimoAlbumAno.setText(lastUpload.getAno().toString());
+            lblUltimoAlbumArtista.setText(lastUpload.getArtista().getNomeArtista());
+            
+            session.close();
         
+            ImageView capa;
 
-        session.close();
-        
-        ImageView capa;
-        
-        // atribuir imagem a Image
-        if(lastUpload.getCapa() != null){
-            Image imagem = new Image(lastUpload.getCapa().getBinaryStream());
-            capa = new ImageView(imagem);
-            capa.setPreserveRatio(false);
-            capa.setFitHeight(200);
-            capa.setFitWidth(200);
-            capa.setStyle("-fx-border-color: #FFF; -fx-border-width: 20");
-            lblUltimoAlbumCapa.setText("");
-            // -- "Escrever" a imagem na label
-            lblUltimoAlbumCapa.setGraphic(capa);
+            // atribuir imagem a Image
+            if(lastUpload.getCapa() != null){
+                Image imagem = new Image(lastUpload.getCapa().getBinaryStream());
+                capa = new ImageView(imagem);
+                capa.setPreserveRatio(false);
+                capa.setFitHeight(200);
+                capa.setFitWidth(200);
+                capa.setStyle("-fx-border-color: #FFF; -fx-border-width: 20");
+                lblUltimoAlbumCapa.setText("");
+                // -- "Escrever" a imagem na label
+                lblUltimoAlbumCapa.setGraphic(capa);
+            } else {
+                lblUltimoAlbumCapa.setText("Sem Capa");
+            }            
         } else {
-            lblUltimoAlbumCapa.setText("Sem Capa");
+            lblUltimoAlbum.setText("Nao existem albuns");
+            lblUltimoAlbumCapa.setVisible(false);
+            lblUltimoAlbumArtista.setVisible(false);
+            lblUltimoAlbumAno.setVisible(false);
         }
+
+        
     }
     
     

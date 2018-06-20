@@ -13,7 +13,10 @@
             <Font size="39.0" />
          </font>
       </Label>
-      <TextArea id="textfields_login_register" fx:id="txaMorada" layoutX="205.0" layoutY="350.0" prefHeight="225.0" prefWidth="580.0" stylesheets="@styles.css" />
+      <TextArea fx:id="txaMorada" layoutX="205.0" layoutY="350.0" prefHeight="225.0" prefWidth="580.0" style="-fx-text-fill: #000;" stylesheets="@styles.css">
+         <font>
+            <Font size="30.0" />
+         </font></TextArea>
       <Label layoutX="205.0" layoutY="320.0" text="Morada *" textFill="WHITE">
          <font>
             <Font size="25.0" />

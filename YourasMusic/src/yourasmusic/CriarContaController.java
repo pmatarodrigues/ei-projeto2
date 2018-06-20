@@ -4,6 +4,7 @@ package yourasmusic;
 import classes.Artista;
 import classes.DirEstudio;
 import classes.Editora;
+import classes.Logs;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;

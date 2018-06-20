@@ -20,6 +20,12 @@ public class Logs  implements java.io.Serializable {
        this.logId = logId;
        this.descricao = descricao;
     }
+
+    public Logs(String descricao) {
+        this.descricao = descricao;
+    }
+    
+    
    
     public BigDecimal getLogId() {
         return this.logId;

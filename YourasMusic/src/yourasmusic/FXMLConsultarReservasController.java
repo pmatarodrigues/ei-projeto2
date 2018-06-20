@@ -75,7 +75,7 @@ public class FXMLConsultarReservasController implements Initializable {
                 btnReservas.setMinSize(800, 50);
                 btnReservas.setMaxSize(800, 50);
                 btnReservas.setTextAlignment(TextAlignment.LEFT);
-                btnReservas.setText(r.getUtilizador().getEmail().toString() + "     " + r.getDataReserva().toString());
+                btnReservas.setText(r.getUtilizador().getEmail().toString() + "     " + r.getDataReserva().toString() + "\n" + r.getEstudio().getMorada());
                 tileReservas.setAlignment(Pos.TOP_CENTER);
                 tileReservas.setVgap(10);
                 tileReservas.getChildren().add(btnReservas);
